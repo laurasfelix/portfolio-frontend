@@ -1,0 +1,11 @@
+Started actually coding stuff after designing a rough sketch of it on Figma.
+
+Decided against using a tv screen as a border because my computer already functions as a "tv border". Yay design.
+
+Learned about react reanimated while trying to do fade in animations!
+
+```npx expo install react-native-reanimated```
+
+My animation didn't work for the longest time because reduced motion was activated. Duhh. 
+
+Boom animation and fade in works! also changed background color to black to ensure similarity with PS3 boot.
