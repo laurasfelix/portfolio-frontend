@@ -5,6 +5,7 @@ import Animated, { FadeIn, ReduceMotion } from 'react-native-reanimated';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
+const margin = Dimensions.get('window').width*0.2;
 
 
 export default function Index() {
@@ -34,10 +35,14 @@ export default function Index() {
         style={styles.main}
       >
           <VideoView style={styles.video} player={player} allowsFullscreen nativeControls={false} allowsPictureInPicture contentFit="cover" /> 
-          {/* <Text>laura's profile</Text> */}
-        
-      
+
+        <Animated.View style={styles.welcome} entering={FadeIn.duration(2000).reduceMotion(ReduceMotion.Never)}>
+          <Text style={styles.welcomeHeader}>Portfolio by Laura</Text>   
+          <Text style={styles.welcomeText}>(sony don't sue me pls)</Text>      
+
+        </Animated.View>
       </Animated.View>
+  
     </View>
   );
 }
@@ -47,6 +52,8 @@ const styles = StyleSheet.create({
     video:{
       width: "100%",
       height:"100%",
+      position:"absolute",
+      
     
     },
     main:
@@ -54,8 +61,28 @@ const styles = StyleSheet.create({
    
      width: screenWidth,
      height: screenHeight,
+     alignItems:"flex-end",
+     justifyContent:"center",
     }, 
     container:{
       backgroundColor: "black",
-    }
+    },
+    welcome:
+    { 
+      marginRight: margin, 
+      alignItems:"center", 
+
+    },
+    welcomeText:
+    {
+      fontSize: 28,
+      color: "white",
+      fontWeight: 200,
+    }, 
+    welcomeHeader:
+    {
+      fontSize: 48,
+      color: "white",
+      fontWeight: 200,
+    },
 });

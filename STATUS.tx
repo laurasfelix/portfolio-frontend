@@ -9,3 +9,5 @@ Learned about react reanimated while trying to do fade in animations!
 My animation didn't work for the longest time because reduced motion was activated. Duhh. 
 
 Boom animation and fade in works! also changed background color to black to ensure similarity with PS3 boot.
+
+Added initial text.
