@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Dimensions} from "react-native";
 import { VideoView, useVideoPlayer} from 'expo-video';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Animated, { FadeIn, ReduceMotion } from 'react-native-reanimated';
 
 const screenWidth = Dimensions.get('window').width;
@@ -10,8 +10,8 @@ const margin = Dimensions.get('window').width*0.2;
 
 export default function Index() {
 
-
   const videoSource = require("../assets/videos/boot.mp4");
+  const [isBoot, setIsBoot] = useState(false);
 
   const player = useVideoPlayer(videoSource, player => {
     player.loop = true;
@@ -26,6 +26,16 @@ export default function Index() {
     }
   }, [player]);
 
+  useEffect(()=>{
+    const timeout = setTimeout(() => {
+      setIsBoot(false);
+    }, 8000);
+
+    return () => { 
+      clearTimeout(timeout);
+    };
+ },[]);
+
   return (
     <View style={styles.container}>
     
@@ -36,11 +46,20 @@ export default function Index() {
       >
           <VideoView style={styles.video} player={player} allowsFullscreen nativeControls={false} allowsPictureInPicture contentFit="cover" /> 
 
-        <Animated.View style={styles.welcome} entering={FadeIn.duration(2000).reduceMotion(ReduceMotion.Never)}>
+        {isBoot && <Animated.View style={styles.welcome} entering={FadeIn.duration(2000).reduceMotion(ReduceMotion.Never)}>
+
           <Text style={styles.welcomeHeader}>Portfolio by Laura</Text>   
           <Text style={styles.welcomeText}>(sony don't sue me pls)</Text>      
 
-        </Animated.View>
+        </Animated.View>}
+
+        {!isBoot &&
+
+        <View>
+           
+        </View>
+
+        }
       </Animated.View>
   
     </View>
