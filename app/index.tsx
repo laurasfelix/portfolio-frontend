@@ -11,7 +11,7 @@ const margin = Dimensions.get('window').width*0.2;
 export default function Index() {
 
   const videoSource = require("../assets/videos/boot.mp4");
-  const [isBoot, setIsBoot] = useState(false);
+  const [isBoot, setIsBoot] = useState(true);
 
   const player = useVideoPlayer(videoSource, player => {
     player.loop = true;
