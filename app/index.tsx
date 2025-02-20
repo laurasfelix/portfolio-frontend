@@ -1,7 +1,8 @@
 import { Text, View, StyleSheet, Dimensions} from "react-native";
 import { VideoView, useVideoPlayer} from 'expo-video';
 import { useEffect, useState } from "react";
-import Animated, { FadeIn, ReduceMotion } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
+import Menu from "../components/menu";
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -46,7 +47,7 @@ export default function Index() {
       >
           <VideoView style={styles.video} player={player} allowsFullscreen nativeControls={false} allowsPictureInPicture contentFit="cover" /> 
 
-        {isBoot && <Animated.View style={styles.welcome} entering={FadeIn.duration(2000).reduceMotion(ReduceMotion.Never)}>
+        {isBoot && <Animated.View style={styles.welcome} entering={FadeIn.duration(2000).reduceMotion(ReduceMotion.Never)} exiting={FadeOut.duration(1000).reduceMotion(ReduceMotion.Never)}>
 
           <Text style={styles.welcomeHeader}>Portfolio by Laura</Text>   
           <Text style={styles.welcomeText}>(sony don't sue me pls)</Text>      
@@ -55,9 +56,11 @@ export default function Index() {
 
         {!isBoot &&
 
-        <View>
+        <Animated.View style={styles.menu} entering={FadeIn.duration(1000).reduceMotion(ReduceMotion.Never)} exiting={FadeOut.duration(1000).reduceMotion(ReduceMotion.Never)}>
+
+          <Menu />
            
-        </View>
+        </Animated.View>
 
         }
       </Animated.View>
@@ -104,4 +107,9 @@ const styles = StyleSheet.create({
       color: "white",
       fontWeight: 200,
     },
+    menu:{
+      width:"100%",
+      alignItems:"center",
+      justifyContent:"center",
+    }
 });
