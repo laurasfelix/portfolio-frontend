@@ -44,7 +44,7 @@ export default function Index() {
       <Animated.View
         
         entering={FadeIn.duration(8000).reduceMotion(ReduceMotion.Never)}
-        style={styles.main}
+        style={[styles.main, {justifyContent: isBoot ? "center" : "flex-start"}]}
       >
           <VideoView style={styles.video} player={player} allowsFullscreen nativeControls={false} allowsPictureInPicture contentFit="cover" /> 
 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
      width: screenWidth,
      height: screenHeight,
      alignItems:"flex-end",
-    //  justifyContent:"center",
+     justifyContent:"center",
     }, 
     container:{
       backgroundColor: "black",

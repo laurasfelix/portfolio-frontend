@@ -1,22 +1,52 @@
-import { Text, View, StyleSheet, Dimensions} from "react-native";
+import { Pressable, View, StyleSheet, Dimensions} from "react-native";
 import { useEffect, useState } from "react";
 import Icon from "../components/icon";
+import { Audio } from 'expo-av';
 
 const screenWidth = Dimensions.get('window').width;
 
 const Menu = () =>
 {
-    const [chosen, setChosen] = useState(false);
+    const [chosen, setChosen] = useState("about");
     const listInfo = [{icon:"about", text:"about"}, {icon:"exp", text:"experience"}, {icon:"www", text:"projects"}, {icon:"games", text:"hobbies"}, {icon:"contact", text:"contact"}];
+
+
+    useEffect(() => {
+
+    let soundObject: Audio.Sound;
+
+    async function playSound() {
+        console.log("Loading Sound");
+        const { sound } = await Audio.Sound.createAsync(
+        require("../assets/sounds/hover.mp3")
+        );
+        soundObject = sound;
+
+        console.log("Playing Sound");
+        await soundObject.playAsync();
+    }
+
+    playSound();
+
+    return () => {
+        if (soundObject) {
+        console.log("Unloading Sound");
+        soundObject.unloadAsync();
+        }
+  };
+        
+    }, [chosen]);
 
     return (
         <View style={styles.menuContainer}>
             {listInfo.map((info, idx) =>
             {
                 return (
-                    <View key={idx} style={styles.icon}>
-                        <Icon src={info.icon} text={info.text}/>
-                    </View>
+                    <Pressable key={idx} style={styles.icon}
+                    onPressIn={() => setChosen(info.icon)} onHoverIn={() => setChosen(info.icon)}
+                    >
+                        <Icon src={info.icon} text={info.text} chosen={chosen}/>
+                    </Pressable>
                 );
             }
         )

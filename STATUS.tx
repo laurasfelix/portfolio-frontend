@@ -15,3 +15,9 @@ Added initial text.
 With that, added all icons (svg) using expo-imge.
 
 Centered them, and added a margin at the top to make it more similar to PS3's layout. 
+
+Fixed the problem that the margin caused to the initial boot screen by adding a conditional to the styles. 
+
+Added the conditional special rendering to the chosen topic (about, games, contact, etc).
+
+Added sound!
