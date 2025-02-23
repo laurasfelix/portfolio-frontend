@@ -11,3 +11,7 @@ My animation didn't work for the longest time because reduced motion was activat
 Boom animation and fade in works! also changed background color to black to ensure similarity with PS3 boot.
 
 Added initial text.
+
+With that, added all icons (svg) using expo-imge.
+
+Centered them, and added a margin at the top to make it more similar to PS3's layout. 
