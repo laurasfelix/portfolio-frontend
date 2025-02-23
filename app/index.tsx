@@ -7,6 +7,7 @@ import Menu from "../components/menu";
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const margin = Dimensions.get('window').width*0.2;
+const menu = screenHeight*0.1;
 
 
 export default function Index() {
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
      width: screenWidth,
      height: screenHeight,
      alignItems:"flex-end",
-     justifyContent:"center",
+    //  justifyContent:"center",
     }, 
     container:{
       backgroundColor: "black",
@@ -109,7 +110,6 @@ const styles = StyleSheet.create({
     },
     menu:{
       width:"100%",
-      alignItems:"center",
-      justifyContent:"center",
+      marginTop: menu,
     }
 });
