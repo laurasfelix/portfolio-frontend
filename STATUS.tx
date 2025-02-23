@@ -21,3 +21,5 @@ Fixed the problem that the margin caused to the initial boot screen by adding a 
 Added the conditional special rendering to the chosen topic (about, games, contact, etc).
 
 Added sound!
+
+Added startup sound but it's not playing because of Chrome's restrictions. It's stressing me out a little, so I'll come backs soon.

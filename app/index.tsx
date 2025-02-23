@@ -1,8 +1,9 @@
 import { Text, View, StyleSheet, Dimensions} from "react-native";
 import { VideoView, useVideoPlayer} from 'expo-video';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
 import Menu from "../components/menu";
+import {Audio} from "expo-av";
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -14,6 +15,7 @@ export default function Index() {
 
   const videoSource = require("../assets/videos/boot.mp4");
   const [isBoot, setIsBoot] = useState(true);
+  const soundRef = useRef<Audio.Sound | null>(null);
 
   const player = useVideoPlayer(videoSource, player => {
     player.loop = true;
@@ -21,17 +23,40 @@ export default function Index() {
   
   });
 
+  useEffect(()=> {
+    async function loadSound() {
+      console.log("Loading Sound");
+      const { sound } = await Audio.Sound.createAsync(
+      require("../assets/sounds/startup.mp3")
+      );
+      soundRef.current = sound;
+  }
+  loadSound();
+  }, [])
+
   useEffect(() => {
-    if (player) {
-      console.log("Playing video...");
-      player.play();
+    async function playVideoAndAudio() {
+      if (player) {
+        console.log("Playing Video and Audio...");
+        document.addEventListener("click", async () => {
+          if (soundRef.current) {
+            await soundRef.current.playAsync();
+          }
+        player.play();
+        }, { once: true });
+      }
     }
+
+ 
+    playVideoAndAudio();
+ 
   }, [player]);
+
 
   useEffect(()=>{
     const timeout = setTimeout(() => {
       setIsBoot(false);
-    }, 8000);
+    }, 10000);
 
     return () => { 
       clearTimeout(timeout);
