@@ -3,6 +3,7 @@ import { VideoView, useVideoPlayer} from 'expo-video';
 import { useEffect, useState, useRef } from "react";
 import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
 import Menu from "../components/menu";
+import Time from "../components/time";
 import {Audio} from "expo-av";
 import { Image } from "expo-image";
 
@@ -75,7 +76,8 @@ export default function Index() {
         {!isBoot &&
 
         <Animated.View style={styles.menu} entering={FadeIn.duration(1000).reduceMotion(ReduceMotion.Never)} exiting={FadeOut.duration(1000).reduceMotion(ReduceMotion.Never)}>
-
+          
+          <Time />
           <Menu />
            
         </Animated.View>
