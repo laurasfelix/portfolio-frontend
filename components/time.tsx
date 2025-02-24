@@ -1,6 +1,30 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useEffect, useState} from "react";
 
 const Time = () => {
+
+    const [day, setDay] = useState(new Date().getDate());
+    const [month, setMonth] = useState(new Date().getMonth() + 1);
+    const [hour, setHour] = useState(new Date().getHours());
+    const [minutes, setMinutes] = useState(new Date().getMinutes());
+
+    useEffect(()=> {
+
+        const updateTime = () =>{
+
+        const date = new Date();
+        setDay(date.getDate());
+        setMonth(date.getMonth()+1);
+        setHour(date.getHours());
+        setMinutes(date.getMinutes());
+
+        }
+
+        const interval = setInterval(updateTime, 60000);
+
+        return () => clearInterval(interval);
+
+    }, [])
 
 
 
@@ -8,7 +32,7 @@ const Time = () => {
         <View style={styles.time}>
 
             <Text style={styles.innerText}>
-                7/28 17:27
+                {month}/{day} {hour}:{minutes}
             </Text>
 
             
@@ -27,7 +51,8 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         transform: "translateX(300%)",
         backgroundColor: "rgba(87, 87, 87, 0.3)",
-        borderColor: "white",
+        borderColor: "rgba(249, 248, 248, 0.51)",
+        borderWidth: 1,
     
     },
     innerText:{

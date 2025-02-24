@@ -25,3 +25,5 @@ Added sound!
 Added startup sound but it's not playing because of Chrome's restrictions. It's stressing me out a little, so I'll come backs soon.
 
 Works now! I ended up creating a power on page that starts playing the audio/video as soon as you click on the icon.
+
+Added time to the timebox using new Date() and it refreshes every minute.

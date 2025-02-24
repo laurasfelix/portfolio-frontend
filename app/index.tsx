@@ -72,8 +72,8 @@ export default function Index() {
             position: "absolute",
             top: 0,
             left: 0,
-            width: "100vw",
-            height: "100vh",
+            width: screenWidth,
+            height: screenHeight,
             objectFit: "cover",
             zIndex: -1
           }} 
