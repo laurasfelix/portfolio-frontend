@@ -113,7 +113,10 @@ const styles = StyleSheet.create({
      justifyContent:"center",
     }, 
     container:{
+      flex: 1,
       backgroundColor: "black",
+      alignItems: "center",
+      justifyContent: "center",
     },
     welcome:
     { 
