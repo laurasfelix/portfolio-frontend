@@ -23,7 +23,7 @@ const Icon = ({src, text, chosen}: IconProps) => {
 
     return (
         <View style={styles.container}>
-            <Image style={[{opacity: chosen===src ? 1 : 0.8, width: chosen===src ? iconWidth : notChosenWidth, height: chosen===src ? iconWidth : notChosenWidth,}]} source={imageMapping[src]} contentFit="contain" />
+            <img style={{opacity: chosen===src ? 1 : 0.8, width: chosen===src ? iconWidth : notChosenWidth, height: chosen===src ? iconWidth : notChosenWidth}} src={imageMapping[src]} />
             <Text style={[styles.innerText,{visibility: chosen===src ? "visible": "hidden"}]}>
                 {text}
             </Text>

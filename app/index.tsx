@@ -1,10 +1,9 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
-import { VideoView, useVideoPlayer} from 'expo-video';
+import { useVideoPlayer} from 'expo-video';
 import { useEffect, useState, useRef } from "react";
 import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
 import Menu from "../components/menu";
 import Time from "../components/time";
-import { Image } from "expo-image";
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -30,7 +29,10 @@ export default function Index() {
   useEffect(()=> {
     async function loadSound() {
       console.log("Loading Sound");
-      soundRef.current = new window.Audio("/sounds/startup.mp3");
+      const audio = new Audio("/sounds/startup.mp3");
+      audio.preload = "auto";
+      soundRef.current = audio;
+      
   }
   loadSound();
   }, [])
@@ -90,7 +92,7 @@ export default function Index() {
 
       {!isOn &&
       <Pressable style={styles.container} onPress={() => handlePowerPress()}>
-        <Image style={styles.img} source={imgSrc} />
+        <img src={imgSrc} className="img" alt="Power Button" />
       </Pressable> 
       }
   
