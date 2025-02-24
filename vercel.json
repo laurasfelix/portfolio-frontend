@@ -10,12 +10,12 @@
       "destination": "/dist/_expo/static/:path*"
     },
     {
-      "source": "/assets/:path*",
-      "destination": "/dist/assets/:path*"
+      "source": "/public/:path*",
+      "destination": "/dist/public/:path*"
     },
     {
       "source": "/:path*",
-      "destination": "/index.html"
+      "destination": "/dist/index.html"
     }
   ]
 }
