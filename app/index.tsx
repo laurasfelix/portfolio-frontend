@@ -1,9 +1,10 @@
-import { Text, View, StyleSheet, Dimensions} from "react-native";
+import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { VideoView, useVideoPlayer} from 'expo-video';
 import { useEffect, useState, useRef } from "react";
 import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
 import Menu from "../components/menu";
 import {Audio} from "expo-av";
+import { Image } from "expo-image";
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -15,7 +16,9 @@ export default function Index() {
 
   const videoSource = require("../assets/videos/boot.mp4");
   const [isBoot, setIsBoot] = useState(true);
+  const [isOn, setIsOn] = useState(false);
   const soundRef = useRef<Audio.Sound | null>(null);
+  const imgSrc = require("../assets/images/power.svg");
 
   const player = useVideoPlayer(videoSource, player => {
     player.loop = true;
@@ -34,39 +37,28 @@ export default function Index() {
   loadSound();
   }, [])
 
-  useEffect(() => {
-    async function playVideoAndAudio() {
-      if (player) {
-        console.log("Playing Video and Audio...");
-        document.addEventListener("click", async () => {
-          if (soundRef.current) {
-            await soundRef.current.playAsync();
-          }
-        player.play();
-        }, { once: true });
+  const handlePowerPress = async () => {
+    setIsOn(true);
+    if (player) {
+      console.log("Playing Video and Audio...");
+
+      if (soundRef.current) {
+        await soundRef.current.playAsync();
       }
+    
+      player.play();
+
+      setTimeout(() => {
+        setIsBoot(false);
+      }, 10000);
     }
 
- 
-    playVideoAndAudio();
- 
-  }, [player]);
-
-
-  useEffect(()=>{
-    const timeout = setTimeout(() => {
-      setIsBoot(false);
-    }, 10000);
-
-    return () => { 
-      clearTimeout(timeout);
-    };
- },[]);
+  };
 
   return (
     <View style={styles.container}>
     
-      <Animated.View
+      {isOn && <Animated.View
         
         entering={FadeIn.duration(8000).reduceMotion(ReduceMotion.Never)}
         style={[styles.main, {justifyContent: isBoot ? "center" : "flex-start"}]}
@@ -89,7 +81,13 @@ export default function Index() {
         </Animated.View>
 
         }
-      </Animated.View>
+      </Animated.View>}
+
+      {!isOn &&
+      <Pressable style={styles.container} onPress={() => handlePowerPress()}>
+        <Image style={styles.img} source={imgSrc} />
+      </Pressable> 
+      }
   
     </View>
   );
@@ -139,5 +137,9 @@ const styles = StyleSheet.create({
     menu:{
       width:"100%",
       marginTop: menu,
+    },
+    img:{
+      width: menu,
+      height: menu,
     }
 });
