@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { useEffect, useState} from "react";
+import Clock from "../components/clock";
 
 const Time = () => {
 
@@ -32,8 +33,10 @@ const Time = () => {
         <View style={styles.time}>
 
             <Text style={styles.innerText}>
-                {month}/{day} {hour}:{minutes}
+                {month}/{day} {hour}:{minutes < 10 ? "0"+minutes: minutes}
             </Text>
+
+            <Clock hour={hour} minute={minutes} />
 
             
             
@@ -53,11 +56,16 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(87, 87, 87, 0.3)",
         borderColor: "rgba(249, 248, 248, 0.51)",
         borderWidth: 1,
+        flexDirection:"row",
+        gap:10,
     
     },
     innerText:{
         color: "white",
         fontSize:20,
+        textShadowColor:"rgba(53, 53, 53, 0.81)",
+        textShadowRadius: 2,
+
     }
 
 })

@@ -27,3 +27,5 @@ Added startup sound but it's not playing because of Chrome's restrictions. It's 
 Works now! I ended up creating a power on page that starts playing the audio/video as soon as you click on the icon.
 
 Added time to the timebox using new Date() and it refreshes every minute.
+
+Added a little analog clock that moves real time. hardest thing was figuring out that transformOrigin existed because it was moving in weird directions.
