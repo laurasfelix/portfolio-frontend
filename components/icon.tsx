@@ -7,11 +7,11 @@ interface IconProps{
     chosen: string,
 }
 const imageMapping:Record<string, any> = {
-    "www": require("../assets/images/www.svg"),
-    "about": require("../assets/images/about.svg"),
-    "games": require("../assets/images/games.svg"),
-    "contact": require("../assets/images/contact.svg"),
-    "exp": require("../assets/images/exp.svg"),
+    "www": "/images/www.svg",
+    "about": "/images/about.svg",
+    "games": "/images/games.svg",
+    "contact": "/images/contact.svg",
+    "exp": "/images/exp.svg",
 
 };
 

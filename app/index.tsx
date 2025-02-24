@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
 import Menu from "../components/menu";
 import Time from "../components/time";
-import {Audio} from "expo-av";
 import { Image } from "expo-image";
 
 const screenWidth = Dimensions.get('window').width;
@@ -15,11 +14,12 @@ const menu = screenHeight*0.1;
 
 export default function Index() {
 
-  const videoSource = require("../assets/videos/boot.mp4");
+  const videoSource = "/videos/boot.mp4";
   const [isBoot, setIsBoot] = useState(true);
   const [isOn, setIsOn] = useState(false);
-  const soundRef = useRef<Audio.Sound | null>(null);
-  const imgSrc = require("../assets/images/power.svg");
+  const soundRef = useRef<HTMLAudioElement | null>(null);
+  const imgSrc = "/images/power.svg";
+  
 
   const player = useVideoPlayer(videoSource, player => {
     player.loop = true;
@@ -30,10 +30,7 @@ export default function Index() {
   useEffect(()=> {
     async function loadSound() {
       console.log("Loading Sound");
-      const { sound } = await Audio.Sound.createAsync(
-      require("../assets/sounds/startup.mp3")
-      );
-      soundRef.current = sound;
+      soundRef.current = new window.Audio("/sounds/startup.mp3");
   }
   loadSound();
   }, [])
@@ -44,7 +41,7 @@ export default function Index() {
       console.log("Playing Video and Audio...");
 
       if (soundRef.current) {
-        await soundRef.current.playAsync();
+        await soundRef.current.play();
       }
     
       player.play();

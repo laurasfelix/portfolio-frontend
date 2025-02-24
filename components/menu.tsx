@@ -13,17 +13,15 @@ const Menu = () =>
 
     useEffect(() => {
 
-    let soundObject: Audio.Sound;
+    let soundObject: HTMLAudioElement;
 
     async function playSound() {
-        console.log("Loading Sound");
-        const { sound } = await Audio.Sound.createAsync(
-        require("../assets/sounds/hover.mp3")
-        );
-        soundObject = sound;
+        console.log("Loading Sound"); 
+
+        soundObject = new window.Audio("/sounds/startup.mp3");
 
         console.log("Playing Sound");
-        await soundObject.playAsync();
+        await soundObject.play();
     }
 
     playSound();
@@ -31,7 +29,8 @@ const Menu = () =>
     return () => {
         if (soundObject) {
         console.log("Unloading Sound");
-        soundObject.unloadAsync();
+        soundObject.pause();
+        soundObject.src = "";
         }
   };
         

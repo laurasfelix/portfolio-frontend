@@ -40,7 +40,7 @@
       "typedRoutes": true
     },
     "assetBundlePatterns": [
-    "assets/**/*"
+    ["**/*"]
   ]
   }
 }
