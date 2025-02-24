@@ -61,7 +61,13 @@ export default function Index() {
         entering={FadeIn.duration(8000).reduceMotion(ReduceMotion.Never)}
         style={[styles.main, {justifyContent: isBoot ? "center" : "flex-start"}]}
       >
-          <VideoView style={styles.video} player={player} allowsFullscreen nativeControls={false} allowsPictureInPicture contentFit="cover" /> 
+          <video 
+          src={videoSource} 
+          autoPlay 
+          loop 
+          muted 
+          style={styles.video} 
+        />
 
         {isBoot && <Animated.View style={styles.welcome} entering={FadeIn.duration(2000).reduceMotion(ReduceMotion.Never)} exiting={FadeOut.duration(1000).reduceMotion(ReduceMotion.Never)}>
 
