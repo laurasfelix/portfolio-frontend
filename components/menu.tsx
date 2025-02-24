@@ -18,7 +18,7 @@ const Menu = () =>
     async function playSound() {
         console.log("Loading Sound"); 
 
-        soundObject = new window.Audio("/sounds/startup.mp3");
+        soundObject = new window.Audio("/sounds/hover.mp3");
 
         console.log("Playing Sound");
         await soundObject.play();

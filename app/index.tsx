@@ -68,7 +68,16 @@ export default function Index() {
           autoPlay 
           loop 
           muted 
-          style={styles.video} 
+          style={{ 
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            objectFit: "cover",
+            zIndex: -1
+          }} 
+
         />
 
         {isBoot && <Animated.View style={styles.welcome} entering={FadeIn.duration(2000).reduceMotion(ReduceMotion.Never)} exiting={FadeOut.duration(1000).reduceMotion(ReduceMotion.Never)}>
@@ -102,13 +111,7 @@ export default function Index() {
 
 
 const styles = StyleSheet.create({
-    video:{
-      width: "100%",
-      height:"100%",
-      position:"absolute",
-      
     
-    },
     main:
     {
    
