@@ -10,18 +10,23 @@ const itemInfo: ItemInfoProp = {
 
     "about": 
     [{
-        "title":"hi",
+        "title":"education",
         "text":["aaa"],
         "icon":"education",
     },
     {
-        "title":"hi",
+        "title":"skills",
         "text":["aaa"],
-        "icon":"education",
+        "icon":"idea",
     }],
     "exp": 
     [{
-        "title":"",
+        "title":"swe intern @ duolingo",
+        "text":[""],
+        "icon":"",
+    },
+    {
+        "title":"ta @ northwestern cs",
         "text":[""],
         "icon":"",
     }],
