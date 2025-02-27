@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Dimensions} from "react-native";
 import { Image } from "expo-image";
+import Items from "@/components/items";
 
 interface IconProps{
     src: string,
@@ -27,6 +28,7 @@ const Icon = ({src, text, chosen}: IconProps) => {
             <Text style={[styles.innerText,{visibility: chosen===src ? "visible": "hidden"}]}>
                 {text}
             </Text>
+            <Items chosen={chosen} src={src}/>
         </View>
     );
 
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:"column",
         alignItems:"center",
+        height:"100%",
     },
 });
 

@@ -125,6 +125,8 @@ const styles = StyleSheet.create({
       backgroundColor: "black",
       alignItems: "center",
       justifyContent: "center",
+      height:"100%",
+      width:"100%",
     },
     welcome:
     { 
@@ -146,6 +148,7 @@ const styles = StyleSheet.create({
     },
     menu:{
       width:"100%",
+      height:"100%",
       marginTop: menu,
     },
     img:{

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     time:{
         flex: 1,
         width: "25%",
-        maxHeight: "10%",
+        maxHeight: "5%",
         alignItems: "center",
         justifyContent:"center",
         transform: "translateX(300%)",
