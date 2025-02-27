@@ -29,3 +29,8 @@ Works now! I ended up creating a power on page that starts playing the audio/vid
 Added time to the timebox using new Date() and it refreshes every minute.
 
 Added a little analog clock that moves real time. hardest thing was figuring out that transformOrigin existed because it was moving in weird directions.
+
+Started adding the items under my icons and it makes me wonder whether or not I organized my code well. It seems like the maybe the items under the icon should be a component under Menu, but I put them within Icon. Which is a little bit of bad naming, and maybe that's confusing me.
+
+Adding the items messed with the height of the time box and so I went under a lot of containers and tried to find the root cause, and fixed it.
+
