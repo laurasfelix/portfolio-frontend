@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
     },
     innerText:{
         color: "white",
-        fontSize:20,
+        fontSize:18,
+        fontWeight:"300",
         textShadowColor:"rgba(53, 53, 53, 0.81)",
         textShadowRadius: 2,
-
     }
 
 })

@@ -18,6 +18,25 @@ const itemInfo: ItemInfoProp = {
         "title":"skills",
         "text":["aaa"],
         "icon":"idea",
+    },
+    {
+        "title":"skills",
+        "text":["aaa"],
+        "icon":"idea",
+    },
+    {
+        "title":"skills",
+        "text":["aaa"],
+        "icon":"idea",
+    },{
+        "title":"skills",
+        "text":["aaa"],
+        "icon":"idea",
+    },
+    {
+        "title":"skills",
+        "text":["aaa"],
+        "icon":"idea",
     }],
     "exp": 
     [{
