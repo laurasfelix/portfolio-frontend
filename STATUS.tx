@@ -34,3 +34,6 @@ Started adding the items under my icons and it makes me wonder whether or not I 
 
 Adding the items messed with the height of the time box and so I went under a lot of containers and tried to find the root cause, and fixed it.
 
+I restructured a lot, a lot of my code trying to make sure that the items appeared on top of the menu as well, and that took getting the items out of the icon component, and putting them in Menu (which I should've done from the get-go, tbh).
+
+This process took a few years off my lifespan. I feel a little better because the items kind of work (not fully). Incoming!
