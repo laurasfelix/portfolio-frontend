@@ -1,14 +1,21 @@
 import { View, StyleSheet, Text, Dimensions, Pressable} from "react-native";
 import itemInfo from "@/utils/itemInfo";
-import {useState, useEffect} from 'react';
+import {useState, useEffect, Dispatch, SetStateAction} from 'react';
 
 const iconWidth =  Dimensions.get("window").width*0.075;
 const notChosenWidth =  Dimensions.get("window").width*0.055;
 
-const Items = ({chosen, src}: {chosen:string, src:string}) => {
+interface ItemsProp{
+    chosen: number, 
+    src: number, 
+    chosenIcon: number[], 
+    setChosenIcon: Dispatch<SetStateAction<number[]>>,
+    up: boolean,
+};
+
+const Items = ({chosen,src, chosenIcon, setChosenIcon, up}: ItemsProp) => {
 
     const info = itemInfo[chosen];
-    const [chosenIcon, setChosenIcon] = useState(0);
 
     useEffect(() => {
     
@@ -36,26 +43,29 @@ const Items = ({chosen, src}: {chosen:string, src:string}) => {
             }, [chosenIcon]);
 
     return (
-        <View style={[styles.container, {display: chosen===src ? "flex": "none"}]}>
+        <View style={[styles.container, {display: chosen===src ? "flex": "none"},{overflow: "hidden"}]}>
            {info.map((item, index) => (
-            <Pressable key={index} style={[styles.item,{padding: index===chosenIcon ? 8 : 4} ]}
-             onPressIn={() => setChosenIcon(index)}
-             onHoverIn={() => setChosenIcon(index)}
+            <Pressable key={index} style={[styles.item,{padding: index===chosenIcon[chosen] ? 8 : 4} ]}
+             onPressIn={() => setChosenIcon(prev=> ({
+                ...prev,
+                [chosen]: index,
+             }))}
+             onHoverIn={() => setChosenIcon(prev => ({
+                ...prev,
+                [chosen]: index,
+             }))}
             >
-            {index >= chosenIcon &&
-              <View>
+            
+              <View style={[{height: up ? "50%": "100%"},
 
-         
+                {display: up ? (index < chosenIcon[chosen] ? "flex" : "none") : (!up ? (index >= chosenIcon[chosen] ? "flex" : "none") : undefined)},
+              ]}>
+
                 <View style={styles.imgContainer}>
-                    <img src={`/images/${item.icon}.svg`} style={{opacity: index===chosenIcon ? 0.95 : 0.8, width: index===chosenIcon ? iconWidth : notChosenWidth, height: index===chosenIcon ? iconWidth : notChosenWidth, alignSelf:"center"}}/>
+                    <img src={`/images/${item.icon}.svg`} style={{opacity: index===chosenIcon[chosen] ? 0.95 : 0.8, width: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, height: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, alignSelf:"center"}}/>
                 </View>
             </View>
-            //     {/* <Text style={styles.iconText}> {item.title} </Text>
-            //  */}
-            //     {/* {item.text.map((line, idx) =>(
-            //         <Text key={idx} style={styles.innerText}> {line} </Text>
-            //     ))} */}
-                }
+          
             </Pressable>
            ))}
         </View>
@@ -87,13 +97,13 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"center",
+        width:"100%",
     },
     imgContainer:{
         justifyContent:"center",
         alignItems:"center",
         filter: "drop-shadow(2px 5px 1px rgb(0 0 0 / 0.3))",
-    }
-   
+    },
   
 
 })

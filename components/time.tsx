@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { useEffect, useState} from "react";
-import Clock from "../components/clock";
+import Clock from "@/components/clock";
 
 const Time = () => {
 
@@ -47,9 +47,12 @@ const Time = () => {
 
 const styles = StyleSheet.create({
     time:{
+        position:"absolute",
+        zIndex: 50,
+        top: "10%",
         flex: 1,
         width: "25%",
-        maxHeight: "5%",
+        height:"4%",
         alignItems: "center",
         justifyContent:"center",
         transform: "translateX(300%)",
@@ -62,8 +65,8 @@ const styles = StyleSheet.create({
     },
     innerText:{
         color: "white",
-        fontSize:18,
-        fontWeight:"300",
+        fontSize:20,
+        fontWeight:"400",
         textShadowColor:"rgba(53, 53, 53, 0.81)",
         textShadowRadius: 2,
     }

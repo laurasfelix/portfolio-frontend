@@ -2,8 +2,8 @@ import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { useVideoPlayer} from 'expo-video';
 import { useEffect, useState, useRef } from "react";
 import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
-import Menu from "../components/menu";
-import Time from "../components/time";
+import Menu from "@/components/menu";
+import Time from "@/components/time";
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -18,6 +18,7 @@ export default function Index() {
   const [isOn, setIsOn] = useState(false);
   const soundRef = useRef<HTMLAudioElement | null>(null);
   const imgSrc = "/images/power.svg";
+ 
   
 
   const player = useVideoPlayer(videoSource, player => {
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     menu:{
       width:"100%",
       height:"100%",
-      marginTop: menu,
+      // marginTop: menu,
     },
     img:{
       width: menu,

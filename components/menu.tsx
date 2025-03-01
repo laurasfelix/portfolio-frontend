@@ -1,14 +1,17 @@
 import {View, StyleSheet, Dimensions} from "react-native";
-import Icon from "../components/icon";
+import Icon from "@/components/icon";
 import { useState } from "react";
+import Items from "@/components/items";
 
 const screenWidth = Dimensions.get('window').width;
+const upHeight = Dimensions.get('window').height * 0.2;
 
 const Menu = () =>
 {
     
     const listInfo = [{icon:"about", text:"about"}, {icon:"exp", text:"experience"}, {icon:"www", text:"projects"}, {icon:"games", text:"hobbies"}, {icon:"contact", text:"contact"}];
-    const [chosen, setChosen] =  useState("about");
+    const [chosen, setChosen] =  useState(0);
+    const [chosenIcon, setChosenIcon] = useState([0,0,0,0,0])
 
     
     return (
@@ -16,9 +19,21 @@ const Menu = () =>
             {listInfo.map((info, idx) =>
             {
                 return (
-                    <View key={idx} style={styles.icon}
+                    <View key={idx} style={styles.scene}
                     >
-                        <Icon src={info.icon} text={info.text} chosen={chosen} setChosen={setChosen} />
+                        <View style={[{height:upHeight}, styles.up]}>
+                            <Items chosen={chosen} src={idx} chosenIcon={chosenIcon} setChosenIcon={setChosenIcon} up={true}/>
+                        </View>
+
+                        <View style={styles.icon}>
+                            <Icon src={idx} text={info.text} chosen={chosen} setChosen={setChosen} />
+                            <View >
+                                <Items chosen={chosen} src={idx} chosenIcon={chosenIcon} setChosenIcon={setChosenIcon} up={false}/>
+                            </View>
+                        </View> 
+                     
+                       
+                        
                     </View>
                 );
             }
@@ -35,12 +50,23 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         width: "100%",
         padding: screenWidth*0.05,
+        
+    
+    },
+    scene:{
+        flex:1,
+        width:"100%",
+        flexDirection: "column",
+        gap:1,
+        // transform:"translateX(33%)",
     },
     icon:{
-        flex:1,
-        // transform:"translateX(33%)",
-      
-    }
+       flex:10, 
+    },
+    
+    up:{
+        flex:2,
+    },
 })
 
 export default Menu;

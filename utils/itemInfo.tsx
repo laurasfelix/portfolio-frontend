@@ -4,11 +4,11 @@ interface itemProp{
     "icon": string,
 }
 
-type ItemInfoProp = Record<string, itemProp[]>;
+type ItemInfoProp = itemProp[][];
 
-const itemInfo: ItemInfoProp = {
+const itemInfo: ItemInfoProp = [
 
-    "about": 
+  
     [{
         "title":"education",
         "text":["aaa"],
@@ -38,7 +38,7 @@ const itemInfo: ItemInfoProp = {
         "text":["aaa"],
         "icon":"idea",
     }],
-    "exp": 
+  
     [{
         "title":"swe intern @ duolingo",
         "text":[""],
@@ -50,20 +50,7 @@ const itemInfo: ItemInfoProp = {
         "icon":"",
     }],
 
-    "www": 
-    [{
-        "title":"",
-        "text":[""],
-        "icon":"",
-    }],
 
-    "games": 
-    [{
-        "title":"",
-        "text":[""],
-        "icon":"",
-    }],
-    "contact": 
     [{
         "title":"",
         "text":[""],
@@ -71,8 +58,21 @@ const itemInfo: ItemInfoProp = {
     }],
 
 
+    [{
+        "title":"",
+        "text":[""],
+        "icon":"",
+    }],
+ 
+    [{
+        "title":"",
+        "text":[""],
+        "icon":"",
+    }],
 
 
-}
+
+
+]
 
 export default itemInfo;

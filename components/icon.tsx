@@ -2,22 +2,21 @@ import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { Image } from "expo-image";
 import { useEffect, Dispatch, SetStateAction } from "react";
 
-import Items from "@/components/items";
-
 interface IconProps{
-    src: string,
+    src: number,
     text: string,
-    chosen: string, 
-    setChosen: Dispatch<SetStateAction<string>>,
+    chosen: number, 
+    setChosen: Dispatch<SetStateAction<number>>,
 }
-const imageMapping:Record<string, any> = {
-    "www": "/images/www.svg",
-    "about": "/images/about.svg",
-    "games": "/images/games.svg",
-    "contact": "/images/contact.svg",
-    "exp": "/images/exp.svg",
+const imageMapping:Record<string, any> = [
+    "/images/about.svg",
+    "/images/exp.svg",
+     "/images/www.svg",
+     "/images/games.svg",
+   "/images/contact.svg",
 
-};
+
+];
 
 const iconWidth =  Dimensions.get("window").width*0.075;
 const notChosenWidth =  Dimensions.get("window").width*0.065;
@@ -62,7 +61,7 @@ const Icon = ({src, text, chosen, setChosen}: IconProps) => {
 
             </Pressable>
            
-            <Items chosen={chosen} src={src} />
+           
         </View>
     );
 
@@ -75,10 +74,8 @@ const styles = StyleSheet.create({
         color: "white",
     },
     container:{
-        flex:1,
-        flexDirection:"column",
-        alignItems:"center",
-        height:"100%",
+        flexDirection: 'column',
+        alignItems: 'center',
         // transform:"translateX(25%)",
     },
     iconContainer:{
