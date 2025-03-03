@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
      height: screenHeight,
      alignItems:"flex-end",
      justifyContent:"center",
+     
     }, 
     container:{
       flex: 1,

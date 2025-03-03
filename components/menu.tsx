@@ -49,8 +49,10 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: "row",
         width: "100%",
-        padding: screenWidth*0.05,
-        
+        paddingTop: 0,
+        paddingRight: screenWidth * 0.05,
+        paddingBottom: 0,
+        paddingLeft: screenWidth * 0.05,
     
     },
     scene:{
@@ -58,7 +60,6 @@ const styles = StyleSheet.create({
         width:"100%",
         flexDirection: "column",
         gap:1,
-        // transform:"translateX(33%)",
     },
     icon:{
        flex:10, 
