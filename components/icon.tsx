@@ -18,7 +18,7 @@ const imageMapping:Record<string, any> = [
 
 ];
 
-const iconWidth =  Dimensions.get("window").width*0.063;
+const iconWidth =  Dimensions.get("window").width*0.065;
 const notChosenWidth =  Dimensions.get("window").width*0.055;
 
 const Icon = ({src, text, chosen, setChosen}: IconProps) => {
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: 'column',
         alignItems: 'center',
+        paddingTop: 16,
         // transform:"translateX(25%)",
     },
     iconContainer:{

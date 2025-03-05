@@ -45,28 +45,30 @@ const Items = ({chosen,src, chosenIcon, setChosenIcon, up}: ItemsProp) => {
     return (
         <View style={[styles.container, {display: chosen===src ? "flex": "none"},{overflow: "hidden"},{justifyContent: up ? "flex-end" : undefined}]}>
            {info.map((item, index) => (
-            <Pressable key={index} style={[styles.item,{padding: index===chosenIcon[chosen] && up? ? 16 : 4} ]}
-             onPressIn={() => setChosenIcon(prev=> ({
-                ...prev,
-                [chosen]: index,
-             }))}
-             onHoverIn={() => setChosenIcon(prev => ({
-                ...prev,
-                [chosen]: index,
-             }))}
+            <View key={index} style={[styles.item,{padding: (up ? (index < chosenIcon[chosen] ? 4 : 0 ) : ((index < chosenIcon[chosen] ? 0 : 4 )))} ]}
             >
             
-              <View style={[,
+              <Pressable style={[,
 
                 {display: up ? (index < chosenIcon[chosen] ? "flex" : "none") : (!up ? (index >= chosenIcon[chosen] ? "flex" : "none") : undefined)},
-              ]}>
+              ]}
+             
+             onHoverIn={() => {
+                setTimeout(() => {
+                    setChosenIcon((prev) => ({
+                        ...prev,
+                        [chosen]: index,
+                    }));
+                }, 200); 
+            }}
+             >
 
                 <View style={styles.imgContainer}>
                     <img src={`/images/${item.icon}.svg`} style={{opacity: index===chosenIcon[chosen] ? 0.95 : 0.8, width: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, height: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, alignSelf:"center"}}/>
                 </View>
-            </View>
-          
             </Pressable>
+          
+            </View>
            ))}
         </View>
     );
@@ -80,8 +82,7 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:"column",
         gap:4,
-        padding:2,
-
+        
     },
     iconText:{
         color: "white",
