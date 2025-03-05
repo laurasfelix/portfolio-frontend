@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     
     up:{
-        flex:2,
+        flex:4,
     },
 })
 

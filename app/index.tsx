@@ -140,13 +140,13 @@ const styles = StyleSheet.create({
     {
       fontSize: 28,
       color: "white",
-      fontWeight: 200,
+      fontWeight: "200",
     }, 
     welcomeHeader:
     {
       fontSize: 48,
       color: "white",
-      fontWeight: 200,
+      fontWeight: "200",
     },
     menu:{
       width:"100%",

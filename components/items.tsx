@@ -2,8 +2,8 @@ import { View, StyleSheet, Text, Dimensions, Pressable} from "react-native";
 import itemInfo from "@/utils/itemInfo";
 import {useState, useEffect, Dispatch, SetStateAction} from 'react';
 
-const iconWidth =  Dimensions.get("window").width*0.075;
-const notChosenWidth =  Dimensions.get("window").width*0.055;
+const iconWidth =  Dimensions.get("window").width*0.065;
+const notChosenWidth =  Dimensions.get("window").width*0.050;
 
 interface ItemsProp{
     chosen: number, 
@@ -43,9 +43,9 @@ const Items = ({chosen,src, chosenIcon, setChosenIcon, up}: ItemsProp) => {
             }, [chosenIcon]);
 
     return (
-        <View style={[styles.container, {display: chosen===src ? "flex": "none"},{overflow: "hidden"}]}>
+        <View style={[styles.container, {display: chosen===src ? "flex": "none"},{overflow: "hidden"},{justifyContent: up ? "flex-end" : undefined}]}>
            {info.map((item, index) => (
-            <Pressable key={index} style={[styles.item,{padding: index===chosenIcon[chosen] ? 8 : 4} ]}
+            <Pressable key={index} style={[styles.item,{padding: index===chosenIcon[chosen] && up? ? 16 : 4} ]}
              onPressIn={() => setChosenIcon(prev=> ({
                 ...prev,
                 [chosen]: index,
@@ -56,7 +56,7 @@ const Items = ({chosen,src, chosenIcon, setChosenIcon, up}: ItemsProp) => {
              }))}
             >
             
-              <View style={[{height: up ? "50%": "100%"},
+              <View style={[,
 
                 {display: up ? (index < chosenIcon[chosen] ? "flex" : "none") : (!up ? (index >= chosenIcon[chosen] ? "flex" : "none") : undefined)},
               ]}>

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     time:{
         position:"absolute",
         zIndex: 50,
-        top: "10%",
+        top: "15%",
         flex: 1,
         width: "25%",
         height:"4%",
