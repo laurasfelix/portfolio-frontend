@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         paddingTop: 16,
+        paddingBottom: 16,
         // transform:"translateX(25%)",
     },
     iconContainer:{
