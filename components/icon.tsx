@@ -1,32 +1,67 @@
-import { Text, View, StyleSheet, Dimensions} from "react-native";
+import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { Image } from "expo-image";
+import { useEffect, Dispatch, SetStateAction } from "react";
 
 interface IconProps{
-    src: string,
+    src: number,
     text: string,
-    chosen: string,
+    chosen: number, 
+    setChosen: Dispatch<SetStateAction<number>>,
 }
-const imageMapping:Record<string, any> = {
-    "www": "/images/www.svg",
-    "about": "/images/about.svg",
-    "games": "/images/games.svg",
-    "contact": "/images/contact.svg",
-    "exp": "/images/exp.svg",
+const imageMapping:Record<string, any> = [
+    "/images/about.svg",
+    "/images/exp.svg",
+     "/images/www.svg",
+     "/images/games.svg",
+   "/images/contact.svg",
 
-};
 
-const iconWidth =  Dimensions.get("window").width*0.075;
-const notChosenWidth =  Dimensions.get("window").width*0.065;
+];
 
-const Icon = ({src, text, chosen}: IconProps) => {
+const iconWidth =  Dimensions.get("window").width*0.065;
+const notChosenWidth =  Dimensions.get("window").width*0.055;
+
+const Icon = ({src, text, chosen, setChosen}: IconProps) => {
+
+    useEffect(() => {
+
+        let soundObject: HTMLAudioElement;
+    
+        async function playSound() {
+            console.log("Loading Sound"); 
+    
+            soundObject = new window.Audio("/sounds/hover.mp3");
+    
+            console.log("Playing Sound");
+            await soundObject.play();
+        }
+    
+        playSound();
+    
+        return () => {
+            if (soundObject) {
+            console.log("Unloading Sound");
+            soundObject.pause();
+            soundObject.src = "";
+            }
+      };
+            
+        }, [chosen]);
+    
 
 
     return (
         <View style={styles.container}>
-            <img style={{opacity: chosen===src ? 1 : 0.8, width: chosen===src ? iconWidth : notChosenWidth, height: chosen===src ? iconWidth : notChosenWidth}} src={imageMapping[src]} />
-            <Text style={[styles.innerText,{visibility: chosen===src ? "visible": "hidden"}]}>
-                {text}
-            </Text>
+            <Pressable style={styles.iconContainer} 
+            onPressIn={() => setChosen(src)} onHoverIn={() => setChosen(src)}>
+                <img style={{opacity: chosen===src ? 1 : 0.8, width: chosen===src ? iconWidth : notChosenWidth, height: chosen===src ? iconWidth : notChosenWidth}} src={imageMapping[src]} />
+                <Text style={[styles.innerText,{visibility: chosen===src ? "visible": "hidden"}]}>
+                    {text}
+                </Text>
+
+            </Pressable>
+           
+           
         </View>
     );
 
@@ -39,10 +74,14 @@ const styles = StyleSheet.create({
         color: "white",
     },
     container:{
-        flex:1,
-        flexDirection:"column",
-        alignItems:"center",
+        flexDirection: 'column',
+        alignItems: 'center',
+        paddingTop: 16,
+        // transform:"translateX(25%)",
     },
+    iconContainer:{
+        alignItems:"center"
+    }
 });
 
 export default Icon;

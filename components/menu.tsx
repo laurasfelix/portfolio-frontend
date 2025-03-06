@@ -1,51 +1,40 @@
-import { Pressable, View, StyleSheet, Dimensions} from "react-native";
-import { useEffect, useState } from "react";
-import Icon from "../components/icon";
-import { Audio } from 'expo-av';
+import {View, StyleSheet, Dimensions} from "react-native";
+import Icon from "@/components/icon";
+import { useState } from "react";
+import Items from "@/components/items";
 
 const screenWidth = Dimensions.get('window').width;
+const upHeight = Dimensions.get('window').height * 0.2;
 
 const Menu = () =>
 {
-    const [chosen, setChosen] = useState("about");
+    
     const listInfo = [{icon:"about", text:"about"}, {icon:"exp", text:"experience"}, {icon:"www", text:"projects"}, {icon:"games", text:"hobbies"}, {icon:"contact", text:"contact"}];
+    const [chosen, setChosen] =  useState(0);
+    const [chosenIcon, setChosenIcon] = useState([0,0,0,0,0])
 
-
-    useEffect(() => {
-
-    let soundObject: HTMLAudioElement;
-
-    async function playSound() {
-        console.log("Loading Sound"); 
-
-        soundObject = new window.Audio("/sounds/hover.mp3");
-
-        console.log("Playing Sound");
-        await soundObject.play();
-    }
-
-    playSound();
-
-    return () => {
-        if (soundObject) {
-        console.log("Unloading Sound");
-        soundObject.pause();
-        soundObject.src = "";
-        }
-  };
-        
-    }, [chosen]);
-
+    
     return (
         <View style={styles.menuContainer}>
             {listInfo.map((info, idx) =>
             {
                 return (
-                    <Pressable key={idx} style={styles.icon}
-                    onPressIn={() => setChosen(info.icon)} onHoverIn={() => setChosen(info.icon)}
+                    <View key={idx} style={styles.scene}
                     >
-                        <Icon src={info.icon} text={info.text} chosen={chosen}/>
-                    </Pressable>
+                        <View style={[{height:upHeight}, styles.up]}>
+                            <Items chosen={chosen} src={idx} chosenIcon={chosenIcon} setChosenIcon={setChosenIcon} up={true}/>
+                        </View>
+
+                        <View style={styles.icon}>
+                            <Icon src={idx} text={info.text} chosen={chosen} setChosen={setChosen} />
+                            <View >
+                                <Items chosen={chosen} src={idx} chosenIcon={chosenIcon} setChosenIcon={setChosenIcon} up={false}/>
+                            </View>
+                        </View> 
+                     
+                       
+                        
+                    </View>
                 );
             }
         )
@@ -60,12 +49,25 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection: "row",
         width: "100%",
-        padding: screenWidth*0.05,
+        paddingTop: 0,
+        paddingRight: screenWidth * 0.05,
+        paddingBottom: 0,
+        paddingLeft: screenWidth * 0.05,
+    
+    },
+    scene:{
+        flex:1,
+        width:"100%",
+        flexDirection: "column",
+        gap:1,
     },
     icon:{
-        flex:1,
-      
-    }
+       flex:10, 
+    },
+    
+    up:{
+        flex:4,
+    },
 })
 
 export default Menu;

@@ -2,8 +2,8 @@ import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { useVideoPlayer} from 'expo-video';
 import { useEffect, useState, useRef } from "react";
 import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
-import Menu from "../components/menu";
-import Time from "../components/time";
+import Menu from "@/components/menu";
+import Time from "@/components/time";
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -18,6 +18,7 @@ export default function Index() {
   const [isOn, setIsOn] = useState(false);
   const soundRef = useRef<HTMLAudioElement | null>(null);
   const imgSrc = "/images/power.svg";
+ 
   
 
   const player = useVideoPlayer(videoSource, player => {
@@ -119,12 +120,15 @@ const styles = StyleSheet.create({
      height: screenHeight,
      alignItems:"flex-end",
      justifyContent:"center",
+     
     }, 
     container:{
       flex: 1,
       backgroundColor: "black",
       alignItems: "center",
       justifyContent: "center",
+      height:"100%",
+      width:"100%",
     },
     welcome:
     { 
@@ -136,17 +140,18 @@ const styles = StyleSheet.create({
     {
       fontSize: 28,
       color: "white",
-      fontWeight: 200,
+      fontWeight: "200",
     }, 
     welcomeHeader:
     {
       fontSize: 48,
       color: "white",
-      fontWeight: 200,
+      fontWeight: "200",
     },
     menu:{
       width:"100%",
-      marginTop: menu,
+      height:"100%",
+      // marginTop: menu,
     },
     img:{
       width: menu,
