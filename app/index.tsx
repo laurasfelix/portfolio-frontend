@@ -17,7 +17,7 @@ export default function Index() {
   const [isBoot, setIsBoot] = useState(true);
   const [isOn, setIsOn] = useState(false);
   const soundRef = useRef<HTMLAudioElement | null>(null);
-  const imgSrc = "/images/power.svg";
+  const imgSrc = "/images/logo3.png";
  
   
 
