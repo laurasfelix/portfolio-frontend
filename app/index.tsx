@@ -17,7 +17,7 @@ export default function Index() {
   const [isBoot, setIsBoot] = useState(true);
   const [isOn, setIsOn] = useState(false);
   const soundRef = useRef<HTMLAudioElement | null>(null);
-  const imgSrc = "/images/logo3.png";
+  const imgSrc = "/images/logo.svg";
  
   
 
@@ -101,9 +101,13 @@ export default function Index() {
       </Animated.View>}
 
       {!isOn &&
-      <Pressable style={styles.container} onPress={() => handlePowerPress()}>
-        <img src={imgSrc} className="img" alt="Power Button" />
-      </Pressable> 
+      <View style={styles.start}>
+        <Text style={styles.welcomeText}> welcome to laura's porfolio.</Text>
+        <img src={imgSrc} className="img" alt="logo" />
+        <Pressable style={styles.container} onPress={() => handlePowerPress()}>
+          <Text style={styles.buttonText}> start your experience </Text>
+        </Pressable> 
+      </View>
       }
   
     </View>
@@ -156,5 +160,14 @@ const styles = StyleSheet.create({
     img:{
       width: menu,
       height: menu,
+    },
+    start:{
+      flexDirection:"column",
+      gap: menu,
+    },
+    buttonText:{
+      fontSize: 24,
+      color: "gray",
+      fontWeight: "200",
     }
 });
