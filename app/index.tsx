@@ -29,8 +29,8 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <View style={styles.start}>
-        <Text style={styles.welcomeText}> welcome to laura's porfolios.</Text>
-        <img src={imgSrc} className="img" alt="logo" />
+        <Text style={[styles.welcomeText, { marginBottom: menu }]}> welcome to laura's porfolios.</Text>
+        <img src={imgSrc} className="img" alt="logo" style={{ marginBottom: menu }}/>
         <Pressable style={[styles.buttonContainer, {backgroundColor: isHovered ? "gray" : "gainsboro"}]} onPress={() => handlePowerPress()}
           onHoverIn={() => setIsHovered(true)}
           onHoverOut={() => setIsHovered(false)}>
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
     },
     start:{
       flexDirection:"column",
-      gap: menu,
     },
     buttonText:{
       fontSize: 18,

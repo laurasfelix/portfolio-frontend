@@ -118,15 +118,6 @@ const styles = StyleSheet.create({
       height:"100%",
       width:"100%",
     },
-    buttonContainer:{
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      height:"100%",
-      width:"100%",
-      padding:15,
-      borderRadius: 10,
-    },
     welcome:
     { 
       marginRight: margin, 
