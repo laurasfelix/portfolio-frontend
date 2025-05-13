@@ -1,114 +1,42 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
-import { useVideoPlayer} from 'expo-video';
-import { useEffect, useState, useRef } from "react";
-import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
-import Menu from "@/components/menu";
-import Time from "@/components/time";
+import { useRouter, Route } from 'expo-router';
+import { useEffect, useState } from "react";
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const margin = Dimensions.get('window').width*0.2;
 const menu = screenHeight*0.1;
 
-
 export default function Index() {
-
-  const videoSource = "/videos/boot.mp4";
-  const [isBoot, setIsBoot] = useState(true);
-  const [isOn, setIsOn] = useState(false);
-  const soundRef = useRef<HTMLAudioElement | null>(null);
   const imgSrc = "/images/logo.svg";
- 
-  
+  const [isHovered, setIsHovered] = useState(false);
+  const pages = ["playstation", "furby"];
+  const router = useRouter();
 
-  const player = useVideoPlayer(videoSource, player => {
-    player.loop = true;
-    player.volume = 0;
+  const RandomPage = () => {
+        const min = 0;
+        const max = pages.length;
+        const randomNumber =
+            Math.floor(Math.random() * (max - min));
+        return randomNumber;
+    };
   
-  });
-
-  useEffect(()=> {
-    async function loadSound() {
-      console.log("Loading Sound");
-      const audio = new Audio("/sounds/startup.mp3");
-      audio.preload = "auto";
-      soundRef.current = audio;
-      
+  const handlePowerPress = () => { 
+      let page = RandomPage();
+      router.navigate(("/" + pages[page]) as Route)
   }
-  loadSound();
-  }, [])
-
-  const handlePowerPress = async () => {
-    setIsOn(true);
-    if (player) {
-      console.log("Playing Video and Audio...");
-
-      if (soundRef.current) {
-        await soundRef.current.play();
-      }
-    
-      player.play();
-
-      setTimeout(() => {
-        setIsBoot(false);
-      }, 10000);
-    }
-
-  };
-
+  
   return (
     <View style={styles.container}>
-    
-      {isOn && <Animated.View
-        
-        entering={FadeIn.duration(8000).reduceMotion(ReduceMotion.Never)}
-        style={[styles.main, {justifyContent: isBoot ? "center" : "flex-start"}]}
-      >
-          <video 
-          src={videoSource} 
-          autoPlay 
-          loop 
-          muted 
-          style={{ 
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: screenWidth,
-            height: screenHeight,
-            objectFit: "cover",
-            zIndex: -1
-          }} 
-
-        />
-
-        {isBoot && <Animated.View style={styles.welcome} entering={FadeIn.duration(2000).reduceMotion(ReduceMotion.Never)} exiting={FadeOut.duration(1000).reduceMotion(ReduceMotion.Never)}>
-
-          <Text style={styles.welcomeHeader}>Portfolio by Laura</Text>   
-          <Text style={styles.welcomeText}>(sony don't sue me pls)</Text>      
-
-        </Animated.View>}
-
-        {!isBoot &&
-
-        <Animated.View style={styles.menu} entering={FadeIn.duration(1000).reduceMotion(ReduceMotion.Never)} exiting={FadeOut.duration(1000).reduceMotion(ReduceMotion.Never)}>
-          
-          <Time />
-          <Menu />
-           
-        </Animated.View>
-
-        }
-      </Animated.View>}
-
-      {!isOn &&
       <View style={styles.start}>
-        <Text style={styles.welcomeText}> welcome to laura's porfolio.</Text>
+        <Text style={styles.welcomeText}> welcome to laura's porfolios.</Text>
         <img src={imgSrc} className="img" alt="logo" />
-        <Pressable style={styles.container} onPress={() => handlePowerPress()}>
+        <Pressable style={[styles.buttonContainer, {backgroundColor: isHovered ? "gray" : "gainsboro"}]} onPress={() => handlePowerPress()}
+          onHoverIn={() => setIsHovered(true)}
+          onHoverOut={() => setIsHovered(false)}>
           <Text style={styles.buttonText}> start your experience </Text>
         </Pressable> 
       </View>
-      }
   
     </View>
   );
@@ -119,7 +47,6 @@ const styles = StyleSheet.create({
     
     main:
     {
-   
      width: screenWidth,
      height: screenHeight,
      alignItems:"flex-end",
@@ -134,6 +61,15 @@ const styles = StyleSheet.create({
       height:"100%",
       width:"100%",
     },
+    buttonContainer:{
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      height:"100%",
+      width:"100%",
+      padding:15,
+      borderRadius: 10,
+    },
     welcome:
     { 
       marginRight: margin, 
@@ -145,17 +81,10 @@ const styles = StyleSheet.create({
       fontSize: 28,
       color: "white",
       fontWeight: "200",
-    }, 
-    welcomeHeader:
-    {
-      fontSize: 48,
-      color: "white",
-      fontWeight: "200",
     },
     menu:{
       width:"100%",
       height:"100%",
-      // marginTop: menu,
     },
     img:{
       width: menu,
@@ -166,8 +95,8 @@ const styles = StyleSheet.create({
       gap: menu,
     },
     buttonText:{
-      fontSize: 24,
-      color: "gray",
-      fontWeight: "200",
+      fontSize: 18,
+      color: "black",
+      fontWeight: "400",
     }
 });
