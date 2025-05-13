@@ -22,17 +22,6 @@ export default function Playstation() {
   
   });
 
-  useEffect(()=> {
-    async function loadSound() {
-      console.log("Loading Sound");
-      const audio = new Audio("/sounds/startup.mp3");
-      audio.preload = "auto";
-      soundRef.current = audio;
-      
-  }
-  loadSound();
-  }, [])
-
   const handlePowerPress = async () => {
       if (player) {
         console.log("Playing Video and Audio...");
@@ -49,6 +38,19 @@ export default function Playstation() {
       }
   
     };
+
+  useEffect(()=> {
+    async function loadSound() {
+      console.log("Loading Sound");
+      const audio = new Audio("/sounds/startup.mp3");
+      audio.preload = "auto";
+      soundRef.current = audio;
+      
+  }
+  loadSound();
+  handlePowerPress();
+  }, [])
+
     
 return (
     <View style={styles.container}>
