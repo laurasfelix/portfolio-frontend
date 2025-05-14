@@ -14,8 +14,6 @@ const imageMapping:Record<string, any> = [
      "/images/www.svg",
      "/images/games.svg",
    "/images/contact.svg",
-
-
 ];
 
 const iconWidth =  Dimensions.get("window").width*0.065;
