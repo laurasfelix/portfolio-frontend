@@ -58,14 +58,23 @@ const Body = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <img src={furby} alt="furby" style={{...styles.furby, height: imageSize, width:imageSize}}/>
-            <img src={beak} alt="furby's beak" style={{...styles.beak, top: imageSize*0.51, left: -imageSize*0.008, height:smallSize, width:smallSize, pointerEvents: "none"}} />
-            <Pressable style={{...styles.hover, height:smallSize, width:smallSize, marginTop: +smallSize*2.4}} onHoverIn={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)} onHoverOut={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)}>  </Pressable>
-            <img src={leftEye} alt="furby's left eye" style={{...styles.leftEye, top: -imageSize*0.29, left: -imageSize*0.1, height:smallSize*1.1, width:smallSize*1.1, pointerEvents: "none"}} />
-            <Pressable style={{...styles.hover,height:smallSize*1.1, width:smallSize*1.1, marginLeft: -smallSize*1.3, marginTop: -smallSize*3,  }} onHoverIn={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)} onHoverOut={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)}> </Pressable>
-            <img src={rightEye} alt="furby's right eye" style={{...styles.rightEye, top: -imageSize*0.17, left: imageSize*0.08, height:smallSize*1.1, width:smallSize*1.1, pointerEvents: "none"}} />
-            <Pressable style={{...styles.hover,height:smallSize*1.1, width:smallSize*1.1, marginRight: -smallSize*1.1, marginTop: -smallSize*2.2, }} onHoverIn={() => handleAnnoy(() => rightEyeRef.current, setRightEye, EYE.OPEN, EYE.CLOSED)} onHoverOut={() => handleAnnoy(() => rightEyeRef.current, setRightEye, EYE.OPEN, EYE.CLOSED)}>  </Pressable>
+        <View style={[styles.container, styles.mainContainer]}>
+            <View style={styles.popUp}> 
+
+                <Text style={styles.popUpText}> This is Furbotron. </Text>
+                <Text style={styles.popUpText}> Ask him anything </Text>
+                <Text style={styles.popUpText}> (about Laura). </Text>
+             
+            </View>
+            <View style={[styles.furbyContainer, styles.container]}>
+                <img src={furby} alt="furby" style={{...styles.furby, height: imageSize, width:imageSize}}/>
+                <img src={beak} alt="furby's beak" style={{...styles.beak, top: imageSize*0.51, left: -imageSize*0.008, height:smallSize, width:smallSize, pointerEvents: "none"}} />
+                <Pressable style={{...styles.hover, height:smallSize, width:smallSize, marginTop: +smallSize*2.4}} onHoverIn={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)} onHoverOut={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)}>  </Pressable>
+                <img src={leftEye} alt="furby's left eye" style={{...styles.leftEye, top: -imageSize*0.29, left: -imageSize*0.1, height:smallSize*1.1, width:smallSize*1.1, pointerEvents: "none"}} />
+                <Pressable style={{...styles.hover,height:smallSize*1.1, width:smallSize*1.1, marginLeft: -smallSize*1.3, marginTop: -smallSize*3,  }} onHoverIn={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)} onHoverOut={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)}> </Pressable>
+                <img src={rightEye} alt="furby's right eye" style={{...styles.rightEye, top: -imageSize*0.17, left: imageSize*0.08, height:smallSize*1.1, width:smallSize*1.1, pointerEvents: "none"}} />
+                <Pressable style={{...styles.hover,height:smallSize*1.1, width:smallSize*1.1, marginRight: -smallSize*1.1, marginTop: -smallSize*2.2, }} onHoverIn={() => handleAnnoy(() => rightEyeRef.current, setRightEye, EYE.OPEN, EYE.CLOSED)} onHoverOut={() => handleAnnoy(() => rightEyeRef.current, setRightEye, EYE.OPEN, EYE.CLOSED)}>  </Pressable>
+            </View>
         </View>
     );
 
@@ -76,8 +85,36 @@ const styles = StyleSheet.create({
     container:{
         width:"100%",
         height:"100%",
-        justifyContent: "flex-start",
         alignItems:"center",
+    },
+    mainContainer:{
+        flexDirection: "row",
+        padding: 20,
+        justifyContent:"space-between",
+        // backgroundColor:"pink",
+        textAlign:"center"
+
+    },
+    popUp:{
+        backgroundColor: "gainsboro", 
+        // position:"fixed", 
+        zIndex:3,
+        padding:10,
+        borderRadius: 10,
+        opacity:0.8,
+        flex:1,
+
+    },
+    popUpText:{
+      fontSize: 28,
+      color: "black",
+      fontWeight: "200",
+
+    },
+    furbyContainer:{
+        justifyContent: "flex-start",
+        // backgroundColor: "green",
+        flex:4,
     },
     furby:{
         position:"absolute",
