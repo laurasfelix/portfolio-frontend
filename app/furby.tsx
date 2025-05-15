@@ -1,8 +1,13 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import Body from "@/components/body";
 import InputBox from "@/components/inputBox";
+import { useState } from "react";
 
 export default function Furby() {
+
+    const [inputInteract, setInputInteract] = useState(false);
+    const [isTalking, setIsTalking] = useState(false);
+    const [isThinking, setIsThinking] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -11,10 +16,10 @@ export default function Furby() {
             </View>
             <View style={styles.mainColumn}>
 
-                <Body />
+                <Body isTalking={isTalking} isThinking={isThinking} interact={inputInteract}/>
 
                 <View style={styles.inputBox}>
-                    <InputBox />
+                    <InputBox isThinking={isThinking} setIsThinking={setIsThinking} setInteract={setInputInteract} />
                 </View>
 
             </View>
