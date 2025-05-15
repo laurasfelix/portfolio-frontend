@@ -1,5 +1,4 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
-import { Image } from "expo-image";
 import { useEffect, Dispatch, SetStateAction } from "react";
 
 interface IconProps{
@@ -14,8 +13,6 @@ const imageMapping:Record<string, any> = [
      "/images/www.svg",
      "/images/games.svg",
    "/images/contact.svg",
-
-
 ];
 
 const iconWidth =  Dimensions.get("window").width*0.065;
