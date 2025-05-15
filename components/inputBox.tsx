@@ -14,7 +14,7 @@ interface InputBoxProp{
     setInteract: Dispatch<SetStateAction<boolean>>,
 };
 
-const InputBox = ({isThinking, setInteract}: InputBoxProp
+const InputBox = ({isThinking, setInteract, setIsThinking}: InputBoxProp
     
 ) => {
     const [text, onChangeText] = useState("");
@@ -22,10 +22,12 @@ const InputBox = ({isThinking, setInteract}: InputBoxProp
     const indexRef = useRef(0);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    useEffect(() =>
-    {
+    useEffect(() =>{
+
         const cycleMessages = () => {
             timeoutRef.current = setTimeout(() => {
+
+                if (isThinking) return;
             
                 indexRef.current = (indexRef.current + 1) % placeholderMessages.length;
                 setPlaceholder(placeholderMessages[indexRef.current]);
@@ -34,12 +36,28 @@ const InputBox = ({isThinking, setInteract}: InputBoxProp
             }, 4000); 
         };
 
-        cycleMessages();
+        if (isThinking){
+            setPlaceholder("furbotron is thinking...");
+        }
+        else{
+
+            cycleMessages();
+
+        }
 
         return () => {
             if (timeoutRef.current) clearTimeout(timeoutRef.current);
         };
-  }, []);
+
+    }, [isThinking]
+    );
+
+    const handleSubmit = () => {
+        setInteract(false); 
+        onChangeText(""); 
+        setIsThinking(true);
+        // todo: call chatgpt here
+    };
 
     return (
         <View style={styles.popUp}>
@@ -52,7 +70,7 @@ const InputBox = ({isThinking, setInteract}: InputBoxProp
             value={text}
             placeholder={placeholder}
             placeholderTextColor="gray"
-            onSubmitEditing={() => {setInteract(false);}}
+            onSubmitEditing={() => handleSubmit()}
             />
         </View>
     )
