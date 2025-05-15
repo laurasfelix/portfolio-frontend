@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { useRouter, Route } from 'expo-router';
+import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 
 const screenWidth = Dimensions.get('window').width;
@@ -8,7 +9,7 @@ const margin = Dimensions.get('window').width*0.2;
 const menu = screenHeight*0.1;
 
 export default function Index() {
-  const imgSrc = "/images/logo.svg";
+  const imgSrc = "@/public/images/logo.svg";
   const [isHovered, setIsHovered] = useState(false);
   const pages = ["playstation", "furby"];
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function Index() {
     <View style={styles.container}>
       <View style={styles.start}>
         <Text style={[styles.welcomeText, { marginBottom: menu }]}> welcome to laura's porfolios.</Text>
-        <img src={imgSrc} className="img" alt="logo" style={{ marginBottom: menu }}/>
+        <Image source={imgSrc} className="img" alt="logo" style={{ marginBottom: menu }}/>
         <Pressable style={[styles.buttonContainer, {backgroundColor: isHovered ? "gray" : "gainsboro"}]} onPress={() => handlePowerPress()}
           onHoverIn={() => setIsHovered(true)}
           onHoverOut={() => setIsHovered(false)}>
