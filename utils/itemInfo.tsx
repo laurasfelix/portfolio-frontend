@@ -12,68 +12,68 @@ const itemInfo: ItemInfoProp = [
     [{
         "title":"introduction",
         "text":["aaa"],
-        "icon":"user_icon",
+        "icon": require("@/public/images/user_icon.svg"),
     },
     {
         "title":"education",
         "text":["aaa"],
-        "icon":"education",
+        "icon": require("@/public/images/education.svg"),
     },
     {
         "title":"skills",
         "text":["aaa"],
-        "icon":"idea",
+        "icon": require("@/public/images/idea.svg"),
     },
    ],
   
     [{
         "title":"swe intern @ duolingo",
         "text":[""],
-        "icon":"duolingo 1",
+        "icon": require("@/public/images/duolingo 1.svg"),
     },
     {
         "title":"ta @ northwestern cs",
         "text":[""],
-        "icon":"northwestern 1",
+        "icon": require("@/public/images/northwestern 1.svg"),
     },
     {
         "title":"scholar @ citadel",
         "text":[""],
-        "icon":"citadel",
+        "icon": require("@/public/images/citadel.svg"),
     }],
 
 
     [{
         "title":"bread",
         "text":[""],
-        "icon":"bread",
+        "icon": require("@/public/images/bread.svg"),
     },
     {
         "title":"sunflower",
         "text":[""],
-        "icon":"sunflower",
+        "icon": require("@/public/images/sunflower.svg"),
     },
     {
         "title":"pupally",
         "text":[""],
-        "icon":"puppy",
+        "icon": require("@/public/images/puppy.svg"),
     }],
 
     [{
         "title":"folder",
         "text":[""],
-        "icon":"folder",
+        "icon": require("@/public/images/folder.svg"),
     },
     {
         "title":"folder",
         "text":[""],
-        "icon":"folder",
+        "icon": require("@/public/images/folder.svg"),
     }],
  
     [{
         "title":"email",
         "text":[""],
-        "icon":"email",
+        "icon": require("@/public/images/email.svg"),
     }],
 
 
