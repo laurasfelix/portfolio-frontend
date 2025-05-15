@@ -14,15 +14,21 @@ const BEAK = {
     OPEN: "/images/fit_beak_open.svg"
 }
 
-const Body = () => {
+interface BodyProps{
+    isThinking: boolean,
+    interact: boolean,
+    isTalking: boolean, 
+}
+
+const Body = ({isThinking, interact, isTalking}:BodyProps) => {
     const { width, height } = useWindowDimensions();
     const imageSize = width < 800 ? width * 0.9 : width * 0.35;
     const smallSize = imageSize * 0.15;
-    const [isTalking, setIsTalking] = useState(false);
     const [leftEye, setLeftEye] = useState(EYE.CLOSED);
     const [rightEye, setRightEye] = useState(EYE.CLOSED);
     const [beak, setBeak] = useState(BEAK.CLOSED);
     const furby = "/images/furby_empty.png";
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const leftEyeRef = useRef(leftEye);
 
@@ -42,6 +48,53 @@ const Body = () => {
     beakRef.current = beak;
     }, [beak]);
 
+    useEffect(() =>{
+
+        if (isThinking && !isTalking){
+
+            setRightEye(EYE.CLOSED);
+            setLeftEye(EYE.CLOSED);
+            setBeak(BEAK.CLOSED);
+        }
+
+    }, [isThinking]);
+
+    useEffect(() =>{
+
+        const isTalkingRef = { current: isTalking };
+
+        isTalkingRef.current = isTalking; 
+
+        const blink = () => {
+            timeoutRef.current = setTimeout(() => {
+                if (!isTalkingRef.current){
+                    return;
+                }
+
+                setTimeout(() => {
+                    if (!isTalkingRef.current) return;
+                    setRightEye(EYE.OPEN);
+                    setLeftEye(EYE.OPEN);
+                }, 300);
+
+                setRightEye(EYE.CLOSED);
+                setLeftEye(EYE.CLOSED);
+
+                blink(); 
+            }, 3000); 
+        };
+
+        if (isTalking && !isThinking) {
+            setBeak(BEAK.OPEN);
+            blink();
+        }
+
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        };
+
+    }, [isTalking, isThinking]);
+
     const handleAnnoy = (
     getValue: () => string,
     setValue: React.Dispatch<React.SetStateAction<string>>,
@@ -55,7 +108,6 @@ const Body = () => {
         else{
             setValue(openValue);
         }
-
     };
 
     return (
