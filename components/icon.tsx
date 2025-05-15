@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { useEffect, Dispatch, SetStateAction } from "react";
+import { Image } from "expo-image";
 
 interface IconProps{
     src: number,
@@ -8,11 +9,11 @@ interface IconProps{
     setChosen: Dispatch<SetStateAction<number>>,
 }
 const imageMapping:Record<string, any> = [
-    "/images/about.svg",
-    "/images/exp.svg",
-     "/images/www.svg",
-     "/images/games.svg",
-   "/images/contact.svg",
+    "@/public/images/about.svg",
+    "@/public/images/exp.svg",
+     "@/public/images/www.svg",
+     "@/public/images/games.svg",
+   "@/public/images/contact.svg",
 ];
 
 const iconWidth =  Dimensions.get("window").width*0.065;
@@ -51,7 +52,7 @@ const Icon = ({src, text, chosen, setChosen}: IconProps) => {
         <View style={styles.container}>
             <Pressable style={styles.iconContainer} 
             onPressIn={() => setChosen(src)} onHoverIn={() => setChosen(src)}>
-                <img style={{opacity: chosen===src ? 1 : 0.8, width: chosen===src ? iconWidth : notChosenWidth, height: chosen===src ? iconWidth : notChosenWidth}} src={imageMapping[src]} />
+                <Image style={{opacity: chosen===src ? 1 : 0.8, width: chosen===src ? iconWidth : notChosenWidth, height: chosen===src ? iconWidth : notChosenWidth}} source={imageMapping[src]} />
                 <Text style={[styles.innerText,{visibility: chosen===src ? "visible": "hidden"}]}>
                     {text}
                 </Text>
