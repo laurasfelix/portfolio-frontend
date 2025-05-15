@@ -9,11 +9,11 @@ interface IconProps{
     setChosen: Dispatch<SetStateAction<number>>,
 }
 const imageMapping:Record<string, any> = [
-    "@/public/images/about.svg",
-    "@/public/images/exp.svg",
-     "@/public/images/www.svg",
-     "@/public/images/games.svg",
-   "@/public/images/contact.svg",
+    require("@/public/images/about.svg"),
+    require("@/public/images/exp.svg"),
+    require("@/public/images/www.svg"),
+    require("@/public/images/games.svg"),
+    require("@/public/images/contact.svg"),
 ];
 
 const iconWidth =  Dimensions.get("window").width*0.065;
@@ -52,7 +52,7 @@ const Icon = ({src, text, chosen, setChosen}: IconProps) => {
         <View style={styles.container}>
             <Pressable style={styles.iconContainer} 
             onPressIn={() => setChosen(src)} onHoverIn={() => setChosen(src)}>
-                <Image style={{opacity: chosen===src ? 1 : 0.8, width: chosen===src ? iconWidth : notChosenWidth, height: chosen===src ? iconWidth : notChosenWidth}} source={imageMapping[src]} />
+                <Image style={{opacity: chosen===src ? 1 : 0.8, width: chosen===src ? iconWidth : notChosenWidth, height: chosen===src ? iconWidth : notChosenWidth, resizeMode: "contain"}} source={imageMapping[src]} />
                 <Text style={[styles.innerText,{visibility: chosen===src ? "visible": "hidden"}]}>
                     {text}
                 </Text>

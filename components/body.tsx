@@ -4,15 +4,15 @@ import { Image } from "expo-image";
 
 
 const EYE = {
-    CLOSED: "@/public/images/fit_eye_closed.svg",
-    OPEN: "@/public/images/fit_eye.svg",
-    DEMON:  "@/public/images/fit_eyemon.svg",
-    INVERTED: "@/public/images/fit_eyeverted.svg"
+    CLOSED: require("@/public/images/fit_eye_closed.svg"),
+    OPEN: require("@/public/images/fit_eye.svg"),
+    DEMON:  require("@/public/images/fit_eyemon.svg"),
+    INVERTED: require("@/public/images/fit_eyeverted.svg")
 }
 
 const BEAK = { 
-    CLOSED: "@/public/images/fit_beak_closed.svg",
-    OPEN: "@/public/images/fit_beak_open.svg"
+    CLOSED: require("@/public/images/fit_beak_closed.svg"),
+    OPEN: require("@/public/images/fit_beak_open.svg")
 }
 
 interface BodyProps{

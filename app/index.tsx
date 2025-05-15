@@ -9,7 +9,7 @@ const margin = Dimensions.get('window').width*0.2;
 const menu = screenHeight*0.1;
 
 export default function Index() {
-  const imgSrc = "@/public/images/logo.svg";
+  const imgSrc = require("@/public/images/logo.svg");
   const [isHovered, setIsHovered] = useState(false);
   const pages = ["playstation", "furby"];
   const router = useRouter();
