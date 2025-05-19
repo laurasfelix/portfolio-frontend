@@ -9,11 +9,11 @@ interface IconProps{
     setChosen: Dispatch<SetStateAction<number>>,
 }
 const imageMapping:Record<string, any> = [
-    require("@/public/images/about.svg"),
-    require("@/public/images/exp.svg"),
-    require("@/public/images/www.svg"),
-    require("@/public/images/games.svg"),
-    require("@/public/images/contact.svg"),
+    "/images/about.svg",
+    "/images/exp.svg",
+    "/images/www.svg",
+    "/images/games.svg",
+    "/images/contact.svg",
 ];
 
 const iconWidth =  Dimensions.get("window").width*0.065;

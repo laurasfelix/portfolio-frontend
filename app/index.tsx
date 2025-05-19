@@ -9,7 +9,8 @@ const margin = Dimensions.get('window').width*0.2;
 const menu = screenHeight*0.3;
 
 export default function Index() {
-  const imgSrc = require("@/public/images/logo.svg");
+  // Use a string path for web compatibility
+  const imgSrc = '/images/logo.svg';
   const [isHovered, setIsHovered] = useState(false);
   const pages = ["playstation", "furby"];
   const router = useRouter();
@@ -34,7 +35,8 @@ export default function Index() {
           <Text style={[styles.welcomeText]}> welcome to laura's porfolios.</Text>
         </View>
         <View style={styles.middleSection}>
-          <Image source={imgSrc} alt="logo" style={[styles.img]} />
+          {/* Use string path for web */}
+          <Image source={{ uri: imgSrc }} alt="logo" style={[styles.img]} />
         </View>
         <View style={styles.bottomSection}>
           <Pressable style={[styles.buttonContainer, {backgroundColor: isHovered ? "gray" : "gainsboro"}]}
