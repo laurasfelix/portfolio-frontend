@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, Dimensions, Pressable} from "react-native";
 import itemInfo from "@/utils/itemInfo";
+import { Image } from "expo-image";
 import {useState, useEffect, Dispatch, SetStateAction} from 'react';
 
 const iconWidth =  Dimensions.get("window").width*0.065;
@@ -44,7 +45,9 @@ const Items = ({chosen,src, chosenIcon, setChosenIcon, up}: ItemsProp) => {
 
     return (
         <View style={[styles.container, {display: chosen===src ? "flex": "none"},{overflow: "hidden"},{justifyContent: up ? "flex-end" : undefined}]}>
-           {info.map((item, index) => (
+           {info.map((item, index) => 
+           {
+            return (
             <View key={index} style={[styles.item,{padding: (up ? (index < chosenIcon[chosen] ? 4 : 0 ) : ((index < chosenIcon[chosen] ? 0 : 4 )))} ]}
             >
             
@@ -64,12 +67,12 @@ const Items = ({chosen,src, chosenIcon, setChosenIcon, up}: ItemsProp) => {
              >
 
                 <View style={styles.imgContainer}>
-                    <img src={`/images/${item.icon}.svg`} style={{opacity: index===chosenIcon[chosen] ? 0.95 : 0.8, width: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, height: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, alignSelf:"center"}}/>
+                    <Image source={item.icon} style={{opacity: index===chosenIcon[chosen] ? 0.95 : 0.8, width: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, height: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, alignSelf:"center", resizeMode: "contain"}}/>
                 </View>
             </Pressable>
           
             </View>
-           ))}
+           );})}
         </View>
     );
 

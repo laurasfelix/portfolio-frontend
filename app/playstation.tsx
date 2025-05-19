@@ -12,7 +12,7 @@ const menu = screenHeight*0.1;
 
 export default function Playstation() {
 
-    const videoSource = "/videos/boot.mp4";
+    const videoSource = require("@/public/videos/boot.mp4");
     const [isBoot, setIsBoot] = useState(true);
     const soundRef = useRef<HTMLAudioElement | null>(null);
 
@@ -42,7 +42,7 @@ export default function Playstation() {
   useEffect(()=> {
     async function loadSound() {
       console.log("Loading Sound");
-      const audio = new Audio("/sounds/startup.mp3");
+      const audio = new Audio(require("@/public/sounds/startup.mp3"));
       audio.preload = "auto";
       soundRef.current = audio;
       
