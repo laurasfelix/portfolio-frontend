@@ -36,7 +36,7 @@ export default function Index() {
         </View>
         <View style={styles.middleSection}>
           {/* Use string path for web */}
-          <Image source={{ uri: imgSrc }} alt="logo" style={[styles.img]} />
+          <Image source={imgSrc } alt="logo" style={[styles.img]} />
         </View>
         <View style={styles.bottomSection}>
           <Pressable style={[styles.buttonContainer, {backgroundColor: isHovered ? "gray" : "gainsboro"}]}
