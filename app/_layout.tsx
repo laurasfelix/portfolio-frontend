@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import Head from "expo-router/head";
 import { useFonts } from 'expo-font';
 import {View} from "react-native";
 import { useEffect } from "react";
@@ -28,8 +29,11 @@ export default function RootLayout() {
       </View>
     );
   }
-  return <Stack screenOptions={{
-    headerShown: false,
-  }}/>;
+  return <>
+      <Head>
+        <style>{`body{margin:0;background:black}`}</style>
+      </Head>
+      <Stack screenOptions={{ headerShown: false }} />
+    </>;
 
 }
