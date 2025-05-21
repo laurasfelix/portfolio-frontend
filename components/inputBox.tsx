@@ -1,5 +1,6 @@
 import { Text,TextInput, View, StyleSheet, useWindowDimensions, Pressable} from "react-native";
 import { useEffect, useState, useRef, Dispatch, SetStateAction } from "react";
+import askFurbotronAndPlay from "@/scripts/furbotron";
 
 const placeholderMessages = [
     "this is Furbotron.",
@@ -12,9 +13,10 @@ interface InputBoxProp{
     isThinking: boolean,
     setIsThinking:  Dispatch<SetStateAction<boolean>>,
     setInteract: Dispatch<SetStateAction<boolean>>,
+    setIsTalking: Dispatch<SetStateAction<boolean>>,
 };
 
-const InputBox = ({isThinking, setInteract, setIsThinking}: InputBoxProp
+const InputBox = ({isThinking, setInteract, setIsThinking, setIsTalking}: InputBoxProp
     
 ) => {
     const [text, onChangeText] = useState("");
@@ -40,9 +42,7 @@ const InputBox = ({isThinking, setInteract, setIsThinking}: InputBoxProp
             setPlaceholder("furbotron is thinking...");
         }
         else{
-
             cycleMessages();
-
         }
 
         return () => {
@@ -55,8 +55,7 @@ const InputBox = ({isThinking, setInteract, setIsThinking}: InputBoxProp
     const handleSubmit = () => {
         setInteract(false); 
         onChangeText(""); 
-        setIsThinking(true);
-        // todo: call chatgpt here
+        askFurbotronAndPlay(text, setIsThinking, setIsTalking);
     };
 
     return (

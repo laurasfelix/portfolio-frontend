@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    height: screenHeight,
+    flex:1,
     padding: 0,
   },
   start: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    height: screenHeight,
+    flex:1, 
     padding: 0,
   },
   topSection: {
