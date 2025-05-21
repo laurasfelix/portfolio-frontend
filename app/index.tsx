@@ -1,6 +1,5 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { useRouter, Route } from 'expo-router';
-import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 
 const screenWidth = Dimensions.get('window').width;
@@ -36,7 +35,7 @@ export default function Index() {
         </View>
         <View style={styles.middleSection}>
           {/* Use string path for web */}
-          <Image source={imgSrc } alt="logo" style={[styles.img]} />
+          <img src={imgSrc } alt="logo" style={styles.img} />
         </View>
         <View style={styles.bottomSection}>
           <Pressable style={[styles.buttonContainer, {backgroundColor: isHovered ? "gray" : "gainsboro"}]}
