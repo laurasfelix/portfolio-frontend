@@ -1,7 +1,5 @@
 import { View, StyleSheet, useWindowDimensions, Pressable } from "react-native";
 import { useEffect, useState, useRef } from "react";
-import { Image } from "expo-image";
-
 
 const EYE = {
     CLOSED: '/images/fit_eye_closed.svg',
@@ -115,12 +113,12 @@ const Body = ({isThinking, interact, isTalking}:BodyProps) => {
         <View style={[styles.container, styles.mainContainer]}>
 
             <View style={[styles.furbyContainer, styles.container, {position: "relative", width: imageSize, height: imageSize}]}> 
-                <Image source={{ uri: furby }} alt="furby" style={{...styles.furby, width: "100%", height: "100%"}} />
-                <Image source={{ uri: beak }} alt="furby's beak" style={{...styles.beak, position: "absolute", top: imageSize*0.51, left: imageSize*0.49 - smallSize/2, height: smallSize, width: smallSize}} />
+                <img src={{ uri: furby }} alt="furby" style={{...styles.furby, width: "100%", height: "100%"}} />
+                <img src={{ uri: beak }} alt="furby's beak" style={{...styles.beak, position: "absolute", top: imageSize*0.51, left: imageSize*0.49 - smallSize/2, height: smallSize, width: smallSize}} />
                 <Pressable style={[styles.hover, {position: "absolute", top: imageSize*0.51, left: imageSize*0.49 - smallSize/2, height: smallSize, width: smallSize}]} onHoverIn={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)} onHoverOut={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)} />
-                <Image source={{ uri: leftEye }} alt="furby's left eye" style={{...styles.leftEye, position: "absolute", top: imageSize*0.37, left: imageSize*0.32, height: smallSize*1.1, width: smallSize*1.1}} />
+                <img src={{ uri: leftEye }} alt="furby's left eye" style={{...styles.leftEye, position: "absolute", top: imageSize*0.37, left: imageSize*0.32, height: smallSize*1.1, width: smallSize*1.1}} />
                 <Pressable style={[styles.hover, {position: "absolute", top: imageSize*0.37, left: imageSize*0.32, height: smallSize*1.1, width: smallSize*1.1}]} onHoverIn={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)} onHoverOut={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)} />
-                <Image source={{ uri: rightEye }} alt="furby's right eye" style={{...styles.rightEye, position: "absolute", top: imageSize*0.37, left: imageSize*0.5, height: smallSize*1.1, width: smallSize*1.1}} />
+                <img src={{ uri: rightEye }} alt="furby's right eye" style={{...styles.rightEye, position: "absolute", top: imageSize*0.37, left: imageSize*0.5, height: smallSize*1.1, width: smallSize*1.1}} />
                 <Pressable style={[styles.hover, {position: "absolute", top: imageSize*0.37, left: imageSize*0.5, height: smallSize*1.1, width: smallSize*1.1}]} onHoverIn={() => handleAnnoy(() => rightEyeRef.current, setRightEye, EYE.OPEN, EYE.CLOSED)} onHoverOut={() => handleAnnoy(() => rightEyeRef.current, setRightEye, EYE.OPEN, EYE.CLOSED)} />
             </View>
 
