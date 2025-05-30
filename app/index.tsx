@@ -13,6 +13,8 @@ export default function Index() {
   const [isHovered, setIsHovered] = useState(false);
   const pages = ["playstation", "furby"];
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const RandomPage = () => {
         const min = 0;
@@ -35,7 +37,7 @@ export default function Index() {
         </View>
         <View style={styles.middleSection}>
           {/* Use string path for web */}
-          <img src={imgSrc } alt="logo" style={styles.img} />
+          {mounted && <img src={imgSrc } alt="logo" style={styles.img} />}
         </View>
         <View style={styles.bottomSection}>
           <Pressable style={[styles.buttonContainer, {backgroundColor: isHovered ? "gray" : "gainsboro"}]}
