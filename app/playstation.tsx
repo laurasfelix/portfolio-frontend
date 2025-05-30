@@ -39,17 +39,25 @@ export default function Playstation() {
   
     };
 
-  useEffect(()=> {
+  useEffect(() => {
+  const alreadyBooted = sessionStorage.getItem("playstationBooted");
+
+  if (!alreadyBooted) {
     async function loadSound() {
       console.log("Loading Sound");
       const audio = new Audio("/sounds/startup.mp3");
       audio.preload = "auto";
       soundRef.current = audio;
-      
+    }
+
+    loadSound();
+    handlePowerPress();
+
+    sessionStorage.setItem("playstationBooted", "true");
+  } else {
+    setIsBoot(false); // skip boot screen
   }
-  loadSound();
-  handlePowerPress();
-  }, [])
+}, []);
 
     
 return (
