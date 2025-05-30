@@ -13,7 +13,9 @@ const menu = screenHeight*0.1;
 export default function Playstation() {
 
     const videoSource = "/videos/boot.mp4";
-    const [isBoot, setIsBoot] = useState(true);
+    const shouldBoot = sessionStorage.getItem("playstationBooted") !== "true";
+    const [isBoot, setIsBoot] = useState(shouldBoot);
+
     const soundRef = useRef<HTMLAudioElement | null>(null);
 
     const player = useVideoPlayer(videoSource, player => {
