@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   img: {
     width: menu,
     height: menu,
-    resizeMode: "contain",
+    objectFit: "contain",
   },
   buttonText: {
     fontSize: 18,
