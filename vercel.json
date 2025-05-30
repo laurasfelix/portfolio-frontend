@@ -3,18 +3,15 @@
   "outputDirectory": "dist",
   "devCommand": "npx expo start --web",
   "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/_expo/static/:path*",
-      "destination": "/_expo/static/:path*"
-    },
-    {
-      "source": "/images/:path*",
-      "destination": "/images/:path*"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/index.html"
-    }
+  "routes": [
+ 
+    { "handle": "filesystem" },
+
+    { "src": "/_expo/static/(.*)", "dest": "/_expo/static/$1" },
+
+
+    { "src": "/images/(.*)",      "dest": "/images/$1" },
+
+    { "src": "/(.*)",             "dest": "/index.html" }
   ]
 }
