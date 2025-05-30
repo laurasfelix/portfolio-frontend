@@ -6,15 +6,15 @@
   "rewrites": [
     {
       "source": "/_expo/static/:path*",
-      "destination": "/dist/_expo/static/:path*"
+      "destination": "/_expo/static/:path*"
     },
     {
       "source": "/images/:path*",
-      "destination": "/dist/images/:path*"
+      "destination": "/images/:path*"
     },
     {
       "source": "/:path*",
-      "destination": "/dist/index.html"
+      "destination": "/index.html"
     }
   ]
 }

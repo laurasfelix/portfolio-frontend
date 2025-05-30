@@ -1,7 +1,5 @@
 import OpenAI from "openai";
 import {Dispatch, SetStateAction } from "react";
-
-console.log("OpenAI KEY:", process.env.EXPO_PUBLIC_OPENAI_API_KEY);
 const openai = new OpenAI({apiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY,  dangerouslyAllowBrowser: true});
 
 
