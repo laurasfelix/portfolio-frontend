@@ -65,7 +65,7 @@ return (
     
         <Animated.View
         
-        entering={FadeIn.duration(8000).reduceMotion(ReduceMotion.Never)}
+        entering={isBoot ? FadeIn.duration(100) : FadeIn.duration(8000).reduceMotion(ReduceMotion.Never)}
         style={[styles.main, {justifyContent: isBoot ? "center" : "flex-start"}]}
       >
           <video 
