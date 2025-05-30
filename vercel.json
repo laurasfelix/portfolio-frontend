@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npx expo export -p web",
+  "buildCommand": "npx expo export -p web && cp -r public/* dist/",
   "outputDirectory": "dist",
   "devCommand": "npx expo start --web",
   "routes": [
