@@ -1,6 +1,5 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { useRouter, Route } from 'expo-router';
-import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 
 const screenWidth = Dimensions.get('window').width;

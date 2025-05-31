@@ -1,18 +1,24 @@
-export const colors = {
-  green: "#7CBC29",
-  red: "#FF0505",
-  yellow: "#FFAB03",
-  shadowGreen: "#678243",
-  shadowRed: "#CC2F2F",
-  shadowYellow:"#CC8802",
-  darkGreen: "#65A512",
-  darkRed: "#D70000",
-  darkYellow:"#CB8700",
-  lightGreen:"#BEE689",
-  lightRed: "#FFC1C1",
-  lightYellow: "#FFD98E",
-  textGreen:"#3F6013",
-  textRed:"#9B0000",
-  textYellow:"#B1842B"
-
+ const colors = {
+  green: {
+    base: "#7CBC29",
+    shadow: "#678243",
+    dark: "#65A512",
+    light: "#BEE689",
+    text: "#3F6013",
+  },
+  red: {
+    base: "#FF0505",
+    shadow: "#CC2F2F",
+    dark: "#D70000",
+    light: "#FFC1C1",
+    text: "#9B0000",
+  },
+  yellow: {
+    base: "#FFAB03",
+    shadow: "#CC8802",
+    dark: "#CB8700",
+    light: "#FFD98E",
+    text: "#B1842B",
+  },
 };
+export default colors;
