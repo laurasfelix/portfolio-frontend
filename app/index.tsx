@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { useRouter, Route } from 'expo-router';
+import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 
 const screenWidth = Dimensions.get('window').width;
@@ -8,7 +9,6 @@ const margin = Dimensions.get('window').width*0.2;
 const menu = screenHeight*0.3;
 
 export default function Index() {
-  // Use a string path for web compatibility
   const imgSrc = '/images/logo.svg';
   const [isHovered, setIsHovered] = useState(false);
   const pages = ["playstation", "furby"];
@@ -36,7 +36,6 @@ export default function Index() {
           <Text style={[styles.welcomeText]}> welcome to laura's porfolios.</Text>
         </View>
         <View style={styles.middleSection}>
-          {/* Use string path for web */}
           {mounted && <img src={imgSrc } alt="logo" style={styles.img} />}
         </View>
         <View style={styles.bottomSection}>
@@ -106,6 +105,7 @@ const styles = StyleSheet.create({
     width: menu,
     height: menu,
     objectFit: "contain",
+
   },
   buttonText: {
     fontSize: 18,

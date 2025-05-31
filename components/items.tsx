@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, Dimensions, Pressable} from "react-native";
 import itemInfo from "@/utils/itemInfo";
+import { Image } from "expo-image";
 import {useState, useEffect, Dispatch, SetStateAction} from 'react';
 
 const iconWidth =  Dimensions.get("window").width*0.065;
