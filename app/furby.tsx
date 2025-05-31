@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
-import Body from "@/components/body";
-import InputBox from "@/components/inputBox";
+import Body from "@/components/furby/Body";
+import InputBox from "@/components/furby/InputBox";
 import { useState } from "react";
 
 export default function Furby() {

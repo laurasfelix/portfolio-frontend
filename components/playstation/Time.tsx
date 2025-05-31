@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { useEffect, useState} from "react";
-import Clock from "@/components/clock";
+import Clock from "@/components/playstation/Clock";
 
 const Time = () => {
 

@@ -2,8 +2,8 @@ import { Text, View, StyleSheet, Dimensions, Pressable} from "react-native";
 import { useVideoPlayer} from 'expo-video';
 import { useEffect, useState, useRef } from "react";
 import Animated, { FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
-import Menu from "@/components/menu";
-import Time from "@/components/time";
+import Menu from "@/components/playstation/Menu";
+import Time from "@/components/playstation/Time";
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;

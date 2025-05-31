@@ -1,7 +1,7 @@
 import {View, StyleSheet, Dimensions} from "react-native";
-import Icon from "@/components/icon";
+import Icon from "@/components/playstation/Icon";
 import { useState } from "react";
-import Items from "@/components/items";
+import Items from "@/components/playstation/Items";
 
 const screenWidth = Dimensions.get('window').width;
 const upHeight = Dimensions.get('window').height * 0.2;
