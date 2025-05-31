@@ -12,8 +12,9 @@ const menu = screenHeight*0.1;
 
 export default function Playstation() {
 
-    const videoSource = require("@/public/videos/boot.mp4");
-    const [isBoot, setIsBoot] = useState(true);
+    const videoSource = "/videos/boot.mp4";
+    const shouldBoot = sessionStorage.getItem("playstationBooted") !== "true";
+    const [isBoot, setIsBoot] = useState(shouldBoot);
     const soundRef = useRef<HTMLAudioElement | null>(null);
 
     const player = useVideoPlayer(videoSource, player => {
@@ -39,17 +40,25 @@ export default function Playstation() {
   
     };
 
-  useEffect(()=> {
+  useEffect(() => {
+  const alreadyBooted = sessionStorage.getItem("playstationBooted");
+
+  if (!alreadyBooted) {
     async function loadSound() {
       console.log("Loading Sound");
       const audio = new Audio(require("@/public/sounds/startup.mp3"));
       audio.preload = "auto";
       soundRef.current = audio;
-      
+    }
+
+    loadSound();
+    handlePowerPress();
+
+    sessionStorage.setItem("playstationBooted", "true");
+  } else {
+    setIsBoot(false); // skip boot screen
   }
-  loadSound();
-  handlePowerPress();
-  }, [])
+}, []);
 
     
 return (
@@ -57,7 +66,7 @@ return (
     
         <Animated.View
         
-        entering={FadeIn.duration(8000).reduceMotion(ReduceMotion.Never)}
+        entering={isBoot ? FadeIn.duration(8000).reduceMotion(ReduceMotion.Never) : FadeIn.duration(100) }
         style={[styles.main, {justifyContent: isBoot ? "center" : "flex-start"}]}
       >
           <video 

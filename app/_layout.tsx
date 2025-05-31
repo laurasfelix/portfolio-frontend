@@ -28,8 +28,8 @@ export default function RootLayout() {
       </View>
     );
   }
-  return <Stack screenOptions={{
-    headerShown: false,
-  }}/>;
+  return <>
+      <Stack screenOptions={{ headerShown: false }} />
+    </>;
 
 }

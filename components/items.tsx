@@ -67,7 +67,7 @@ const Items = ({chosen,src, chosenIcon, setChosenIcon, up}: ItemsProp) => {
              >
 
                 <View style={styles.imgContainer}>
-                    <Image source={item.icon} style={{opacity: index===chosenIcon[chosen] ? 0.95 : 0.8, width: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, height: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, alignSelf:"center", resizeMode: "contain"}}/>
+                    <img src={item.icon} style={{opacity: index===chosenIcon[chosen] ? 0.95 : 0.8, width: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, height: index===chosenIcon[chosen] ? iconWidth : notChosenWidth, alignSelf:"center"}}/>
                 </View>
             </Pressable>
           

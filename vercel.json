@@ -1,21 +1,15 @@
 {
-  "buildCommand": "npx expo export -p web",
+  "buildCommand": "npx expo export -p web && cp -r public/* dist/",
   "outputDirectory": "dist",
   "devCommand": "npx expo start --web",
-  "cleanUrls": true,
-  "framework": null,
-  "rewrites": [
-    {
-      "source": "/_expo/static/:path*",
-      "destination": "/dist/_expo/static/:path*"
-    },
-    {
-      "source": "/public/:path*",
-      "destination": "/dist/public/:path*"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/dist/index.html"
-    }
+  "routes": [
+ 
+    { "handle": "filesystem" },
+
+    { "src": "/_expo/static/(.*)", "dest": "/_expo/static/$1" },
+
+    { "src": "/images/(.*)",      "dest": "/images/$1" },
+
+    { "src": "/(.*)",             "dest": "/index.html" }
   ]
 }
