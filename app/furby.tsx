@@ -19,7 +19,7 @@ export default function Furby() {
                 <Body isTalking={isTalking} isThinking={isThinking} interact={inputInteract}/>
 
                 <View style={styles.inputBox}>
-                    <InputBox isThinking={isThinking} setIsThinking={setIsThinking} setInteract={setInputInteract} />
+                    <InputBox setIsTalking={setIsTalking} isThinking={isThinking} setIsThinking={setIsThinking} setInteract={setInputInteract} />
                 </View>
 
             </View>
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
         height:"100%",
         flexDirection:"row",
         padding: 20,
+        backgroundColor:"black"
     },
     mainColumn:{
 

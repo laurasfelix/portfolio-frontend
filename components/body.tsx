@@ -1,18 +1,16 @@
 import { View, StyleSheet, useWindowDimensions, Pressable } from "react-native";
 import { useEffect, useState, useRef } from "react";
-import { Image } from "expo-image";
-
 
 const EYE = {
-    CLOSED: require("@/public/images/fit_eye_closed.svg"),
-    OPEN: require("@/public/images/fit_eye.svg"),
-    DEMON:  require("@/public/images/fit_eyemon.svg"),
-    INVERTED: require("@/public/images/fit_eyeverted.svg")
+    CLOSED: '/images/fit_eye_closed.svg',
+    OPEN: '/images/fit_eye.svg',
+    DEMON:  '/images/fit_eyemon.svg',
+    INVERTED: '/images/fit_eyeverted.svg'
 }
 
 const BEAK = { 
-    CLOSED: require("@/public/images/fit_beak_closed.svg"),
-    OPEN: require("@/public/images/fit_beak_open.svg")
+    CLOSED: '/images/fit_beak_closed.svg',
+    OPEN: '/images/fit_beak_open.svg'
 }
 
 interface BodyProps{
@@ -28,7 +26,7 @@ const Body = ({isThinking, interact, isTalking}:BodyProps) => {
     const [leftEye, setLeftEye] = useState(EYE.CLOSED);
     const [rightEye, setRightEye] = useState(EYE.CLOSED);
     const [beak, setBeak] = useState(BEAK.CLOSED);
-    const furby = require("@/public/images/furby_empty.png");
+    const furby = '/images/furby_empty.png';
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const leftEyeRef = useRef(leftEye);
@@ -115,12 +113,12 @@ const Body = ({isThinking, interact, isTalking}:BodyProps) => {
         <View style={[styles.container, styles.mainContainer]}>
 
             <View style={[styles.furbyContainer, styles.container, {position: "relative", width: imageSize, height: imageSize}]}> 
-                <Image source={furby} alt="furby" style={{...styles.furby, width: "100%", height: "100%"}} />
-                <Image source={beak} alt="furby's beak" style={{...styles.beak, position: "absolute", top: imageSize*0.51, left: imageSize*0.49 - smallSize/2, height: smallSize, width: smallSize}} />
+                <img src={furby} alt="furby" style={{...styles.furby, width: "100%", height: "100%"}} />
+                <img src={beak} alt="furby's beak" style={{...styles.beak, position: "absolute", top: imageSize*0.51, left: imageSize*0.49 - smallSize/2, height: smallSize, width: smallSize}} />
                 <Pressable style={[styles.hover, {position: "absolute", top: imageSize*0.51, left: imageSize*0.49 - smallSize/2, height: smallSize, width: smallSize}]} onHoverIn={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)} onHoverOut={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)} />
-                <Image source={leftEye} alt="furby's left eye" style={{...styles.leftEye, position: "absolute", top: imageSize*0.37, left: imageSize*0.32, height: smallSize*1.1, width: smallSize*1.1}} />
+                <img src={leftEye} alt="furby's left eye" style={{...styles.leftEye, position: "absolute", top: imageSize*0.37, left: imageSize*0.32, height: smallSize*1.1, width: smallSize*1.1}} />
                 <Pressable style={[styles.hover, {position: "absolute", top: imageSize*0.37, left: imageSize*0.32, height: smallSize*1.1, width: smallSize*1.1}]} onHoverIn={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)} onHoverOut={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)} />
-                <Image source={rightEye} alt="furby's right eye" style={{...styles.rightEye, position: "absolute", top: imageSize*0.37, left: imageSize*0.5, height: smallSize*1.1, width: smallSize*1.1}} />
+                <img src={rightEye} alt="furby's right eye" style={{...styles.rightEye, position: "absolute", top: imageSize*0.37, left: imageSize*0.5, height: smallSize*1.1, width: smallSize*1.1}} />
                 <Pressable style={[styles.hover, {position: "absolute", top: imageSize*0.37, left: imageSize*0.5, height: smallSize*1.1, width: smallSize*1.1}]} onHoverIn={() => handleAnnoy(() => rightEyeRef.current, setRightEye, EYE.OPEN, EYE.CLOSED)} onHoverOut={() => handleAnnoy(() => rightEyeRef.current, setRightEye, EYE.OPEN, EYE.CLOSED)} />
             </View>
 

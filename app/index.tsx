@@ -9,10 +9,12 @@ const margin = Dimensions.get('window').width*0.2;
 const menu = screenHeight*0.3;
 
 export default function Index() {
-  const imgSrc = require("@/public/images/logo.svg");
+  const imgSrc = '/images/logo.svg';
   const [isHovered, setIsHovered] = useState(false);
   const pages = ["playstation", "furby"];
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const RandomPage = () => {
         const min = 0;
@@ -34,7 +36,7 @@ export default function Index() {
           <Text style={[styles.welcomeText]}> welcome to laura's porfolios.</Text>
         </View>
         <View style={styles.middleSection}>
-          <Image source={imgSrc} alt="logo" style={[styles.img]} />
+          {mounted && <img src={imgSrc } alt="logo" style={styles.img} />}
         </View>
         <View style={styles.bottomSection}>
           <Pressable style={[styles.buttonContainer, {backgroundColor: isHovered ? "gray" : "gainsboro"}]}
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    height: screenHeight,
+    flex:1,
     padding: 0,
   },
   start: {
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    height: screenHeight,
+    flex:1, 
     padding: 0,
   },
   topSection: {
@@ -102,7 +104,8 @@ const styles = StyleSheet.create({
   img: {
     width: menu,
     height: menu,
-    resizeMode: "contain",
+    objectFit: "contain",
+
   },
   buttonText: {
     fontSize: 18,
