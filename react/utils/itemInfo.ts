@@ -2,6 +2,9 @@ interface itemProp{
     "title": string,
     "text": string[],
     "icon": string,
+    "company"?: string,
+    "pictures"?: string[],
+    
 }
 
 type ItemInfoProp = itemProp[][];

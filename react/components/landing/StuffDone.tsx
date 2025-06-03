@@ -2,6 +2,7 @@ import StarBox from '@/components/landing/StarBox';
 import { useState } from 'react';
 import colors from "@/utils/colors";
 import { StarProps } from '@/components/landing/Star';
+import LargeCard from '@/components/landing/LargeCard';
 
 const StuffDone = () => {
 
@@ -63,107 +64,130 @@ const StuffDone = () => {
           </div>}
 
           {openModal == "green" &&
-            <div className='flex w-[90%] h-[80%] m-8 mx-16 p-[2vw] rounded-[5vw] flex-col justify-between' style={{backgroundColor:colors[openModal].base }}
-            >
-                <div className='grid grid-cols-3 items-start justify-start'>
+              <div className='w-[90%] h-[90%] rounded-[3vw] flex flex-col justify-between overflow-hidden'
+                   style={{backgroundColor:colors[openModal].base }}>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-[3%] items-start justify-center h-full p-[5%] overflow-hidden'>
 
-                    <div className=''>
+                    <div className='hidden md:block'>
                         <div className='text-center'>
-                            <img src={colors[openModal].img}/>
+                            <img src={colors[openModal].img} className='w-[80%] max-w-[20vw] aspect-square mx-auto'/>
                         </div>
-                        
                     </div>
                     
-                    <div className='items-center'>
-                        <div className='text-center text-3xl pb-3'>
-                            work
+                    <div className='flex flex-col h-full w-full'>
+                        <div className='text-center text-3xl pb-[3%] flex items-center justify-center'>
+                            <img src={colors[openModal].img} className='w-[15%] aspect-square md:hidden mr-[3%]'/>
+                            <span>work</span>
                         </div>
 
-                        <div className='text-center text-xl rounded-xl p-1 mb-4' style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
+                        <div className='text-center text-xl rounded-xl p-[2%] mb-[3%]' 
+                             style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
                             search by any key terms
                         </div>
 
-                        <div className='text-center'>
+                        <div className='text-center overflow-y-auto w-full h-[50vh] md:h-[60vh] hide-scrollbar'>
                             {colors[openModal].info.map((item, idx) =>
                             
-                            <div key={idx}>
-                                {item.title}
+                            <div key={idx} className="mb-[3%]">
+                                <LargeCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
                             </div>
                             
-                        )
-
-                            }
+                        )}
                         </div>
                     </div>
 
                 </div>
                 
-                <div className='justify-end'>
+                <div className='mb-[2%] ml-[5%]'>
                     <span onClick={() => setOpenModal("")} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>
                 </div>
             </div>
-
             }
+            
             {openModal == "yellow" &&
-            <div className='flex w-[90%] h-[80%] m-8 mx-16 p-[2vw] rounded-[5vw] flex-col justify-between' style={{backgroundColor:colors[openModal].base }}
-            >
-                <div className='grid grid-cols-3 items-start justify-start'>
+            <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-[5%]'>
+              <div className='w-[90%] h-[90%] rounded-[3vw] flex flex-col justify-between overflow-hidden'
+                   style={{backgroundColor:colors[openModal].base }}>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-[3%] items-start justify-center h-full p-[5%] overflow-hidden'>
 
-                    <div className=''>
+                    <div className='hidden md:block'>
                         <div className='text-center'>
-                            <img src={colors[openModal].img}/>
+                            <img src={colors[openModal].img} className='w-[80%] max-w-[20vw] aspect-square mx-auto'/>
                         </div>
-                        
                     </div>
                     
-                    <div>
-                        <div className='text-center text-3xl'>
-                            awards
+                    <div className='flex flex-col h-full w-full'>
+                        <div className='text-center text-3xl pb-[3%] flex items-center justify-center'>
+                            <img src={colors[openModal].img} className='w-[15%] aspect-square md:hidden mr-[3%]'/>
+                            <span>awards</span>
                         </div>
 
-                          <div className='text-center text-xl rounded-xl p-1 mb-4' style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
+                        <div className='text-center text-xl rounded-xl p-[2%] mb-[3%]' 
+                             style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
                             search by any key terms
                         </div>
 
-                     
+                        <div className='text-center overflow-y-auto w-full h-[50vh] md:h-[60vh] hide-scrollbar'>
+                            {colors[openModal].info && colors[openModal].info.map((item, idx) =>
+                            
+                            <div key={idx} className="mb-[3%]">
+                                <LargeCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
+                            </div>
+                            
+                        )}
+                        </div>
                     </div>
 
                 </div>
                 
-                <div className='justify-end'>
+                <div className='mb-[2%] ml-[5%]'>
                     <span onClick={() => setOpenModal("")} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>
                 </div>
             </div>
-
+            </div>
             }
+            
             {openModal == "red" &&
-            <div className='flex w-[90%] h-[80%] m-8 mx-16 p-[2vw] rounded-[5vw] flex-col justify-between' style={{backgroundColor:colors[openModal].base }}
-            >
-                <div className='grid grid-cols-3 items-start justify-start'>
+            <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-[5%]'>
+                <div className='w-[90%] h-[90%] rounded-[3vw] flex flex-col justify-between overflow-hidden'
+                   style={{backgroundColor:colors[openModal].base }}>
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-[3%] items-start justify-center h-full p-[5%] overflow-hidden'>
 
-                    <div className=''>
-                        <div className='text-center'>
-                            <img src={colors[openModal].img}/>
+                        <div className='hidden md:block'>
+                            <div className='text-center'>
+                                <img src={colors[openModal].img} className='w-[80%] max-w-[20vw] aspect-square mx-auto'/>
+                            </div>
                         </div>
-                        
-                    </div>
                     
-                    <div>
-                        <div className='text-center text-3xl'>
-                            play
-                        </div>
-                          <div className='text-center text-xl rounded-xl p-1 mb-4' style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
-                            search by any key terms
-                        </div>
-                    </div>
+                        <div className='flex flex-col h-full w-full'>
+                            <div className='text-center text-3xl pb-[3%] flex items-center justify-center'>
+                                <img src={colors[openModal].img} className='w-[15%] aspect-square md:hidden mr-[3%]'/>
+                                <span>play</span>
+                            </div>
 
-                </div>
+                            <div className='text-center text-xl rounded-xl p-[2%] mb-[3%]' 
+                                style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
+                                search by any key terms
+                            </div>
+
+                            <div className='text-center overflow-y-auto w-full h-[50vh] md:h-[60vh] hide-scrollbar'>
+                                {colors[openModal].info && colors[openModal].info.map((item, idx) =>
+                                
+                                <div key={idx} className="mb-[3%]">
+                                    <LargeCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
+                                </div>
+                                
+                            )}
+                            </div>
+                        </div>
+
+                    </div>
                 
-                <div className='justify-end'>
-                    <span onClick={() => setOpenModal("")} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>
+                    <div className='mb-[2%] ml-[5%]'>
+                        <span onClick={() => setOpenModal("")} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>
+                    </div>
                 </div>
             </div>
-
             }
           </>
     );
