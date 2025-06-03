@@ -30,7 +30,11 @@ const StuffDone = () => {
             onClick={() => setOpenModal("yellow")}> 
               <div className='flex flex-row items-center justify-center text-center text-3xl md:mb-2 mr-2'>
                 <span className='relative px-2 transition duration-300 ease-in-out'>
-                <span className='relative z-10'> i win </span>
+                    <div className='flex flex-col'>
+                        <span className='relative z-10'> i win </span>
+                        <span className='relative invisible italic z-10 group-hover:visible text-black'> * not guaranteed </span>
+                    </div>
+                
                 <span 
                 className='absolute left-0 top-0 h-full origin-left transform scale-x-0 
                             group-hover:scale-x-100 transition-transform duration-300 ease-in-out'
@@ -58,10 +62,106 @@ const StuffDone = () => {
             </div>
           </div>}
 
-          {openModal &&
-            <div className='flex w-[90%] h-[80%] m-8 mx-16 p-[6vw] rounded-[6vw]' style={{backgroundColor:colors[openModal].base }}
+          {openModal == "green" &&
+            <div className='flex w-[90%] h-[80%] m-8 mx-16 p-[2vw] rounded-[5vw] flex-col justify-between' style={{backgroundColor:colors[openModal].base }}
             >
-                <span onClick={() => setOpenModal("")} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>
+                <div className='grid grid-cols-3 items-start justify-start'>
+
+                    <div className=''>
+                        <div className='text-center'>
+                            <img src={colors[openModal].img}/>
+                        </div>
+                        
+                    </div>
+                    
+                    <div className='items-center'>
+                        <div className='text-center text-3xl pb-3'>
+                            work
+                        </div>
+
+                        <div className='text-center text-xl rounded-xl p-1 mb-4' style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
+                            search by any key terms
+                        </div>
+
+                        <div className='text-center'>
+                            {colors[openModal].info.map((item, idx) =>
+                            
+                            <div key={idx}>
+                                {item.title}
+                            </div>
+                            
+                        )
+
+                            }
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div className='justify-end'>
+                    <span onClick={() => setOpenModal("")} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>
+                </div>
+            </div>
+
+            }
+            {openModal == "yellow" &&
+            <div className='flex w-[90%] h-[80%] m-8 mx-16 p-[2vw] rounded-[5vw] flex-col justify-between' style={{backgroundColor:colors[openModal].base }}
+            >
+                <div className='grid grid-cols-3 items-start justify-start'>
+
+                    <div className=''>
+                        <div className='text-center'>
+                            <img src={colors[openModal].img}/>
+                        </div>
+                        
+                    </div>
+                    
+                    <div>
+                        <div className='text-center text-3xl'>
+                            awards
+                        </div>
+
+                          <div className='text-center text-xl rounded-xl p-1 mb-4' style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
+                            search by any key terms
+                        </div>
+
+                     
+                    </div>
+
+                </div>
+                
+                <div className='justify-end'>
+                    <span onClick={() => setOpenModal("")} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>
+                </div>
+            </div>
+
+            }
+            {openModal == "red" &&
+            <div className='flex w-[90%] h-[80%] m-8 mx-16 p-[2vw] rounded-[5vw] flex-col justify-between' style={{backgroundColor:colors[openModal].base }}
+            >
+                <div className='grid grid-cols-3 items-start justify-start'>
+
+                    <div className=''>
+                        <div className='text-center'>
+                            <img src={colors[openModal].img}/>
+                        </div>
+                        
+                    </div>
+                    
+                    <div>
+                        <div className='text-center text-3xl'>
+                            play
+                        </div>
+                          <div className='text-center text-xl rounded-xl p-1 mb-4' style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
+                            search by any key terms
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div className='justify-end'>
+                    <span onClick={() => setOpenModal("")} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>
+                </div>
             </div>
 
             }

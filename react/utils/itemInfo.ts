@@ -40,10 +40,8 @@ const itemInfo: ItemInfoProp = [
         "title":"scholar @ citadel",
         "text":[""],
         "icon": "/images/citadel.svg",
-    }],
-
-
-    [{
+    },
+    {
         "title":"bread",
         "text":[""],
         "icon": "/images/bread.svg",
@@ -55,6 +53,11 @@ const itemInfo: ItemInfoProp = [
     },
     {
         "title":"pupally",
+        "text":[""],
+        "icon": "/images/puppy.svg",
+    }],
+    [{
+        "title":"jane street",
         "text":[""],
         "icon": "/images/puppy.svg",
     }],

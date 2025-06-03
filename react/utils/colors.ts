@@ -1,4 +1,6 @@
- const colors = {
+import itemInfo from "@/utils/itemInfo";
+ 
+const colors = {
   green: {
     base: "#7CBC29",
     shadow: "#678243",
@@ -7,6 +9,7 @@
     text: "#3F6013",
     img:"/images/work.svg",
     loc:"right",
+    info: [...itemInfo[1]],
   },
   red: {
     base: "#FF0505",
@@ -16,6 +19,7 @@
     text: "#9B0000",
     img:"/images/play.svg",
     loc:"top",
+    info: [...itemInfo[3]],
   },
   yellow: {
     base: "#FFAB03",
@@ -25,6 +29,7 @@
     text: "#B1842B",
     img:"/images/win.svg",
     loc:"left",
+    info: [...itemInfo[2]]
   },
 };
 export default colors;
