@@ -1,4 +1,4 @@
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useEffect, Dispatch, SetStateAction } from 'react';
 import itemInfo from "@/utils/itemInfo";
 
 interface ItemsProp {
