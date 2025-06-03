@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from 'next/image';
 import LargeCard from "@/components/landing/LargeCard";
 import Lauraa from "@/components/landing/Lauraa";
-import StarBox from '@/components/landing/StarBox';
+import StuffDone from '@/components/landing/StuffDone';
 
 export default function Index() {
   const imgSrc = '/images/logo.svg';
@@ -73,9 +73,10 @@ export default function Index() {
        
 
         {/* stuff i do */}
-        <section className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black">
-          <h2 className="text-4xl text-white">stuff i do?</h2>
-          <StarBox color={"red"} />
+        <section className="snap-start h-screen w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-10">
+          {/* <h2 className="text-4xl text-white">stuff i do?</h2> */}
+          <StuffDone />
+          
         </section>
        
 

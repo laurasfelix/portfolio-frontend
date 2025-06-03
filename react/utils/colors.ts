@@ -6,6 +6,7 @@
     light: "#BEE689",
     text: "#3F6013",
     img:"/images/work.svg",
+    loc:"right",
   },
   red: {
     base: "#FF0505",
@@ -14,6 +15,7 @@
     light: "#FFC1C1",
     text: "#9B0000",
     img:"/images/play.svg",
+    loc:"top",
   },
   yellow: {
     base: "#FFAB03",
@@ -22,6 +24,7 @@
     light: "#FFD98E",
     text: "#B1842B",
     img:"/images/win.svg",
+    loc:"left",
   },
 };
 export default colors;
