@@ -31,7 +31,7 @@ export default function Index() {
         {/* First section - Home */}
         <section className="snap-start h-screen w-full flex flex-col justify-between items-center p-10">
           <div className="flex-1 flex items-end justify-center pb-6">
-            <h1 className="text-2xl md:text-4xl text-white font-extralight"> 
+            <h1 className="text-lg md:text-4xl text-white font-extralight"> 
               laura saraiva feeeélix
             </h1>
           </div>
@@ -47,7 +47,7 @@ export default function Index() {
           </div>
           
           <div className="flex-1 flex flex-col justify-start items-center pt-6 space-y-6">
-            <h2 className="text-xl text-white font-extralight"> 
+            <h2 className="text-white text-sm font-thin"> 
               developer, gamer, reader, lego-er 
             </h2>
             
