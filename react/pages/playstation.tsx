@@ -76,7 +76,7 @@ export default function Playstation() {
             <div className={`mr-[20%] flex flex-col items-center 
                           ${fadeIn ? 'opacity-100' : 'opacity-0'} transition-opacity duration-[2000ms]`}>
               <h1 className="text-4xl text-white font-extralight">Portfolio by Laura</h1>   
-              <p className="text-2xl text-white font-extralight">(sony don't sue me pls)</p>      
+              <p className="text-2xl text-white font-extralight">(sony don&apos;t sue me pls)</p>      
             </div>
           )}
 

@@ -18,7 +18,7 @@ interface BodyProps {
     isTalking: boolean;
 }
 
-const Body = ({ isThinking, interact, isTalking }: BodyProps) => {
+const Body = ({ isThinking, isTalking }: BodyProps) => {
     // Responsive sizes
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     
