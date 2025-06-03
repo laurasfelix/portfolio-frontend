@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from 'next/image';
 import LargeCard from "@/components/landing/LargeCard";
 import Lauraa from "@/components/landing/Lauraa";
+import StarBox from '@/components/landing/StarBox';
 
 export default function Index() {
   const imgSrc = '/images/logo.svg';
@@ -41,10 +42,10 @@ export default function Index() {
         
         {/* about */}
         <section className="snap-start h-screen w-full flex items-center justify-center md:flex-row flex-col">
-          <div className='bg-black flex-1 h-full w-full flex justify-center items-center'>
+          {<div className='hidden md:flex bg-black flex-1 h-full w-full justify-center items-center'>
               <Lauraa length={30}/>
-          </div>
-          <div className='bg-white flex-1 h-full w-full p-8'> 
+          </div>}
+          <div className='bg-white flex-1 h-full w-full p-8 overflow-scroll hide-scrollbar'> 
             <div className='text-black text-left p-8 flex flex-col gap-6 max-w-4xl mx-auto'>
                     <div className='text-4xl font-bold mb-4'>
                       hi! i'm laura
@@ -72,8 +73,9 @@ export default function Index() {
        
 
         {/* stuff i do */}
-        <section className="snap-start h-screen w-full flex items-center justify-center bg-black">
+        <section className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black">
           <h2 className="text-4xl text-white">stuff i do?</h2>
+          <StarBox color={"red"} />
         </section>
        
 
