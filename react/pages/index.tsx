@@ -50,12 +50,31 @@ export default function Index() {
           </div>
         </section>
         
-        {/* You can add more snap sections here */}
-        {/* Second section example 
+        {/* about */}
         <section className="snap-start h-screen w-full flex items-center justify-center bg-gray-900">
-          <h2 className="text-4xl text-white">Projects</h2>
+          <h2 className="text-4xl text-white">about me</h2>
         </section>
-        */}
+       
+
+        {/* stuff i do */}
+        <section className="snap-start h-screen w-full flex items-center justify-center bg-gray-900">
+          <h2 className="text-4xl text-white">stuff i do?</h2>
+        </section>
+       
+
+
+         {/* more */}
+        <section className="snap-start h-screen w-full flex items-center justify-center bg-gray-900">
+          <h2 className="text-4xl text-white">your experience isn't over</h2>
+        </section>
+       
+
+         {/* contact */}
+        <section className="snap-start h-screen w-full flex items-center justify-center bg-gray-900">
+          <h2 className="text-4xl text-white">contact me</h2>
+        </section>
+       
+
       </div>
     </div>
   );
