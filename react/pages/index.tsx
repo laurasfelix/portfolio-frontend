@@ -33,7 +33,7 @@ export default function Index() {
           
           <div className="flex flex-col justify-start items-center">
             <h2 className="text-2xl"> 
-              developer, gamer, reader, lego-er 
+              <span className='inline-block transition-all duration-300 hover:scale-105 hover:rotate-5 hover:font-bold'>developer</span>, <span className='inline-block transition-all duration-300 hover:scale-105 hover:-rotate-5 hover:font-bold'>gamer</span>, <span className='inline-block transition-all duration-300 hover:scale-105 hover:rotate-5 hover:font-bold'>reader</span>, <span className='inline-block transition-all duration-300 hover:scale-105 hover:-rotate-5 hover:font-bold'>lego-er</span>
             </h2>
           
           </div>
@@ -44,7 +44,7 @@ export default function Index() {
           <div className='bg-black flex-1 h-full w-full flex justify-center items-center'>
               <Lauraa length={30}/>
           </div>
-          <div className='bg-white flex-1 h-full w-full overflow-scroll p-8'> 
+          <div className='bg-white flex-1 h-full w-full p-8'> 
             <div className='text-black text-left p-8 flex flex-col gap-6 max-w-4xl mx-auto'>
                     <div className='text-4xl font-bold mb-4'>
                       hi! i'm laura
