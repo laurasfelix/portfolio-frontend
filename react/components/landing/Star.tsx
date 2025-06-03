@@ -1,6 +1,6 @@
 import colors from "@/utils/colors";
 
-interface StarProps {
+export interface StarProps {
     color: "green" | "red" | "yellow";
 };
 
