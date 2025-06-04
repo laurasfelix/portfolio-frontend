@@ -93,7 +93,7 @@ const Modal: React.FC<ModalProps> = ({
                             <div className='w-full h-auto grid grid-cols-1 md:grid-cols-3 gap-4'>
                                 <div className='md:col-span-3 p-4 rounded-xl' style={{backgroundColor: colors[color].dark}}>
                                     {colors[color].info && (
-                                        <div className='flex flex-col md:flex-row'>
+                                        <div className='w-full flex flex-col md:flex-row'>
                                             <div className='md:w-1/3 p-4 flex flex-col items-center justify-center'>
                                                 <h2 className='text-white text-2xl font-bold mb-2'>{colors[color].info[chosen].title}</h2>
                                                 <p className='text-white/80 text-2xl mb-2'>{colors[color].info[chosen].company}</p>
@@ -102,7 +102,7 @@ const Modal: React.FC<ModalProps> = ({
                                                 )}
                                             </div>
                                             <div className='md:w-2/3 p-4'>
-                                                <div className='bg-opacity-80 rounded-xl p-4 overflow-y-auto max-h-[60vh] hide-scrollbar' style={{backgroundColor: colors[color].base}}>
+                                                <div className='bg-opacity-80 rounded-xl p-4 overflow-y-auto max-h-[40vh] hide-scrollbar' style={{backgroundColor: colors[color].base}}>
                                                     {colors[color].info[chosen].text.map((paragraph: string[], idx: number) => (
                                                         paragraph.map((lines: string, i: number) => (
                                                             <React.Fragment key={`${idx}-${i}`}>
