@@ -16,6 +16,15 @@ const PulsatingArrow = ({ color = '#fff' }: { color?: string }) => (
   </div>
 );
 
+const ConsoleNav = () => (
+  <nav className="fixed text-xl left-1/2 -translate-x-1/2 bottom-6 z-40 flex flex-row gap-2 bg-black/80 rounded-xl p-3 shadow-lg border-2 border-white">
+    <a href="#start" className="text-white hover:underline font-mono">start</a>
+    <a href="#stuff" className="text-white hover:underline font-mono">stuff i did</a>
+    <a href="#extras" className="text-white hover:underline font-mono">extras</a>
+    <a href="#contact" className="text-white hover:underline font-mono">contact</a>
+  </nav>
+);
+
 export default function Index() {
   const imgSrc = '/images/logo.svg';
   const pages = ["playstation", "furby"];
@@ -38,7 +47,7 @@ export default function Index() {
       <div className="snap-y snap-mandatory h-screen overflow-y-auto">
         
         {/* home */}
-        <section className="snap-start h-screen w-full flex flex-col items-center justify-center gap-6 relative">
+        <section id="start" className="snap-start h-screen w-full flex flex-col items-center justify-center gap-6 relative">
           <div className='flex items-center'>
             <Lauraa length={30}/>
           </div>
@@ -50,6 +59,7 @@ export default function Index() {
           
           </div>
           <PulsatingArrow />
+          <ConsoleNav />
         </section>
         
         {/* about */}
@@ -86,16 +96,17 @@ export default function Index() {
        
 
         {/* stuff i do */}
-        <section className="snap-start h-screen w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-10 relative">
+        <section id="stuff" className="snap-start h-screen w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-10 relative">
           {/* <h2 className="text-4xl text-white">stuff i do?</h2> */}
           <StuffDone />
           <PulsatingArrow />
+          <ConsoleNav />
         </section>
        
 
 
          {/* more */}
-        <section className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black relative">
+        <section id="extras" className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black relative">
           <h2 className="text-4xl text-white mb-4">don't worry, your experience isn't over...</h2>
           <h3 className="text- to xl text-white mb-4">try these other portfolio versions out</h3>
 
@@ -115,11 +126,12 @@ export default function Index() {
 
           </div>
           <PulsatingArrow />
+          <ConsoleNav />
         </section>
        
 
          {/* contact */}
-        <section className="snap-start h-screen w-full flex items-center justify-center bg-black relative">
+        <section id="contact" className="snap-start h-screen w-full flex items-center justify-center bg-black relative">
           <div className="absolute left-0 top-0 w-full h-full pointer-events-none select-none">
             <img src="/images/logo.svg" alt="contact art" className="absolute right-0 bottom-0 w-[40vw] max-w-[400px] z-10" />
           </div>
@@ -177,6 +189,7 @@ export default function Index() {
               ))}
             </div>
           </div>
+          <ConsoleNav />
         </section>
        
 
