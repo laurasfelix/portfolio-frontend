@@ -14,7 +14,6 @@ export default function Playstation() {
   const [fadeIn, setFadeIn] = useState(false);
 
   useEffect(() => {
-    let fadeTimer: NodeJS.Timeout;
     let bootTimer: NodeJS.Timeout;
 
     const alreadyBooted = sessionStorage.getItem("playstationBooted");
@@ -51,7 +50,7 @@ export default function Playstation() {
     }
 
     // Fade in UI
-    fadeTimer = setTimeout(() => setFadeIn(true), 100);
+    const fadeTimer = setTimeout(() => setFadeIn(true), 100);
 
     return () => {
       clearTimeout(fadeTimer);

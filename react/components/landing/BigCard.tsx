@@ -1,9 +1,8 @@
 import { FC } from "react";
 import { CardProps } from "@/utils/card";
-import Image from "next/image";
 import colors from "@/utils/colors";
 
-const BigCard: FC<CardProps> = ({color, role, company, text, icon}) => {
+const BigCard: FC<CardProps> = ({color, text}) => {
     return (
         <div className="rounded-xl p-4" style={{ backgroundColor: colors[color].base }}>
             <div className="text-white/90 text-sm">

@@ -1,9 +1,9 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { CardProps } from "@/utils/card";
 import Image from "next/image";
 import colors from "@/utils/colors";
 
-const TinyCard: FC<CardProps> = ({ pictures = [], color, icon, company, role, text }) => {
+const TinyCard: FC<CardProps> = ({ color, icon, company, role, text }) => {
     return (
         <div className="rounded-xl overflow-hidden h-full" style={{backgroundColor: colors[color].dark}}>
             <div className="grid grid-cols-3 items-center mb-3 justify-center p-1">

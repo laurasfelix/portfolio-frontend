@@ -2,11 +2,16 @@ import React from 'react';
 import TinyCard from './TinyCard';
 import { itemProp } from '@/utils/itemInfo';
 import { CardProps } from '@/utils/card';
+import colors from '@/utils/colors';
+
+type ColorKey = 'green' | 'red' | 'yellow';
+
+type ColorsType = typeof colors;
 
 interface ModalProps {
     isOpen: boolean;
-    color: 'green' | 'red' | 'yellow';
-    colors: any;
+    color: ColorKey;
+    colors: ColorsType;
     chosen: number;
     filtered: itemProp[];
     onClose: () => void;

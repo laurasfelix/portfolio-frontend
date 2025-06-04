@@ -2,9 +2,7 @@ import StarBox from '@/components/landing/StarBox';
 import { useState, useEffect } from 'react';
 import colors from "@/utils/colors";
 import { StarProps } from '@/components/landing/Star';
-import TinyCard from '@/components/landing/TinyCard';
 import Modal from '@/components/landing/Modal';
-import { useSearchParams } from 'next/navigation';
 import { itemProp } from '@/utils/itemInfo';
 
 const StuffDone = () => {
