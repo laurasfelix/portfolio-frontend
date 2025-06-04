@@ -24,7 +24,7 @@ export default function Furby() {
                 />
 
                 {/* Input box */}
-                <div className="w-full mt-6 flex items-center">
+                <div className="w-full mt-6 flex items-center justify-center">
                     <InputBox 
                         setIsTalking={setIsTalking} 
                         isThinking={isThinking} 

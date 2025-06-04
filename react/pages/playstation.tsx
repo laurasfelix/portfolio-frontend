@@ -3,91 +3,99 @@ import Menu from "@/components/playstation/Menu";
 import Time from "@/components/playstation/Time";
 
 export default function Playstation() {
-    const videoSource = "/videos/boot.mp4";
-    const [isBoot, setIsBoot] = useState(true);
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const soundRef = useRef<HTMLAudioElement | null>(null);
-    const [fadeIn, setFadeIn] = useState(false);
+  const videoSource = "/videos/boot.mp4";
+  const [isBoot, setIsBoot] = useState(() => {
+    return typeof window !== "undefined"
+      ? sessionStorage.getItem("playstationBooted") !== "true"
+      : true;
+  });
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const soundRef = useRef<HTMLAudioElement | null>(null);
+  const [fadeIn, setFadeIn] = useState(false);
 
-    // Handle video playback and boot sequence
-    useEffect(() => {
-      // Check if already booted in this session
-      const alreadyBooted = typeof window !== 'undefined' ? 
-        sessionStorage.getItem("playstationBooted") : null;
-      
-      // Set up fade-in animations
-      setTimeout(() => {
-        setFadeIn(true);
-      }, 100);
+  useEffect(() => {
+    let fadeTimer: NodeJS.Timeout;
+    let bootTimer: NodeJS.Timeout;
 
-      if (!alreadyBooted) {
-        // Load and play sound
-        async function loadSound() {
-          console.log("Loading Sound");
-          const audio = new Audio("/sounds/startup.mp3");
-          audio.preload = "auto";
-          soundRef.current = audio;
-          
-          // Play audio when video is ready
-          if (videoRef.current) {
-            videoRef.current.oncanplay = async () => {
-              try {
-                await audio.play();
-              } catch (error) {
-                console.error("Audio play failed:", error);
-              }
-            };
-          }
-        }
+    const alreadyBooted = sessionStorage.getItem("playstationBooted");
 
-        loadSound();
-        
-        // Set a timeout to end boot screen
-        setTimeout(() => {
-          setIsBoot(false);
-          if (typeof window !== 'undefined') {
-            sessionStorage.setItem("playstationBooted", "true");
-          }
-        }, 10000);
-      } else {
-        setIsBoot(false); // skip boot screen
+    const loadSound = async () => {
+      console.log("Loading Sound");
+      const audio = new Audio("/sounds/startup.mp3");
+      audio.preload = "auto";
+      soundRef.current = audio;
+    };
+
+    const handlePowerPress = async () => {
+      if (!videoRef.current || !soundRef.current) return;
+
+      console.log("Playing Video and Audio...");
+      try {
+        await soundRef.current.play();
+      } catch (err) {
+        console.error("Audio play error:", err);
       }
-    }, []);
 
-    return (
-      <div className="bg-black w-screen h-screen flex items-center justify-center overflow-hidden">
-        {/* Main container with conditional classes for animations */}
-        <div 
-          className={`w-full h-full flex ${isBoot ? 'justify-center' : 'justify-start'} items-end
-                     ${fadeIn ? 'opacity-100' : 'opacity-0'} transition-opacity duration-[8000ms]`}
-        >
-          {/* Background video */}
-          <video 
-            ref={videoRef}
-            src={videoSource} 
-            autoPlay 
-            loop 
-            muted 
-            className="absolute top-0 left-0 w-full h-full object-cover -z-10" 
-          />
+      // Auto-transition after 10s
+      bootTimer = setTimeout(() => {
+        setIsBoot(false);
+        sessionStorage.setItem("playstationBooted", "true");
+      }, 10000);
+    };
 
-          {/* Boot screen welcome message */}
-          {isBoot && (
-            <div className={`ml-[30%] mb-[20%] flex flex-col items-center 
-                          ${fadeIn ? 'opacity-100' : 'opacity-0'} transition-opacity duration-[2000ms]`}>
-              <h1 className="text-8xl text-white/80 font-extralight">Portfolio by Laura</h1>   
-              <p className="text-2xl text-white/80 font-extralight">(sony don&apos;t sue me pls)</p>      
-            </div>
-          )}
+    // Start boot sequence
+    if (!alreadyBooted) {
+      loadSound().then(handlePowerPress);
+    } else {
+      setIsBoot(false); // skip boot screen
+    }
 
-          {/* Main menu after boot */}
-          {!isBoot && (
-            <div className="w-full h-full transition-opacity duration-[1000ms]">
-              <Time />
-              <Menu />
-            </div>
-          )}
-        </div>
+    // Fade in UI
+    fadeTimer = setTimeout(() => setFadeIn(true), 100);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(bootTimer);
+    };
+  }, []);
+
+  return (
+    <div className="bg-black w-screen h-screen flex items-center justify-center overflow-hidden">
+      <div
+        className={`w-full h-full flex items-end ${
+          isBoot ? "justify-center" : "justify-start"
+        } transition-opacity duration-[8000ms] ${fadeIn ? "opacity-100" : "opacity-0"}`}
+      >
+        {/* Background Video */}
+        <video
+          ref={videoRef}
+          src={videoSource}
+          autoPlay
+          loop
+          muted
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        />
+
+        {/* Boot Screen Message */}
+        {isBoot && (
+          <div
+            className={`ml-[30%] mb-[20%] flex flex-col items-center transition-opacity duration-[2000ms] ${
+              fadeIn ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <h1 className="text-6xl md:text-8xl text-white/80 font-extralight">Portfolio by Laura</h1>
+            <p className="text-xl md:text-2xl text-white/80 font-extralight">(sony don&apos;t sue me pls)</p>
+          </div>
+        )}
+
+        {/* Main Menu */}
+        {!isBoot && (
+          <div className="w-full h-full transition-opacity duration-[1000ms] overflow-hidden">
+            <Time />
+            <Menu />
+          </div>
+        )}
       </div>
-    );
+    </div>
+  );
 }

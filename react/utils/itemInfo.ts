@@ -179,18 +179,68 @@ Até la -> there
         "icon": "/images/sunflower.svg",
     },],
     [{
-        "title":"jane street",
+        "title":"Latitude Fellow",
+        "company":"DE Shaw",
         "text":[[""]],
         "icon": "/images/puppy.svg",
-    }],
+    },
+    {
+        "title":"IN FOCUS SWE Fellow",
+        "company":"Jane Street",
+        "text":[[""]],
+        "icon": "/images/puppy.svg",
+    },
+    {
+        "title":"FOCUS Fellow",
+        "company":"Jane Street",
+        "text":[[""]],
+        "icon": "/images/puppy.svg",
+    },
+     {
+        "title":"Career Prep Fellow",
+        "company":"Uber",
+        "text":[[""]],
+        "icon": "/images/puppy.svg",
+    },
+     {
+        "title":`Travel Award - "Lesbians Who Tech"`,
+        "company":"Google",
+        "text":[[""]],
+        "icon": "/images/puppy.svg",
+    },
+    {
+        "title":`Gold Medal & First Place Trophy`,
+        "company":"Brazilian Young Physicists' Tournament",
+        "text":[[""]],
+        "icon": "/images/puppy.svg",
+    },
+    {
+        "title":`2x Gold Medal`,
+        "company":"Brazilian Science Olympiad",
+        "text":[[""]],
+        "icon": "/images/puppy.svg",
+    },
+    {
+        "title":`Gold, Silver Medal`,
+        "company":"Brazilian Astronomy Olympiad",
+        "text":[[""]],
+        "icon": "/images/puppy.svg",
+    },
+    
+],
 
     [{
-        "title":"folder",
+        "title":"gaming",
         "text":[[""]],
         "icon": "/images/folder.svg",
     },
     {
-        "title":"folder",
+        "title":"reading",
+        "text":[[""]],
+        "icon": "/images/folder.svg",
+    },
+{
+        "title":"legos",
         "text":[[""]],
         "icon": "/images/folder.svg",
     }],

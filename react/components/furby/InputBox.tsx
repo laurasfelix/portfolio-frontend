@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, Dispatch, SetStateAction } from "react";
+import askFurbotronAndPlay from "@/pages/api/furbotron";
 
 const placeholderMessages = [
     "this is Furbotron.",
@@ -50,37 +51,7 @@ const InputBox = ({ isThinking, setInteract, setIsThinking, setIsTalking }: Inpu
         setIsThinking(true);
         
         try {
-            const response = await fetch('/api/furbotron-api', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ prompt: text }),
-            });
-            
-            const data = await response.json();
-            
-            if (data.error) {
-                console.error('Error from Furbotron API:', data.error);
-                setIsThinking(false);
-                return;
-            }
-            
-            // Play the audio response
-            setIsThinking(false);
-            setIsTalking(true);
-            
-            // Create and play audio from the data URL
-            if (data.audioUrl) {
-                const audio = new Audio(data.audioUrl);
-                audio.onended = () => setIsTalking(false);
-                await audio.play();
-            } else {
-                // Fallback if no audio
-                setTimeout(() => setIsTalking(false), 2000);
-            }
-            
-            console.log("Furbotron says:", data.text);
+            await askFurbotronAndPlay(text, setIsThinking, setIsTalking);
         } catch (error) {
             console.error('Error communicating with Furbotron:', error);
             setIsThinking(false);

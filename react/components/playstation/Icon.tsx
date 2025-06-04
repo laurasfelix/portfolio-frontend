@@ -49,13 +49,14 @@ const Icon = ({ src, text, chosen, setChosen }: IconProps) => {
         <div className="flex flex-col items-center py-4">
             <button 
                 className="flex flex-col items-center focus:outline-none"
+                style={{ minWidth: "6.5vw", minHeight: "6.5vw" }}
                 onClick={() => setChosen(src)} 
                 onMouseEnter={() => setChosen(src)}
             >
                 <img 
                     src={imageMapping[src]} 
                     alt={text}
-                    className="object-contain" 
+                    className="object-contain transition-all duration-150" 
                     style={{
                         opacity: chosen === src ? 1 : 0.8,
                         width: iconWidth,
@@ -63,7 +64,7 @@ const Icon = ({ src, text, chosen, setChosen }: IconProps) => {
                     }} 
                 />
                 <p 
-                    className="text-center text-xl text-white"
+                    className="text-center text-xl text-white mt-1"
                     style={{ visibility: chosen === src ? "visible" : "hidden" }}
                 >
                     {text}
