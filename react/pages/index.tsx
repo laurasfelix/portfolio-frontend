@@ -66,7 +66,7 @@ export default function Index() {
                       </p>
                       
                       <p>
-                        currently, i'm running women in computing at northwestern, building a test-generation tool in the MU Collective Lab, and coding on the side whenever a random idea tickles my fancy. outside of work, i'm raising my son (a gray cat named loki who bites), cooking bad food for my girlfriend, and playing ps5 games like high on life (doom was too scary).
+                        currently, i'm running women in computing at northwestern, building a test-generation tool in the MU Collective Lab, and coding on the side whenever a random idea tickles my fancy. outside of work, i'm raising my son (a gray cat named loki who bites), cooking bad food for my girlfriend, and playing ps5 games like high on life (doom is too scary).
                       </p>
                     </div>
             </div>
