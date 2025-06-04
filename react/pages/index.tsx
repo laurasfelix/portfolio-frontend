@@ -3,7 +3,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
 import Image from 'next/image';
-import LargeCard from "@/components/landing/LargeCard";
+import TinyCard from "@/components/landing/TinyCard";
 import Lauraa from "@/components/landing/Lauraa";
 import StuffDone from '@/components/landing/StuffDone';
 

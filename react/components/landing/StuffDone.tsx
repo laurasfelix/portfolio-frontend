@@ -2,7 +2,7 @@ import StarBox from '@/components/landing/StarBox';
 import { useState } from 'react';
 import colors from "@/utils/colors";
 import { StarProps } from '@/components/landing/Star';
-import LargeCard from '@/components/landing/LargeCard';
+import TinyCard from '@/components/landing/TinyCard';
 
 const StuffDone = () => {
 
@@ -89,7 +89,7 @@ const StuffDone = () => {
                             {colors[openModal].info.map((item, idx) =>
                             
                             <div key={idx} className="mb-[3%]">
-                                <LargeCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
+                                <TinyCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
                             </div>
                             
                         )}
@@ -131,7 +131,7 @@ const StuffDone = () => {
                             {colors[openModal].info && colors[openModal].info.map((item, idx) =>
                             
                             <div key={idx} className="mb-[3%]">
-                                <LargeCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
+                                <TinyCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
                             </div>
                             
                         )}
@@ -174,7 +174,7 @@ const StuffDone = () => {
                                 {colors[openModal].info && colors[openModal].info.map((item, idx) =>
                                 
                                 <div key={idx} className="mb-[3%]">
-                                    <LargeCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
+                                    <TinyCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
                                 </div>
                                 
                             )}

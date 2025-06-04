@@ -1,8 +1,8 @@
 export interface CardProps {
-  color: string;
+  color: "green" | "red" | "yellow";
   role: string;
   company: string;
-  text: string[];
+  text: string[][];
   pictures?: string[];
   icon: string;
 };
