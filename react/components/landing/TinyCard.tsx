@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { CardProps } from "@/utils/card";
 import Image from "next/image";
 import colors from "@/utils/colors";

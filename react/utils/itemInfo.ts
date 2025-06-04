@@ -32,6 +32,7 @@ const itemInfo: ItemInfoProp = [
     [{
         "title":"swe intern",
         "company": "duolingo",
+        "pictures":[""],
         "text":[[`I interned at Duolingo during the summer of 2024 as a Thrive Software Engineer. The Thrive experience is meant to be a web development learning experience for sophomores – that is, our code doesn’t go into production, our projects can have a wide range of focuses, and we’re separated into intern teams to maximise learning and friendships :) `,
                 `My intern team was three other interns and our manager, a L2 Software Engineer. Our project proposal was to create a web application where people could learn languages through songs, Duolingo-style. The tech stack used in this project was React for the frontend, Python for the backend, and DynamoDB for the database. `], 
        [`If you’ve ever used Duolingo, you know those little missing word/shuffle exercises, and that’s what the overall goal was: to make the user engage with the song content through little exercises so they learn. I implemented the missing word and shuffle exercises, but it wasn’t as clear-cut as it sounds. I had a little trouble getting used to the big component system that Duo has in their codebase, and it’s so expansive that they have a website to learn it: which I LOVED using. After some time, everything became easier to use, and I felt like a huge door opened itself to me. `],[
