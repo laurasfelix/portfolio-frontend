@@ -8,6 +8,14 @@ import Lauraa from "@/components/landing/Lauraa";
 import StuffDone from '@/components/landing/StuffDone';
 import Link from 'next/link';
 
+const PulsatingArrow = ({ color = '#fff' }: { color?: string }) => (
+  <div className="absolute bottom-6 right-8 z-30 animate-bounce">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 5v14M19 12l-7 7-7-7" fill="none"/>
+    </svg>
+  </div>
+);
+
 export default function Index() {
   const imgSrc = '/images/logo.svg';
   const pages = ["playstation", "furby"];
@@ -30,7 +38,7 @@ export default function Index() {
       <div className="snap-y snap-mandatory h-screen overflow-y-auto">
         
         {/* home */}
-        <section className="snap-start h-screen w-full flex flex-col items-center justify-center gap-6">
+        <section className="snap-start h-screen w-full flex flex-col items-center justify-center gap-6 relative">
           <div className='flex items-center'>
             <Lauraa length={30}/>
           </div>
@@ -41,10 +49,11 @@ export default function Index() {
             </h2>
           
           </div>
+          <PulsatingArrow />
         </section>
         
         {/* about */}
-        <section className="snap-start h-screen w-full flex items-center justify-center md:flex-row flex-col">
+        <section className="snap-start h-screen w-full flex items-center justify-center md:flex-row flex-col relative">
           {<div className='hidden md:flex bg-black flex-1 h-full w-full justify-center items-center'>
               <Lauraa length={30}/>
           </div>}
@@ -72,20 +81,21 @@ export default function Index() {
                     </div>
             </div>
           </div>
+          <PulsatingArrow color="#000" />
         </section>
        
 
         {/* stuff i do */}
-        <section className="snap-start h-screen w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-10">
+        <section className="snap-start h-screen w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-10 relative">
           {/* <h2 className="text-4xl text-white">stuff i do?</h2> */}
           <StuffDone />
-          
+          <PulsatingArrow />
         </section>
        
 
 
          {/* more */}
-        <section className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black">
+        <section className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black relative">
           <h2 className="text-4xl text-white mb-4">don't worry, your experience isn't over...</h2>
           <h3 className="text- to xl text-white mb-4">try these other portfolio versions out</h3>
 
@@ -104,7 +114,7 @@ export default function Index() {
             
 
           </div>
-          
+          <PulsatingArrow />
         </section>
        
 
