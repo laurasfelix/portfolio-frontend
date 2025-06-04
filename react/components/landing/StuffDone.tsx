@@ -1,13 +1,51 @@
 import StarBox from '@/components/landing/StarBox';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import colors from "@/utils/colors";
 import { StarProps } from '@/components/landing/Star';
 import TinyCard from '@/components/landing/TinyCard';
+import { useSearchParams } from 'next/navigation';
+import { itemProp } from '@/utils/itemInfo';
 
 const StuffDone = () => {
 
     const [openModal, setOpenModal] = useState<StarProps["color"] | "">("");
     const [chosen, setChosen] = useState(-1);
+    const [filtered, setFiltered] = useState<itemProp[]>([]);
+
+    const handleSearch = (value: string) => {
+        if (value === "") {
+            setFiltered([]);
+            return;
+        }
+
+        if (openModal && colors[openModal].info) {
+            const results = colors[openModal].info.filter(item => {
+
+                const hasMatch = item.text.some(paragraphs => {
+                    if (Array.isArray(paragraphs)) {
+                        return paragraphs.some(line => 
+                            line.toLowerCase().includes(value.toLowerCase())
+                        );
+                    }
+                    return false;
+                });
+                
+       
+                const titleMatch = item.title.toLowerCase().includes(value.toLowerCase());
+                const companyMatch = item.company ? item.company.toLowerCase().includes(value.toLowerCase()) : false;
+                
+                return hasMatch || titleMatch || companyMatch;
+            });
+            
+            setFiltered(results);
+        }
+    };
+
+
+    useEffect(() => {
+        setFiltered([]);
+        setChosen(-1);
+    }, [openModal]);
 
     return (
         <>
@@ -86,14 +124,21 @@ const StuffDone = () => {
                         </div>
 
                         {chosen == -1 && <div className='text-center text-xl rounded-xl p-[2%] mb-[3%]' 
-                             style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
-                            search by any key terms
+                             style={{backgroundColor: colors[openModal].light, }}>
+                            <input
+                                className="peer block w-full rounded-md py-[9px] pl-10 text-sm placeholder:text-gray-500 focus:outline-0"
+                                style={{color:colors[openModal].text}}
+                                placeholder={"search by any key terms..."}
+                                onChange={(e) => {
+                                handleSearch(e.target.value);
+                                }}
+                            />
                         </div>}
 
                         {chosen==-1 ? <div className='text-center overflow-y-auto w-full h-[50vh] md:h-[60vh] hide-scrollbar'>
-                                {colors[openModal].info && colors[openModal].info.map((item, idx) =>
+                                {colors[openModal].info && (filtered.length > 0 ? filtered : colors[openModal].info).map((item, idx) =>
                                 
-                                <div key={idx} className="mb-[3%] hover:shadow-xl cursor-pointer" onClick={() => {setChosen(idx)}}>
+                                <div key={idx} className="mb-[3%] hover:shadow-xl cursor-pointer" onClick={() => {setChosen(filtered.length > 0 ? colors[openModal].info.findIndex(i => i.title === item.title) : idx)}}>
                                     <TinyCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
                                 </div>
                                 
@@ -170,11 +215,17 @@ const StuffDone = () => {
 
                         <div className='text-center text-xl rounded-xl p-[2%] mb-[3%]' 
                              style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
-                            search by any key terms
+                            <input
+                                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                placeholder={"search by any key terms"}
+                                onChange={(e) => {
+                                handleSearch(e.target.value);
+                                }}
+                            />
                         </div>                            {chosen==-1 ? <div className='text-center overflow-y-auto w-full h-[50vh] md:h-[60vh] hide-scrollbar'>
-                                {colors[openModal].info && colors[openModal].info.map((item, idx) =>
+                                {colors[openModal].info && (filtered.length > 0 ? filtered : colors[openModal].info).map((item, idx) =>
                                 
-                                <div key={idx} className="mb-[3%] hover:shadow-xl cursor-pointer" onClick={() => {setChosen(idx)}}>
+                                <div key={idx} className="mb-[3%] hover:shadow-xl cursor-pointer" onClick={() => {setChosen(filtered.length > 0 ? colors[openModal].info.findIndex(i => i.title === item.title) : idx)}}>
                                     <TinyCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
                                 </div>
                                 
@@ -252,13 +303,19 @@ const StuffDone = () => {
 
                             <div className='text-center text-xl rounded-xl p-[2%] mb-[3%]' 
                                 style={{backgroundColor: colors[openModal].light, color:colors[openModal].text}}>
-                                search by any key terms
+                                <input
+                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                    placeholder={"search by any key terms"}
+                                    onChange={(e) => {
+                                    handleSearch(e.target.value);
+                                    }}
+                                />
                             </div>
 
                             {chosen==-1 ? <div className='text-center overflow-y-auto w-full h-[50vh] md:h-[60vh] hide-scrollbar'>
-                                {colors[openModal].info && colors[openModal].info.map((item, idx) =>
+                                {colors[openModal].info && (filtered.length > 0 ? filtered : colors[openModal].info).map((item, idx) =>
                                 
-                                <div key={idx} className="mb-[3%] hover:shadow-xl cursor-pointer" onClick={() => {setChosen(idx)}}>
+                                <div key={idx} className="mb-[3%] hover:shadow-xl cursor-pointer" onClick={() => {setChosen(filtered.length > 0 ? colors[openModal].info.findIndex(i => i.title === item.title) : idx)}}>
                                     <TinyCard company={item.company || ""} role={item.title} pictures={item.pictures} icon={item.icon} text={item.text} color={openModal} />
                                 </div>
                                 
