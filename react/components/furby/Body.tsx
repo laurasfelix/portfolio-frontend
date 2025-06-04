@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import Image from 'next/image';
 
 const EYE = {
     CLOSED: '/images/fit_eye_closed.svg',
@@ -108,6 +109,8 @@ const Body = ({ isThinking, isTalking, interact, demonEyes = false }: BodyProps)
         openValue: string,
         closedValue: string
     ) => {
+        if (!interact) return; // Only allow interaction if interact prop is true
+        
         const currentValue = getValue();
 
         if (currentValue === openValue) {
@@ -128,18 +131,26 @@ const Body = ({ isThinking, isTalking, interact, demonEyes = false }: BodyProps)
     return (
         <div className="w-full flex flex-col items-center justify-between text-center">
             <div className="flex flex-col items-center justify-start relative" style={{ width: imageSize, height: imageSize }}>
-                <img src={furby} alt="furby" className="w-full h-full object-contain z-10" />
+                <Image 
+                    src={furby} 
+                    alt="furby" 
+                    width={imageSize} 
+                    height={imageSize} 
+                    className="w-full h-full object-contain z-10" 
+                    priority
+                />
                 
-                <img 
+                <Image 
                     src={beak} 
                     alt="furby's beak" 
+                    width={smallSize} 
+                    height={smallSize}
                     className="absolute z-0" 
                     style={{ 
                         top: imageSize * 0.51, 
-                        left: imageSize * 0.49 - smallSize / 2, 
-                        height: smallSize, 
-                        width: smallSize 
+                        left: imageSize * 0.49 - smallSize / 2
                     }} 
+                    priority
                 />
                 <div
                     className="absolute z-20 cursor-pointer" 
@@ -153,16 +164,17 @@ const Body = ({ isThinking, isTalking, interact, demonEyes = false }: BodyProps)
                     onMouseLeave={() => handleAnnoy(() => beakRef.current, setBeak, BEAK.OPEN, BEAK.CLOSED)}
                 />
                 
-                <img 
+                <Image 
                     src={leftEye} 
                     alt="furby's left eye" 
+                    width={smallSize * 1.1} 
+                    height={smallSize * 1.1}
                     className="absolute z-0" 
                     style={{ 
                         top: imageSize * 0.37, 
-                        left: imageSize * 0.32, 
-                        height: smallSize * 1.1, 
-                        width: smallSize * 1.1 
+                        left: imageSize * 0.32
                     }} 
+                    priority
                 />
                 <div
                     className="absolute z-20 cursor-pointer" 
@@ -176,16 +188,17 @@ const Body = ({ isThinking, isTalking, interact, demonEyes = false }: BodyProps)
                     onMouseLeave={() => handleAnnoy(() => leftEyeRef.current, setLeftEye, EYE.OPEN, EYE.CLOSED)}
                 />
                 
-                <img 
+                <Image 
                     src={rightEye} 
                     alt="furby's right eye" 
+                    width={smallSize * 1.1} 
+                    height={smallSize * 1.1}
                     className="absolute z-0" 
                     style={{ 
                         top: imageSize * 0.37, 
-                        left: imageSize * 0.5, 
-                        height: smallSize * 1.1, 
-                        width: smallSize * 1.1 
+                        left: imageSize * 0.5
                     }} 
+                    priority
                 />
                 <div
                     className="absolute z-20 cursor-pointer" 

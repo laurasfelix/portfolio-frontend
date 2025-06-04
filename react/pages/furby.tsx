@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import Body from "@/components/furby/Body";
 import InputBox from "@/components/furby/InputBox";
 
@@ -62,7 +63,7 @@ export default function Furby() {
                 <div className="flex-1 flex flex-col items-end justify-center pr-6">
                     <div className="backdrop-blur-md bg-black/40 border border-white/20 rounded-2xl px-6 py-6 text-white text-left max-w-xs shadow-2xl animate-fade-in">
                         <div className="flex items-center mb-2">
-                            <img src="/images/furbotron.svg" alt="Furbotron icon" className="w-8 h-8 mr-2" />
+                            <Image src="/images/furbotron.svg" alt="Furbotron icon" width={32} height={32} className="mr-2" />
                             <span className="font-extrabold text-lg text-white/80">Furbotron 3000 Guide</span>
                         </div>
                         <ol className="list-decimal list-inside text-base space-y-1">
@@ -90,6 +91,15 @@ export default function Furby() {
                             >
                                 <span className="mr-2">🛑</span> Stop
                             </button>
+                        </div>
+                    )}
+                    {/* Progress Bar */}
+                    {showProgress && (
+                        <div className="w-48 h-2 bg-gray-200 rounded-full mt-4">
+                            <div 
+                                className="h-full bg-blue-500 rounded-full transition-all duration-50" 
+                                style={{ width: `${progress}%` }}
+                            />
                         </div>
                     )}
                     {/* Input box */}
