@@ -110,7 +110,7 @@ Até la -> there
     `We sent out a survey to ALL of our friends, which also included half the Brazilian population and someone from Ghana, and we found that, thankfully, our ideas worked. `,
     `We rehearsed a lot, and a lot. And I just had to internalize that it wasn’t that serious anyway, and as long as I didn’t say anything ridiculous, it’d be fine. And it was! `
 ]],
-        "icon": "/images/bread.svg",
+        "icon": "/images/am.png",
     },
     {
         "title":"swe",
@@ -122,7 +122,7 @@ Até la -> there
 [`Then:`, ` I created the entire GitHub repo for the car’s ELCON charger, set up branch workflows, and handled my first pull requests.`, `I translated those long technical manuals into working code—developing needed safety measures, implementing CAN communication for both the ELCON and the GWP charger, and adding Coulomb-counting logic to control exactly when charging starts and stops.
 `, `Under my mentor’s wing, I became “somewhat” of a soldering expert—logging countless late hours to solder circuit boards and actually work on the physical battery, which, happily, did not explode.`, 
 `After a year of laborious work, I was elected Battery Management Team Lead—a role I ultimately didn’t accept due to summer commitments, but one that reflected the trust and impact I’d made on the team.`]],
-        "icon": "/images/bread.svg",
+        "icon": "/images/nfr.webp",
     },
     {
         "title":"swe",
@@ -164,7 +164,7 @@ Até la -> there
         "text":[[`In my design intensive at Northwestern’s SF campus, one of the several interesting homeworks my professor Pam Daniels gave me was:`], [`create a puppy-related chatbot, somehow. My intention was to fully build it out on Vercel using React (frontend) and Python (backend), and the overall idea was to create a puppy helper (akin to the puppy 101 subreddit), where you ask a question regarding your crazy, annoying puppy, and the chatbot answers.
 `], [` it was my first time calling OpenAI’s api on my own: trying to figure out how to structure the input and the output, how to prompt engineer it so it’s not out of scope and how to ensure it looked like iMessenger to make the user feel more at home with the UI.`], [`Although I was nervous to call a big boy API like OpenAI’s, it ended up being a two-liner that didn’t give me any headache, so I could say that the solution was always within me, I just had to go for it. Prompt engineering it was a little more tricky, but it’s all just direction in the end, and as a CS student, you need to be able to give some direction.
 `]],
-        "icon": "/images/bread.svg",
+        "icon": "/images/puppy.svg",
     },
     {
         "title":"swe",
@@ -188,43 +188,43 @@ Até la -> there
         "title":"IN FOCUS SWE Fellow",
         "company":"Jane Street",
         "text":[[""]],
-        "icon": "/images/puppy.svg",
+        "icon": "/images/janestreet.png",
     },
     {
         "title":"FOCUS Fellow",
         "company":"Jane Street",
         "text":[[""]],
-        "icon": "/images/puppy.svg",
+        "icon": "/images/janestreet.png",
     },
      {
         "title":"Career Prep Fellow",
         "company":"Uber",
         "text":[[""]],
-        "icon": "/images/puppy.svg",
+        "icon": "/images/uber.png",
     },
      {
         "title":`Travel Award - "Lesbians Who Tech"`,
         "company":"Google",
         "text":[[""]],
-        "icon": "/images/puppy.svg",
+        "icon": "/images/google.png",
     },
     {
         "title":`Gold Medal & First Place Trophy`,
         "company":"Brazilian Young Physicists' Tournament",
         "text":[[""]],
-        "icon": "/images/puppy.svg",
+        "icon": "/images/iypt.png",
     },
     {
         "title":`2x Gold Medal`,
         "company":"Brazilian Science Olympiad",
         "text":[[""]],
-        "icon": "/images/puppy.svg",
+        "icon": "/images/ong.png",
     },
     {
         "title":`Gold, Silver Medal`,
         "company":"Brazilian Astronomy Olympiad",
         "text":[[""]],
-        "icon": "/images/puppy.svg",
+        "icon": "/images/oba.jpg",
     },
     
 ],
@@ -232,17 +232,17 @@ Até la -> there
     [{
         "title":"gaming",
         "text":[[""]],
-        "icon": "/images/folder.svg",
+        "icon": "/images/games.svg",
     },
     {
         "title":"reading",
         "text":[[""]],
-        "icon": "/images/folder.svg",
+        "icon": "/images/reading.png",
     },
 {
         "title":"legos",
         "text":[[""]],
-        "icon": "/images/folder.svg",
+        "icon": "/images/legos.png",
     }],
  
     [{
