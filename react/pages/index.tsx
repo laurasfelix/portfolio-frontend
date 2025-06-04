@@ -87,7 +87,7 @@ export default function Index() {
          {/* more */}
         <section className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black">
           <h2 className="text-4xl text-white mb-4">don't worry, your experience isn't over...</h2>
-          <h3 className="text-xl text-white mb-4">try these other portfolio versions out</h3>
+          <h3 className="text- to xl text-white mb-4">try these other portfolio versions out</h3>
 
           <div className='flex flex col justify-center items-center gap-12'>
             
@@ -126,37 +126,32 @@ export default function Index() {
                 {
                   label: 'github',
                   href: 'https://github.com/laurasfelix',
-                  color: '#1e40af', // blue-800
-                  star: '/images/star.svg',
+                  color: '#2563eb', // blue-600
                   style: 'text-blue-500',
                 },
                 {
                   label: 'linkedin',
                   href: 'https://linkedin.com/in/laurasfelix28',
-                  color: '#a21caf', // purple-800
-                  star: '/images/star.svg',
-                  style: 'text-purple-500',
+                  color: '#6366f1', // indigo-500
+                  style: 'text-indigo-500',
                 },
                 {
                   label: 'email',
                   href: 'mailto:laurafelix2026@u.northwestern.edu',
-                  color: '#a21caf', // fuchsia-800
-                  star: '/images/star.svg',
-                  style: 'text-fuchsia-500',
+                  color: '#a21caf', // purple-800
+                  style: 'text-purple-500',
                 },
                 {
                   label: 'resume',
                   href: '/resume.pdf',
-                  color: '#b91c1c', // red-700
-                  star: '/images/star.svg',
-                  style: 'text-red-500',
+                  color: '#db2777', // pink-600
+                  style: 'text-pink-500',
                 },
                 {
                   label: 'friend me',
                   href: 'https://discord.com/users/laurasfelix',
-                  color: '#eab308', // yellow-400
-                  star: '/images/star.svg',
-                  style: 'text-yellow-400',
+                  color: '#f59e42', // orange-400
+                  style: 'text-orange-400',
                 },
               ].map((c, i) => (
                 <div key={c.label} className="flex flex-col items-center group">
@@ -167,7 +162,7 @@ export default function Index() {
                       </svg>
                     </span>
                   </a>
-                  <span className={`text-white text-lg mt-1 ${c.style}`}>{c.label}</span>
+                  <span className={`text-lg mt-1 ${c.style}`}>{c.label}</span>
                 </div>
               ))}
             </div>
