@@ -55,7 +55,7 @@ export default function Playstation() {
     }, []);
 
     return (
-      <div className="bg-black w-screen h-screen flex items-center justify-center">
+      <div className="bg-black w-screen h-screen flex items-center justify-center overflow-hidden">
         {/* Main container with conditional classes for animations */}
         <div 
           className={`w-full h-full flex ${isBoot ? 'justify-center' : 'justify-start'} items-end
@@ -73,10 +73,10 @@ export default function Playstation() {
 
           {/* Boot screen welcome message */}
           {isBoot && (
-            <div className={`mr-[20%] flex flex-col items-center 
+            <div className={`ml-[30%] mb-[20%] flex flex-col items-center 
                           ${fadeIn ? 'opacity-100' : 'opacity-0'} transition-opacity duration-[2000ms]`}>
-              <h1 className="text-4xl text-white font-extralight">Portfolio by Laura</h1>   
-              <p className="text-2xl text-white font-extralight">(sony don&apos;t sue me pls)</p>      
+              <h1 className="text-8xl text-white/80 font-extralight">Portfolio by Laura</h1>   
+              <p className="text-2xl text-white/80 font-extralight">(sony don&apos;t sue me pls)</p>      
             </div>
           )}
 
