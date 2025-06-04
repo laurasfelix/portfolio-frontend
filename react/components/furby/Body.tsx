@@ -16,9 +16,10 @@ interface BodyProps {
     isThinking: boolean;
     interact: boolean;
     isTalking: boolean;
+    demonEyes?: boolean;
 }
 
-const Body = ({ isThinking, isTalking }: BodyProps) => {
+const Body = ({ isThinking, isTalking, interact, demonEyes = false }: BodyProps) => {
     // Responsive sizes
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     
@@ -115,6 +116,14 @@ const Body = ({ isThinking, isTalking }: BodyProps) => {
             setValue(openValue);
         }
     };
+
+    // Handle demon eyes
+    useEffect(() => {
+        if (demonEyes) {
+            setLeftEye(EYE.DEMON);
+            setRightEye(EYE.DEMON);
+        }
+    }, [demonEyes]);
 
     return (
         <div className="w-full flex flex-col items-center justify-between text-center">

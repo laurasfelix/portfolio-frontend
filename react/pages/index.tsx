@@ -18,8 +18,9 @@ const PulsatingArrow = ({ color = '#fff' }: { color?: string }) => (
 
 const ConsoleNav = () => (
   <nav className="fixed text-xl left-1/2 -translate-x-1/2 bottom-6 z-40 flex flex-row gap-2 bg-black/80 rounded-xl p-3 shadow-lg border-2 border-white">
-    <a href="#start" className="text-white hover:underline font-mono">start</a>
-    <a href="#stuff" className="text-white hover:underline font-mono">stuff i did</a>
+    <a href="#start" className="text-white hover:underline font-mono">hi</a>
+    <a href="#about" className="text-white hover:underline font-mono">about</a>
+    <a href="#stuff" className="text-white hover:underline font-mono">stuff</a>
     <a href="#extras" className="text-white hover:underline font-mono">extras</a>
     <a href="#contact" className="text-white hover:underline font-mono">contact</a>
   </nav>
@@ -63,7 +64,7 @@ export default function Index() {
         </section>
         
         {/* about */}
-        <section className="snap-start h-screen w-full flex items-center justify-center md:flex-row flex-col relative">
+        <section id="about" className="snap-start h-screen w-full flex items-center justify-center md:flex-row flex-col relative">
           {<div className='hidden md:flex bg-black flex-1 h-full w-full justify-center items-center'>
               <Lauraa length={30}/>
           </div>}

@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import Menu from "@/components/playstation/Menu";
 import Time from "@/components/playstation/Time";
+import { useRouter } from 'next/router';
 
 export default function Playstation() {
+  const router = useRouter();
   const videoSource = "/videos/boot.mp4";
   const [isBoot, setIsBoot] = useState(() => {
     return typeof window !== "undefined"
@@ -12,6 +14,7 @@ export default function Playstation() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const soundRef = useRef<HTMLAudioElement | null>(null);
   const [fadeIn, setFadeIn] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     let bootTimer: NodeJS.Timeout;
@@ -19,7 +22,6 @@ export default function Playstation() {
     const alreadyBooted = sessionStorage.getItem("playstationBooted");
 
     const loadSound = async () => {
-      console.log("Loading Sound");
       const audio = new Audio("/sounds/startup.mp3");
       audio.preload = "auto";
       soundRef.current = audio;
@@ -27,29 +29,23 @@ export default function Playstation() {
 
     const handlePowerPress = async () => {
       if (!videoRef.current || !soundRef.current) return;
-
-      console.log("Playing Video and Audio...");
       try {
         await soundRef.current.play();
       } catch (err) {
-        console.error("Audio play error:", err);
+        // Audio play error
       }
-
-      // Auto-transition after 10s
       bootTimer = setTimeout(() => {
         setIsBoot(false);
         sessionStorage.setItem("playstationBooted", "true");
       }, 10000);
     };
 
-    // Start boot sequence
     if (!alreadyBooted) {
       loadSound().then(handlePowerPress);
     } else {
-      setIsBoot(false); // skip boot screen
+      setIsBoot(false);
     }
 
-    // Fade in UI
     const fadeTimer = setTimeout(() => setFadeIn(true), 100);
 
     return () => {
@@ -58,43 +54,56 @@ export default function Playstation() {
     };
   }, []);
 
+  useEffect(() => {
+    return () => {
+      // Reset any global or module-level state here
+    };
+  }, []);
+
   return (
-    <div className="bg-black w-screen h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className={`w-full h-full flex items-end ${
-          isBoot ? "justify-center" : "justify-start"
-        } transition-opacity duration-[8000ms] ${fadeIn ? "opacity-100" : "opacity-0"}`}
+    <div className="relative w-full h-full min-h-screen bg-black">
+      <button
+        className="fixed top-6 left-6 z-50 bg-black/80 text-white border-2 border-white rounded-xl px-4 py-2 font-mono hover:bg-white hover:text-black transition"
+        onClick={() => router.push('/')}
       >
-        {/* Background Video */}
-        <video
-          ref={videoRef}
-          src={videoSource}
-          autoPlay
-          loop
-          muted
-          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
-        />
-
-        {/* Boot Screen Message */}
-        {isBoot && (
-          <div
-            className={`ml-[30%] mb-[20%] flex flex-col items-center transition-opacity duration-[2000ms] ${
-              fadeIn ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <h1 className="text-6xl md:text-8xl text-white/80 font-extralight">Portfolio by Laura</h1>
-            <p className="text-xl md:text-2xl text-white/80 font-extralight">(sony don&apos;t sue me pls)</p>
-          </div>
-        )}
-
-        {/* Main Menu */}
-        {!isBoot && (
-          <div className="w-full h-full transition-opacity duration-[1000ms] overflow-hidden">
-            <Time />
-            <Menu />
-          </div>
-        )}
-      </div>
+        ← back
+      </button>
+      {/* Background Video */}
+      <video
+        ref={videoRef}
+        src={videoSource}
+        autoPlay
+        loop
+        muted
+        controls // TEMP: show controls for debugging
+        poster="/images/ps3.png" // TEMP: fallback poster image
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        onError={() => setVideoError(true)}
+      />
+      {/* Fallback if video fails */}
+      {videoError && (
+        <div className="absolute top-0 left-0 w-full h-full bg-black flex items-center justify-center z-0">
+          <span className="text-white text-2xl">Video failed to load</span>
+        </div>
+      )}
+      {/* Boot Screen Message */}
+      {isBoot && (
+        <div
+          className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center transition-opacity duration-[2000ms] ${
+            fadeIn ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <h1 className="text-6xl md:text-8xl text-white/80 font-extralight">Portfolio by Laura</h1>
+          <p className="text-xl md:text-2xl text-white/80 font-extralight">(sony don&apos;t sue me pls)</p>
+        </div>
+      )}
+      {/* Main Menu */}
+      {!isBoot && !videoError && (
+        <div className="absolute inset-0 w-full h-full transition-opacity duration-[1000ms] overflow-hidden flex flex-col">
+          <Time />
+          <Menu />
+        </div>
+      )}
     </div>
   );
 }
