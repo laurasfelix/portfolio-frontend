@@ -6,6 +6,7 @@ import Image from 'next/image';
 import TinyCard from "@/components/landing/TinyCard";
 import Lauraa from "@/components/landing/Lauraa";
 import StuffDone from '@/components/landing/StuffDone';
+import Link from 'next/link';
 
 export default function Index() {
   const imgSrc = '/images/logo.svg';
@@ -84,14 +85,93 @@ export default function Index() {
 
 
          {/* more */}
-        <section className="snap-start h-screen w-full flex items-center justify-center bg-black">
-          <h2 className="text-4xl text-white">your experience isn't over</h2>
+        <section className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black">
+          <h2 className="text-4xl text-white mb-4">don't worry, your experience isn't over...</h2>
+          <h3 className="text-xl text-white mb-4">try these other portfolio versions out</h3>
+
+          <div className='flex flex col justify-center items-center gap-12'>
+            
+            <div className='text-center text-2xl group'>
+              <Link href="/playstation"> <img src="/images/ps3.svg" className='w-full h-auto'/> </Link>
+              <p className='group-hover:italic'> ps3 xmb version </p>
+            </div>
+
+            <div className='text-center text-2xl group'>
+              <Link href="/furby"> <img src="/images/furbotron.svg" className='w-full h-auto'/></Link>
+              <p className='group-hover:italic'> furbotron 3000 version </p>
+            </div>
+             
+            
+
+          </div>
+          
         </section>
        
 
          {/* contact */}
-        <section className="snap-start h-screen w-full flex items-center justify-center bg-black">
-          <h2 className="text-4xl text-white">contact me</h2>
+        <section className="snap-start h-screen w-full flex items-center justify-center bg-black relative">
+          <div className="absolute left-0 top-0 w-full h-full pointer-events-none select-none">
+            <img src="/images/logo.svg" alt="contact art" className="absolute right-0 bottom-0 w-[40vw] max-w-[400px] z-10" />
+          </div>
+          <div className="flex flex-col items-start justify-center h-full w-full max-w-4xl px-8 z-20">
+            <div className="mb-12">
+              <div className="text-white text-5xl font-mono mb-4" style={{textShadow: '2px 2px 0 #fff, 4px 4px 0 #000'}}>
+                <span className="inline-block border-4 border-white rounded-3xl px-8 py-4 bg-black/80" style={{fontFamily: 'monospace'}}>
+                  contact me hehe
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-row gap-8 items-end mb-8 ml-4">
+              {[
+                {
+                  label: 'github',
+                  href: 'https://github.com/laurasfelix',
+                  color: '#1e40af', // blue-800
+                  star: '/images/star.svg',
+                  style: 'text-blue-500',
+                },
+                {
+                  label: 'linkedin',
+                  href: 'https://linkedin.com/in/laurasfelix28',
+                  color: '#a21caf', // purple-800
+                  star: '/images/star.svg',
+                  style: 'text-purple-500',
+                },
+                {
+                  label: 'email',
+                  href: 'mailto:laurafelix2026@u.northwestern.edu',
+                  color: '#a21caf', // fuchsia-800
+                  star: '/images/star.svg',
+                  style: 'text-fuchsia-500',
+                },
+                {
+                  label: 'resume',
+                  href: '/resume.pdf',
+                  color: '#b91c1c', // red-700
+                  star: '/images/star.svg',
+                  style: 'text-red-500',
+                },
+                {
+                  label: 'friend me',
+                  href: 'https://discord.com/users/laurasfelix',
+                  color: '#eab308', // yellow-400
+                  star: '/images/star.svg',
+                  style: 'text-yellow-400',
+                },
+              ].map((c, i) => (
+                <div key={c.label} className="flex flex-col items-center group">
+                  <a href={c.href} target="_blank" rel="noopener noreferrer">
+                    <span style={{display:'inline-block', width:64, height:64}}>
+                      <svg width="100%" height="100%" viewBox="0 0 110 96" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M55 0L67.7973 36.6221H109.21L75.7065 59.2558L88.5038 95.8779L55 73.2442L21.4962 95.8779L34.2935 59.2558L0.78978 36.6221H42.2027L55 0Z" fill={c.color}/>
+                      </svg>
+                    </span>
+                  </a>
+                  <span className={`text-white text-lg mt-1 ${c.style}`}>{c.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
        
 
