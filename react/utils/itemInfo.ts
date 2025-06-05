@@ -182,7 +182,7 @@ Até la -> there
         "title":"Latitude Fellow",
         "company":"DE Shaw",
         "text":[[""]],
-        "icon": "/images/puppy.svg",
+        "icon": "/images/desco.png",
     },
     {
         "title":"IN FOCUS SWE Fellow",

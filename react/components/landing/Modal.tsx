@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({
 
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-[5%]'>
-            <div className='w-[90%] h-[90%] rounded-[3vw] flex flex-col justify-between overflow-hidden'
+            <div className='w-[100%] h-[100%] rounded-[3vw] flex flex-col justify-between overflow-hidden'
                  style={{backgroundColor: colors[color].base}}>
 
                 <div className='mt-[2%] ml-[5%] flex-row gap-4 flex'>
@@ -74,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({
                         )}
 
                         {chosen === -1 ? (
-                            <div className='text-center overflow-y-auto w-full h-[50vh] md:h-[60vh] hide-scrollbar'>
+                            <div className='text-center overflow-y-auto w-full h-[60vh] md:h-[55vh] hide-scrollbar'>
                                 {colors[color].info && (filtered.length > 0 ? filtered : colors[color].info).map((item: itemProp, idx: number) => (
                                     <div key={idx} className="mb-[3%] hover:shadow-xl cursor-pointer" 
                                          onClick={() => onItemSelect(filtered.length > 0 ? colors[color].info.findIndex((i: itemProp) => i.title === item.title) : idx)}>
@@ -94,15 +94,15 @@ const Modal: React.FC<ModalProps> = ({
                                 <div className='md:col-span-3 p-4 rounded-xl' style={{backgroundColor: colors[color].dark}}>
                                     {colors[color].info && (
                                         <div className='w-full flex flex-col md:flex-row'>
-                                            <div className='md:w-1/3 p-4 flex flex-col items-center justify-center'>
+                                            <div className='md:w-1/4 p-4 flex flex-col items-center justify-center'>
                                                 <h2 className='text-white text-2xl font-bold mb-2'>{colors[color].info[chosen].title}</h2>
                                                 <p className='text-white/80 text-2xl mb-2'>{colors[color].info[chosen].company}</p>
                                                 {colors[color].info[chosen].icon && (
                                                     <img src={colors[color].info[chosen].icon} alt="Company logo" className='w-16 h-16 rounded-md mb-4' />
                                                 )}
                                             </div>
-                                            <div className='md:w-2/3 p-4'>
-                                                <div className='bg-opacity-80 rounded-xl p-4 overflow-y-auto max-h-[40vh] hide-scrollbar' style={{backgroundColor: colors[color].base}}>
+                                            <div className='md:w-3/4 p-4'>
+                                                <div className='bg-opacity-80 rounded-xl p-4 overflow-y-auto max-h-[50vh] hide-scrollbar' style={{backgroundColor: colors[color].base}}>
                                                     {colors[color].info[chosen].text.map((paragraph: string[], idx: number) => (
                                                         paragraph.map((lines: string, i: number) => (
                                                             <React.Fragment key={`${idx}-${i}`}>
@@ -110,7 +110,7 @@ const Modal: React.FC<ModalProps> = ({
                                                                     <div className='text-white font-bold mb-1'>
                                                                         situation: 
                                                                         {colors[color].info[chosen].pictures && colors[color].info[chosen].pictures[0] && (
-                                                                            <img src={colors[color].info[chosen].pictures[0]} className="my-2 rounded-md max-w-full" />
+                                                                            <img src={colors[color].info[chosen].pictures[0]} className="my-2 rounded-md max-w-[50%] translate-x-[50%]" />
                                                                         )}
                                                                     </div>
                                                                 )}
@@ -118,7 +118,7 @@ const Modal: React.FC<ModalProps> = ({
                                                                     <div className='text-white font-bold mb-1'>
                                                                         goal:
                                                                         {colors[color].info[chosen].pictures && colors[color].info[chosen].pictures[1] && (
-                                                                            <img src={colors[color].info[chosen].pictures[1]} className="my-2 rounded-md max-w-full" />
+                                                                            <img src={colors[color].info[chosen].pictures[1]} className="my-2 rounded-md max-w-[50%] translate-x-[50%]" />
                                                                         )}
                                                                     </div>
                                                                 )}
@@ -126,7 +126,7 @@ const Modal: React.FC<ModalProps> = ({
                                                                     <div className='text-white font-bold mb-1'>
                                                                         challenge:
                                                                         {colors[color].info[chosen].pictures && colors[color].info[chosen].pictures[2] && (
-                                                                            <img src={colors[color].info[chosen].pictures[2]} className="my-2 rounded-md max-w-full" />
+                                                                            <img src={colors[color].info[chosen].pictures[2]} className="my-2 rounded-md max-w-[50%] translate-x-[50%]" />
                                                                         )}
                                                                     </div>
                                                                 )}
@@ -134,7 +134,7 @@ const Modal: React.FC<ModalProps> = ({
                                                                     <div className='text-white font-bold mb-1'>
                                                                         solution:
                                                                         {colors[color].info[chosen].pictures && colors[color].info[chosen].pictures[3] && (
-                                                                            <img src={colors[color].info[chosen].pictures[3]} className="my-2 rounded-md max-w-full" />
+                                                                            <img src={colors[color].info[chosen].pictures[3]} className="my-2 rounded-md max-w-[50%] translate-x-[50%]" />
                                                                         )}
                                                                     </div>
                                                                 )}

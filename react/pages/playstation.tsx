@@ -31,9 +31,8 @@ export default function Playstation() {
       if (!videoRef.current || !soundRef.current) return;
       try {
         await soundRef.current.play();
-      } catch (_err) {
-        // Ignore audio play errors as they are expected in some browsers
-        console.debug('Audio playback failed:', _err);
+      } catch (err) {
+        // Audio play error
       }
       bootTimer = setTimeout(() => {
         setIsBoot(false);
