@@ -33,6 +33,7 @@ export default function Playstation() {
         await soundRef.current.play();
       } catch (err) {
         // Audio play error
+        console.log(err);
       }
       bootTimer = setTimeout(() => {
         setIsBoot(false);
