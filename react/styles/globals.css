@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded-Regular.otf") format("opentype"),
+       url("/fonts/SF-Pro-Rounded-Regular.otf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html, body {
+  font-family: "SF Pro Rounded", system-ui, sans-serif;
+}
+
+* {
+  font-family: inherit;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;   
+  scrollbar-width: none;      
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;             
+}

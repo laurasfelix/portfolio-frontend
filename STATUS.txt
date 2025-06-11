@@ -39,3 +39,5 @@ I restructured a lot, a lot of my code trying to make sure that the items appear
 This process took a few years off my lifespan. I feel a little better because the items kind of work (not fully). Incoming!
 
 I fugured out why the imaeges were bugging -> documents height. that's set to 0 in prod lol. 
+
+Expo has been so frustrating with CSS for the things I'd like to do I might just switch to Next.js (sorry Facebook!)
