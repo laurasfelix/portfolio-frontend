@@ -46,30 +46,33 @@ const Icon = ({ src, text, chosen, setChosen }: IconProps) => {
     const iconWidth = chosen === src ? "6.5vw" : "5.5vw";
 
     return (
-        <div className="flex flex-col items-center py-4">
-            <button 
-                className="flex flex-col items-center focus:outline-none"
-                style={{ minWidth: "6.5vw", minHeight: "6.5vw" }}
-                onClick={() => setChosen(src)} 
-                onMouseEnter={() => setChosen(src)}
-            >
-                <img 
-                    src={imageMapping[src]} 
-                    alt={text}
-                    className="object-contain transition-all duration-150" 
-                    style={{
-                        opacity: chosen === src ? 1 : 0.8,
-                        width: iconWidth,
-                        height: iconWidth
-                    }} 
-                />
-                <p 
-                    className="text-center text-xl text-white mt-1"
-                    style={{ visibility: chosen === src ? "visible" : "hidden" }}
+        <div className="flex flex-col items-center py-4 w-full">
+            <div className="flex flex-col items-center justify-center w-20 h-20 relative">
+                <button 
+                    className="flex flex-col items-center focus:outline-none transition-opacity duration-150"
+                    onClick={() => setChosen(src)} 
+                    onMouseEnter={() => setChosen(src)}
                 >
-                    {text}
-                </p>
-            </button>
+                    <img 
+                        src={imageMapping[src]} 
+                        alt={text}
+                        className="object-contain transition-opacity duration-150 filter drop-shadow-lg" 
+                        style={{
+                            opacity: chosen === src ? 1 : 0.8,
+                            width: "64px",
+                            height: "64px"
+                        }} 
+                    />
+                </button>
+            </div>
+            <p 
+                className={`text-center text-xl text-white mt-2 transition-opacity duration-150 ${
+                    chosen === src ? 'opacity-100 font-semibold' : 'opacity-0'
+                }`}
+                style={{ minHeight: "28px" }}
+            >
+                {chosen === src ? text : ""}
+            </p>
         </div>
     );
 };

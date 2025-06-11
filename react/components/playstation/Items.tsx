@@ -38,52 +38,77 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
         };
     }, [chosenIcon]);
 
-    // Calculate icon sizes based on selection state
-    const iconWidth = (index: number) => index === chosenIcon[chosen] ? "6.5vw" : "5vw";
+    // Fixed icon sizes to prevent layout shifts
+    const getIconSize = (index: number) => {
+        return index === chosenIcon[chosen] ? 48 : 40; // Fixed pixel sizes
+    };
 
     if (chosen !== src) {
-        return null;
+        return <div className="w-full flex-1"></div>; // Maintain layout space
     }
 
     return (
-        <div className={`w-full flex-1 flex flex-col gap-1 ${up ? 'justify-end' : ''} overflow-hidden`}>
-            {info.map((item, index) => (
-                <div 
-                    key={index} 
-                    className="flex flex-row items-center justify-center w-full"
-                    style={{ padding: up ? (index < chosenIcon[chosen] ? 4 : 0) : (index >= chosenIcon[chosen] ? 4 : 0) }}
-                >
+        <div className={`w-full flex-1 flex flex-col gap-2 ${up ? 'justify-end' : 'justify-start'} overflow-hidden`}>
+            {info.map((item, index) => {
+                const isVisible = up ? (index < chosenIcon[chosen]) : (index >= chosenIcon[chosen]);
+                const isSelected = index === chosenIcon[chosen];
+                
+                return (
                     <div 
-                        className="flex items-center justify-center"
-                        style={{
-                            display: up ? 
-                                (index < chosenIcon[chosen] ? "flex" : "none") : 
-                                (index >= chosenIcon[chosen] ? "flex" : "none")
-                        }}
-                        onMouseEnter={() => {
-                            setTimeout(() => {
-                                setChosenIcon((prev) => ({
-                                    ...prev,
-                                    [chosen]: index,
-                                }));
-                            }, 200);
+                        key={index} 
+                        className={`flex flex-col items-center justify-center w-full transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                        style={{ 
+                            height: "60px", // Fixed height to prevent layout shifts
+                            display: isVisible ? 'flex' : 'none'
                         }}
                     >
-                        <div className="flex justify-center items-center filter drop-shadow-lg">
+                        <div 
+                            className="flex items-center justify-center cursor-pointer transition-opacity duration-150 w-16 h-16"
+                            onMouseEnter={() => {
+                                setTimeout(() => {
+                                    setChosenIcon((prev) => {
+                                        const newChosenIcon = [...prev];
+                                        newChosenIcon[chosen] = index;
+                                        return newChosenIcon;
+                                    });
+                                }, 100);
+                            }}
+                        >
                             <img 
                                 src={item.icon} 
                                 alt={`item-${index}`}
+                                className="transition-opacity duration-150 filter drop-shadow-md"
                                 style={{
-                                    opacity: index === chosenIcon[chosen] ? 0.95 : 0.8,
-                                    width: iconWidth(index),
-                                    height: iconWidth(index),
-                                    alignSelf: "center"
+                                    opacity: isSelected ? 0.95 : 0.8,
+                                    width: `${getIconSize(index)}px`,
+                                    height: `${getIconSize(index)}px`
                                 }}
                             />
                         </div>
                     </div>
+                );
+            })}
+            
+            {/* Text display panel - positioned absolutely to not affect layout */}
+            {!up && chosenIcon[chosen] !== undefined && info[chosenIcon[chosen]] && (
+                <div className="absolute bottom-4 left-4 right-4 p-4 bg-black/70 rounded-lg text-white backdrop-blur-sm border border-white/20 z-10">
+                    <h3 className="text-lg font-bold mb-2 text-blue-300">{info[chosenIcon[chosen]].title}</h3>
+                    {info[chosenIcon[chosen]].company && (
+                        <p className="text-base text-gray-300 mb-2">{info[chosenIcon[chosen]].company}</p>
+                    )}
+                    <div className="text-sm text-gray-200 max-h-32 overflow-y-auto custom-scrollbar">
+                        {info[chosenIcon[chosen]].text.slice(0, 1).map((paragraph, pIndex) => (
+                            <div key={pIndex}>
+                                {paragraph.slice(0, 1).map((line, lIndex) => (
+                                    <p key={lIndex} className="leading-relaxed">
+                                        {line.length > 120 ? `${line.substring(0, 120)}...` : line}
+                                    </p>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            ))}
+            )}
         </div>
     );
 };

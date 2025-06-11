@@ -15,10 +15,11 @@ const Menu = () => {
     const [chosenIcon, setChosenIcon] = useState([0, 0, 0, 0, 0]);
     
     return (
-        <div className="flex flex-1 flex-row w-full px-[5%]">
+        <div className="flex flex-1 flex-row w-full px-[5%] py-2 relative">
             {listInfo.map((info, idx) => (
-                <div key={idx} className="flex flex-1 w-full flex-col gap-[1px]">
-                    <div className="flex-4 h-[20vh]">
+                <div key={idx} className="flex flex-1 w-full flex-col items-center" style={{ minWidth: "20%" }}>
+                    {/* Top items section - fixed height */}
+                    <div className="w-full h-[140px] flex items-end justify-center relative">
                         <Items 
                             chosen={chosen} 
                             src={idx} 
@@ -28,22 +29,25 @@ const Menu = () => {
                         />
                     </div>
 
-                    <div className="flex-10">
+                    {/* Main icon section - fixed height and position */}
+                    <div className="w-full h-[120px] flex items-center justify-center relative z-20">
                         <Icon 
                             src={idx} 
                             text={info.text} 
                             chosen={chosen} 
                             setChosen={setChosen} 
                         />
-                        <div>
-                            <Items 
-                                chosen={chosen} 
-                                src={idx} 
-                                chosenIcon={chosenIcon} 
-                                setChosenIcon={setChosenIcon} 
-                                up={false} 
-                            />
-                        </div>
+                    </div>
+
+                    {/* Bottom items section - fixed height */}
+                    <div className="w-full h-[200px] flex items-start justify-center relative">
+                        <Items 
+                            chosen={chosen} 
+                            src={idx} 
+                            chosenIcon={chosenIcon} 
+                            setChosenIcon={setChosenIcon} 
+                            up={false} 
+                        />
                     </div>
                 </div>
             ))}
