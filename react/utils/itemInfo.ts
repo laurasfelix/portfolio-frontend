@@ -136,7 +136,7 @@ Até la -> there
 `
     ],[`Eventually, after plenty of digging and debugging, I got it up and running. Puterfish went live, and I walked away with the added knowledge of Vercel fried into my brain. Now I know what to expect, and I’m a lot more confident handling deployments moving forward.`]
 ],
-        "icon": "/images/bread.svg",
+        "icon": "/images/puterfish.png",
     },
     {
         "title":"designer",
@@ -148,7 +148,7 @@ Até la -> there
 `], [`We designed a mobile app concept called Co2ture. It combines closet tracking, donation reminders, and a friend-swap board. Users upload receipts or pictures, or tag items in their digital closet, and the app nudges them if a piece hasn’t been worn in a while, kind of like a digital closet ghosting detector. They can then choose to donate, keep, or list it for swap.
 `, `We incorporated gamification by rewarding users for sustainable choices (e.g., swapping or donating instead of tossing) through something akin to the credit score system. We prototyped flows in Figma, validated the concept with user testing with the key demographic, and refined it based on feedback—like toning it down on the shaming.
 `]],
-        "icon": "/images/bread.svg",
+        "icon": "/images/co2uture.png",
     },
     {
         "title":"swe",
@@ -156,7 +156,7 @@ Até la -> there
         "text":[[`In a computer science class named Agile Software Development, half the course was dedicated to a team of students building whatever they’d like, as long as it somehow fits the course theme of being a web dev product that uses Firebase and Vite.`], [`My team, all computer science students including myself, were interested in an array of ideas, from finding roommates, to job search, and somewhere in between we realized that bugs are annoying to find, especially as a team of students. And, we are very desperate for food, as people who usually feast upon cup noodles. There, we decided to build a web application that would help match bug finders with student dev teams, in exchange for meal exchanges or swipes at dining halls at Northwestern. `], 
     [`First, there’s always the challenge of working in a team, especially with people you’ve never met before in a class environment. Second, there’s the added element that my team ended up choosing Node.js for the backend, where I’m 100% more familiar with Python. So it was definitely a learning experience for me.
 `], [`My team was definitely made of very hardworking, cool people, so it wasn’t hard for us to work and trust each other while doing so, and that helped our project immensely. Moreover, we overcommunicated a LOT whenever we did anything, and that’s how our project was born in 5 weeks. `]],
-        "icon": "/images/bread.svg",
+        "icon": "/images/bugsnacks.png",
     },
     {
         "title":"swe",
@@ -181,43 +181,45 @@ Até la -> there
     [{
         "title":"Latitude Fellow",
         "company":"DE Shaw",
-        "text":[[""]],
+        "text":[["Selected for D. E. Shaw's Latitude, a three-day program open to underrepresented second-year students and awarded a $1,500 scholarship."]],
         "icon": "/images/desco.png",
     },
     {
         "title":"IN FOCUS SWE Fellow",
         "company":"Jane Street",
-        "text":[[""]],
+        "text":[["Selected to attend OCaml learning sessions with software engineers at JS, and then writing the backend and UI for a computer game and a program that trades on a simulated stock exchange."]],
         "icon": "/images/janestreet.png",
     },
     {
         "title":"FOCUS Fellow",
         "company":"Jane Street",
-        "text":[[""]],
+        "text":[["Selected by Jane Street to attend their FOCUS program for undergraduate students in their New York Office."]],
         "icon": "/images/janestreet.png",
     },
      {
         "title":"Career Prep Fellow",
         "company":"Uber",
-        "text":[[""]],
+        "text":[["Selected among 4% of total applicants as a fellow in Uber’s Career Prep Software Engineering 2023 Program.", "Invited to attend sessions covering a range of competencies that include technical interview skills, insights into how top engineers succeed, communication and self-marketing skills, engineering competencies, and mentorship with seasoned Uber software engineers."]],
         "icon": "/images/uber.png",
     },
      {
         "title":`Travel Award - "Lesbians Who Tech"`,
         "company":"Google",
-        "text":[[""]],
+        "text":[["Selected to attend the LesbiansWhoTech Summit in San Francisco in 2022 on the Google Scholarship that covers travel costs and tickets."]],
         "icon": "/images/google.png",
     },
     {
         "title":`Gold Medal & First Place Trophy`,
         "company":"Brazilian Young Physicists' Tournament",
-        "text":[[""]],
+        "text":[["Elected Captain of the Brazilian Team at the International Young Physicists' Tournament in 2021 - the first woman to do so - , after being top gold in the Brazilian tournament in the same year and studied higher level topics such as lagrangian mechanics and QFT.",
+            " Interacted with simulation software and programming on a daily basis, including CFD (Computational fluid dynamics), Blender, Tracker, Jupyter Notebook and Mathematica."
+        ]],
         "icon": "/images/iypt.png",
     },
     {
         "title":`2x Gold Medal`,
         "company":"Brazilian Science Olympiad",
-        "text":[[""]],
+        "text":[["Awarded gold medals twice on the National Scientific Olympiad, invited by Brazil's (then) Minister of Science to meet him in an award ceremony."]],
         "icon": "/images/ong.png",
     },
     {
@@ -231,17 +233,29 @@ Até la -> there
 
     [{
         "title":"gaming",
-        "text":[[""]],
+        "text":[["I've been playing games for as long as I can remember. That does not mean I'm good at gaming, or average. I'm pretty bad, but I still do love it.",
+            "Gaming is also a serious family matter. I've played countless hours with my little cousins, from their first X button press to their first win, and it's part of how I bond with them. My dad was my P2 for the longest time, and my number 1 supporter when I was trying to beat Deathstroke in one of the Batman games. One of the last good memories I have with my grandmother is me trying to teach her how to play Crash Bandicoot (she had Parkinson's and it was hard to coordinate, but I think she loved it). That is, gaming is a core part of my identity, and I love it a lot."
+            , 
+            "I'm not from the richest of families, but my parents always tried to encourage my hobby the most they could. But I was a pretty avid gamer, and at some point I sold my PS3 and my games in exchange for PS4's Spiderman and TLOU2. That was a HORRIBLE deal and it's like my number one regret in life but it goes to show how I love gaming so much I sold the greatest love of my life for the next love of my life (I do have a The Last of Us tattoo).", "All time favorites include Stardew Valley, The Last of Us, Minecraft, possibly every Batman game, LIS, COD Black Ops III.",
+            "Right now because of college I haven't been able to dedicate as much time as I could to it, but I'm playing High On Life and it's pretty funny.",
+            
+        ], ],
         "icon": "/images/games.svg",
     },
     {
         "title":"reading",
-        "text":[[""]],
+        "text":[["I read my first book kind of late in life compared to my peers. I was 8 or something, and Diary of a Wimpy Kid was so easy and fun to read it woke something within me. Ever since then, I've read hundreds of books, and I'm now minoring in Russian Literature because I just love reading so much (and sounding kind of pretentious).",
+            "I'm also a book hoarder and I will buy books and read them ten years later, and it's a fault of mine. Right now I'm reading The Idiot for my class, and I have Childhood, Boyhood, and Youth on my standby (love it so, so much I wish I could tattoo this book).",
+            "All time favorites are Anna Karenina, Crime and Punishment, Anguish by Graciliano Ramos, The Death of Ivan Ilich, and anything by Carl Sagan.",
+        ]],
         "icon": "/images/reading.png",
     },
 {
         "title":"legos",
-        "text":[[""]],
+        "text":[["I discovered my true passion for Legos not that long ago. My mom gifted me the Minecraft End set and it was so so awesome to play with it clicked something in my bran and I've been wishing for more ever since.",
+            "I'm now working on Concourse set that my girlfriend gave me for Christmas, the Spacecraft I bought myself for no reason and a little typewriter set I got at the airport."
+
+        ]],
         "icon": "/images/legos.png",
     }],
  
