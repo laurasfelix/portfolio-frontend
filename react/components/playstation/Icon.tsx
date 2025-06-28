@@ -43,7 +43,7 @@ const Icon = ({ src, text, chosen, setChosen }: IconProps) => {
     }, [chosen]);
 
     // Calculate icon sizes based on selection state
-    const iconWidth = chosen === src ? "6.5vw" : "5.5vw";
+    // const iconWidth = chosen === src ? "6.5vw" : "5.5vw";
 
     return (
         <div className="flex flex-col items-center py-4 w-full">
