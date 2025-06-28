@@ -115,7 +115,7 @@ export default function Index() {
             
             <div className='text-center text-2xl group'>
               <Link href="/playstation"> <img src="/images/ps3.svg" className='w-full h-auto'/> </Link>
-              <p className='group-hover:italic'> ps3 xmb version </p>
+              <p className='group-hover:italic'> ps3 xmb version (WORK IN PROGRESS BEWARE)</p>
             </div>
 
             <div className='text-center text-2xl group'>

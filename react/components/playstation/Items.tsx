@@ -58,7 +58,7 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
                         key={index} 
                         className={`flex flex-col items-center justify-center w-full transition-opacity duration-200 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                         style={{ 
-                            height: "60px", // Fixed height to prevent layout shifts
+                            height: "60px", 
                             display: isVisible ? 'flex' : 'none'
                         }}
                     >
@@ -71,7 +71,7 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
                                         newChosenIcon[chosen] = index;
                                         return newChosenIcon;
                                     });
-                                }, 100);
+                                }, 200);
                             }}
                         >
                             <img 

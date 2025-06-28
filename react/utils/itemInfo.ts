@@ -168,11 +168,11 @@ Até la -> there
     },
     {
         "title":"swe",
-        "company":"sydney react (project)",
+        "company":"gf react (project)",
         "text":[[`It’s insanely near my girlfriend’s birthday, and the current website I made for her is outdated (made with HTML and basic JS), so, I thought, why not make a new version of her website?`],
-    [`Build a better website for Sydney somehow, using React rather than whatever I was using before, and build a Sydney Wordle full of inside jokes we have!
+    [`Build a better website for my gf somehow, using React rather than whatever I was using before, and build a custom Wordle full of inside jokes we have!
 `], [`I’ve never built a wordle before?? But that does sounds awesome. I was basically starting from zero on the game side of things.
-`], [`I broke the game mechanics down piece by piece: figuring out the logic for checking letters, handling user input, and displaying the correct feedback (green, yellow, gray). I reused React hooks and state patterns I knew, but bent them in ways I hadn’t before. It took some prototyping (and a lot of laughing at our inside jokes), but in the end, I shipped a fully working Sydney Wordle.
+`], [`I broke the game mechanics down piece by piece: figuring out the logic for checking letters, handling user input, and displaying the correct feedback (green, yellow, gray). I reused React hooks and state patterns I knew, but bent them in ways I hadn’t before. It took some prototyping (and a lot of laughing at our inside jokes), but in the end, I shipped a fully working custom Wordle.
 
 `, `I also created around 114 words for her wordle, and whenever I think of more, I just add it on there 🙂
 `]],
