@@ -7,6 +7,7 @@ import TinyCard from "@/components/landing/TinyCard";
 import Lauraa from "@/components/landing/Lauraa";
 import StuffDone from '@/components/landing/StuffDone';
 import Link from 'next/link';
+import { biography } from "@/utils/biography";
 
 const PulsatingArrow = ({ color = '#fff' }: { color?: string }) => (
   <div className="absolute bottom-6 right-8 z-30 animate-bounce">
@@ -71,24 +72,18 @@ export default function Index() {
           <div className='bg-white flex-1 h-full w-full p-8 overflow-scroll hide-scrollbar'> 
             <div className='text-black text-left p-8 flex flex-col gap-6 max-w-4xl mx-auto'>
                     <div className='text-4xl font-bold mb-4'>
-                      hi! i'm laura
+                      {biography["title"]}
                     </div>
                     <div className='text-xl text-gray-700 mb-6'>
-                      i like to build cool stuff
+                      {biography["subheader"]}
                     </div>
 
                     <div className='space-y-4 text-lg leading-relaxed'>
-                      <p>
-                        i'm a brazilian studying computer science, design, and русский at northwestern university. despite my silly approach to showing off my work, i'm a disciplined and passionate person, who wants to create technology that makes change - or at least that makes people say <em>"woah that's cool"</em>.
+                      {biography["text"].map((text, idx) => (
+                      <p key={idx}>
+                        {text}
                       </p>
-                      
-                      <p>
-                        last summer, i got to intern at <strong className='text-green-500'>duolingo</strong> and build a language learning app that teaches through music. my team of four shipped a karaoke experience that helps users practice listening skills, and it was especially awesome because i got to bring exposure to my culture by including portuguese.
-                      </p>
-                      
-                      <p>
-                        currently, i'm running women in computing at northwestern, building a test-generation tool in the MU Collective Lab, and coding on the side whenever a random idea tickles my fancy. outside of work, i'm raising my son (a gray cat named loki who bites), cooking bad food for my girlfriend, and playing ps5 games like high on life (doom is too scary).
-                      </p>
+                      ))}
                     </div>
             </div>
           </div>

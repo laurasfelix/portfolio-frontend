@@ -5,7 +5,7 @@ import colors from "@/utils/colors";
 
 const TinyCard: FC<CardProps> = ({ color, icon, company, role, text }) => {
     return (
-        <div className="rounded-xl overflow-hidden h-full" style={{backgroundColor: colors[color].dark}}>
+        <div className="rounded-xl overflow-hidden h-full hover:inset-ring inset-ring-white" style={{backgroundColor: colors[color].dark}}>
             <div className="grid grid-cols-3 items-center mb-3 justify-center p-1">
                 {icon && (
                     <div className="mr-3">

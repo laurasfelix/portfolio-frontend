@@ -76,7 +76,7 @@ const Modal: React.FC<ModalProps> = ({
                         {chosen === -1 ? (
                             <div className='text-center overflow-y-auto w-full h-[60vh] md:h-[55vh] hide-scrollbar'>
                                 {colors[color].info && (filtered.length > 0 ? filtered : colors[color].info).map((item: itemProp, idx: number) => (
-                                    <div key={idx} className="mb-[3%] hover:shadow-xl cursor-pointer" 
+                                    <div key={idx} className="mb-[3%] cursor-pointer"
                                          onClick={() => onItemSelect(filtered.length > 0 ? colors[color].info.findIndex((i: itemProp) => i.title === item.title) : idx)}>
                                         <TinyCard 
                                             company={item.company || ""} 
