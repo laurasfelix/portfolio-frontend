@@ -76,9 +76,8 @@ export default function Playstation() {
         autoPlay
         loop
         muted
-        controls // TEMP: show controls for debugging
         poster="/images/ps3.png" // TEMP: fallback poster image
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
         onError={() => setVideoError(true)}
       />
       {/* Fallback if video fails */}
