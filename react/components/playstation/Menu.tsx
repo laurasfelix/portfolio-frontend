@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/playstation/Icon";
 import Items, { MAX_SELECTED_POSITION } from "@/components/playstation/Items";
 import { installSoundUnlock, playHover, stopHover } from "@/lib/uiSound";
+import { itemProp } from "@/utils/itemInfo";
 
-const Menu = () => {
+const Menu = ({ onOpen }: { onOpen: (item: itemProp) => void }) => {
     const listInfo = [
         {icon: "about", text: "about"}, 
         {icon: "exp", text: "experience"}, 
@@ -52,6 +53,7 @@ const Menu = () => {
                             chosenIcon={chosenIcon} 
                             setChosenIcon={setChosenIcon} 
                             up={true} 
+                            onOpen={onOpen}
                         />
                     </div>
 
@@ -73,6 +75,7 @@ const Menu = () => {
                             chosenIcon={chosenIcon} 
                             setChosenIcon={setChosenIcon} 
                             up={false} 
+                            onOpen={onOpen}
                         />
                     </div>
                 </div>

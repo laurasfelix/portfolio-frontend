@@ -188,13 +188,38 @@ body {
   100% { transform: scale(1, 1);     filter: brightness(1); }
 }
 
-.tv-hint {
-  animation: tv-blink 1.4s steps(2, start) infinite;
-}
-@keyframes tv-blink {
-  to { visibility: hidden; }
+/* lined notebook paper */
+.tv-note {
+  background:
+    linear-gradient(90deg, transparent 22px, rgba(220, 80, 80, 0.45) 22px 23.5px, transparent 23.5px),
+    repeating-linear-gradient(180deg, #fffdf4 0 25px, rgba(90, 130, 200, 0.35) 25px 26px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tv-roll-bar, .tv-power-on, .tv-hint { animation: none; }
+  .tv-roll-bar, .tv-power-on { animation: none; }
+}
+
+/* ---------- PS3: launching an item like a game ---------- */
+.ps3-reader-bg {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(70, 110, 190, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(40, 70, 140, 0.35) 0%, transparent 60%),
+    linear-gradient(180deg, #0a1020 0%, #050810 100%);
+}
+.ps3-launch {
+  animation: ps3-launch-fade 0.45s ease-out both;
+}
+.ps3-launch-content {
+  animation: ps3-launch-zoom 0.6s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes ps3-launch-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes ps3-launch-zoom {
+  from { opacity: 0; transform: scale(1.06); filter: blur(6px); }
+  to   { opacity: 1; transform: scale(1);    filter: blur(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ps3-launch, .ps3-launch-content { animation: none; }
 }

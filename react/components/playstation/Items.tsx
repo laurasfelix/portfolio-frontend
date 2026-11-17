@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import itemInfo from "@/utils/itemInfo";
+import itemInfo, { itemProp } from "@/utils/itemInfo";
 
 interface ItemsProp {
     chosen: number;
@@ -7,6 +7,8 @@ interface ItemsProp {
     chosenIcon: number[];
     setChosenIcon: Dispatch<SetStateAction<number[]>>;
     up: boolean;
+    /** Tapping the already-selected item launches it full screen. */
+    onOpen: (item: itemProp) => void;
 }
 
 const SNIPPET_CHARS = 110;
@@ -25,7 +27,7 @@ const snippet = (text: string[][]) => {
  * with each item's title (and the selected item's description) beside the icon.
  * Text is in normal flow so rows push each other down instead of overlapping.
  */
-const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
+const Items = ({ chosen, src, chosenIcon, setChosenIcon, up, onOpen }: ItemsProp) => {
     const info = itemInfo[chosen];
 
     if (chosen !== src) {
@@ -66,8 +68,8 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
                         className="flex flex-row w-full shrink-0 cursor-pointer select-none pl-[calc(50%-2rem)]"
                         // desktop: hover selects; touch: only a real tap selects (iOS hover emulation is unreliable)
                         onPointerEnter={(e) => e.pointerType === "mouse" && select(index)}
-                        onClick={() => select(index)}
-                        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && select(index)}
+                        onClick={() => (isSelected ? onOpen(item) : select(index))}
+                        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (isSelected ? onOpen(item) : select(index))}
                     >
                         <div className="flex items-center justify-center w-16 h-[56px] shrink-0">
                             <img
@@ -102,6 +104,9 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
                             )}
                             {description && (
                                 <p className="mt-1 text-sm leading-snug text-white/70">{description}</p>
+                            )}
+                            {isSelected && !up && (
+                                <p className="mt-1 text-xs tracking-wide text-white/50">tap again to open ▸</p>
                             )}
                         </div>
                     </div>
