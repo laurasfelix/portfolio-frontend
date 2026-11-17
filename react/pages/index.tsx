@@ -39,7 +39,11 @@ export default function Index() {
 
   useEffect(() => {
     const id = window.location.hash.slice(1);
-    if (id) document.getElementById(id)?.scrollIntoView({ block: "start" });
+    if (!id) return;
+    document.getElementById(id)?.scrollIntoView({ block: "start" });
+    // Arriving from PS3/Furbotron: land on the section, then drop "#extras" from the address bar.
+    // (Keep Next's own history state so its router isn't confused.)
+    window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
   }, []);
 
   const imgSrc = '/images/logo.svg';
