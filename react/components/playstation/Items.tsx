@@ -55,6 +55,7 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
                                 className="transition-opacity duration-150 filter drop-shadow-md"
                                 style={{
                                     opacity: isSelected ? 0.95 : 0.8,
+                                    objectFit: "contain",
                                     width: `${getIconSize(index)}px`,
                                     height: `${getIconSize(index)}px`
                                 }}

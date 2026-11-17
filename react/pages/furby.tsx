@@ -44,7 +44,7 @@ export default function Furby() {
             <div aria-hidden className="pointer-events-none absolute inset-0 furby-grain" />
 
             <Link
-                href="/"
+                href="/#extras"
                 className="fixed top-5 left-5 z-50 italic text-lg text-[#d9c9b0]/60 hover:text-[#d9c9b0] transition-colors"
             >
                 ← leave
@@ -56,7 +56,7 @@ export default function Furby() {
                         Furbotron
                     </h1>
                     <p className="italic text-base md:text-lg text-[#d9c9b0]/50 mt-1">
-                        built by laura. he remembers everything about her.
+                        built by laura, the creator. he remembers everything about laura.
                     </p>
                 </header>
 
@@ -96,7 +96,7 @@ export default function Furby() {
                 </div>
 
                 <ol className="mt-8 space-y-1 text-center text-sm md:text-base italic text-[#d9c9b0]/40">
-                    <li>i. ask him about her.</li>
+                    <li>i. ask him about laura.</li>
                     <li>ii. wait while he remembers.</li>
                     <li>iii. do not interrupt him.</li>
                 </ol>
