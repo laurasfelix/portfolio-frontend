@@ -73,16 +73,16 @@ export default function Index() {
           {<div className='hidden md:flex bg-black flex-1 h-full w-full justify-center items-center'>
               <Lauraa length={30}/>
           </div>}
-          <div className='bg-white flex-1 h-full w-full p-2 sm:p-8 overflow-hidden md:overflow-y-auto hide-scrollbar'> 
-            <div className='text-black text-left px-3 pt-4 pb-20 sm:p-8 flex flex-col gap-2 sm:gap-6 max-w-4xl mx-auto'>
-                    <div className='text-2xl sm:text-4xl font-bold sm:mb-4'>
+          <div className='bg-white flex-1 h-full w-full p-2 sm:p-8 overflow-hidden md:overflow-y-auto hide-scrollbar flex flex-col justify-center md:block'> 
+            <div className='text-black text-left px-4 pt-6 pb-20 sm:p-8 flex flex-col gap-3 sm:gap-6 max-w-4xl mx-auto'>
+                    <div className='text-[clamp(28px,4.4dvh,36px)] sm:text-4xl font-bold sm:mb-4'>
                       {biography["title"]}
                     </div>
-                    <div className='text-base sm:text-xl text-gray-700 mb-1 sm:mb-6'>
+                    <div className='text-[clamp(16px,2.6dvh,20px)] sm:text-xl text-gray-700 mb-2 sm:mb-6'>
                       {biography["subheader"]}
                     </div>
 
-                    <div className='space-y-2 sm:space-y-4 text-[clamp(12px,1.9dvh,15px)] sm:text-lg leading-snug sm:leading-relaxed'>
+                    <div className='space-y-3 sm:space-y-4 text-[clamp(13px,2.3dvh,18px)] sm:text-lg leading-snug sm:leading-relaxed'>
                       {biography["text"].map((text, idx) => (
                       <p key={idx}>
                         {text}
