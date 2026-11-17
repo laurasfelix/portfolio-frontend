@@ -66,7 +66,7 @@ const Icon = ({ src, text, chosen, setChosen }: IconProps) => {
                 </button>
             </div>
             <p 
-                className={`text-center text-xl text-white mt-2 transition-opacity duration-150 ${
+                className={`text-center text-base md:text-xl text-white mt-2 transition-opacity duration-150 ${
                     chosen === src ? 'opacity-100 font-semibold' : 'opacity-0'
                 }`}
                 style={{ minHeight: "28px" }}

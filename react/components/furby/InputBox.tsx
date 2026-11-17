@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, Dispatch, SetStateAction } from "react";
-import { askFurbotron, speak } from "@/lib/furbotronClient";
+import { askFurbotron, primeSpeech, speak } from "@/lib/furbotronClient";
 
 const placeholderMessages = [
     "this is Furbotron.",
@@ -49,6 +49,7 @@ const InputBox = ({ isThinking, setInteract, setIsThinking, setIsTalking, startP
     const handleSubmit = async () => {
         const prompt = text.trim();
         if (!prompt || isThinking) return;
+        primeSpeech();
         setInteract(false);
         setIsThinking(true);
         startProgress();
@@ -69,9 +70,17 @@ const InputBox = ({ isThinking, setInteract, setIsThinking, setIsTalking, startP
     };
 
     return (
-        <div className="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-2.5 min-w-[60%] text-center flex flex-col items-center">
+        <form
+            className="backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-2.5 w-full md:w-auto md:min-w-[60%] text-center flex flex-col items-center"
+            onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+            }}
+        >
+          <div className="flex w-full items-center gap-2">
             <input
-                className="text-lg text-white font-light text-center w-full bg-transparent focus:outline-none placeholder-white/60"
+                className="text-base md:text-lg text-white font-light text-center flex-1 min-w-0 bg-transparent focus:outline-none placeholder-white/60"
+                enterKeyHint="send"
                 onChange={(e) => {
                     onChangeText(e.target.value);
                     setInteract(true);
@@ -80,13 +89,17 @@ const InputBox = ({ isThinking, setInteract, setIsThinking, setIsTalking, startP
                 maxLength={500}
                 placeholder={placeholder}
                 style={{ color: text ? '#fff' : 'rgba(255,255,255,0.7)' }}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                        handleSubmit();
-                    }
-                }}
                 disabled={isThinking}
             />
+            <button
+                type="submit"
+                disabled={isThinking || !text.trim()}
+                aria-label="ask Furbotron"
+                className="shrink-0 rounded-full border border-white/40 px-3 py-1 text-white disabled:opacity-30"
+            >
+                ↵
+            </button>
+          </div>
             {isThinking && (
                 <div className="flex items-center gap-2 mt-4 animate-pulse">
                     <span className="w-3 h-3 bg-white/80 rounded-full animate-bounce" />
@@ -95,7 +108,7 @@ const InputBox = ({ isThinking, setInteract, setIsThinking, setIsTalking, startP
                     <span className="text-white/80 font-semibold ml-2">Furbotron is thinking...</span>
                 </div>
             )}
-        </div>
+        </form>
     );
 };
 
