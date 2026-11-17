@@ -36,9 +36,9 @@ const Menu = () => {
     }, [selectionKey]);
     
     return (
-        <div className="flex flex-1 flex-row w-full px-[5%] pt-32 @3xl:pt-2 pb-2 relative overflow-x-auto @3xl:overflow-visible snap-x snap-mandatory hide-scrollbar">
+        <div className="flex flex-1 flex-row w-full px-[5%] py-2 relative">
             {listInfo.map((info, idx) => (
-                <div key={idx} className="flex flex-1 w-full flex-col items-center snap-center min-w-[34%] @3xl:min-w-[20%]">
+                <div key={idx} className="flex flex-1 w-full flex-col items-center min-w-[20%]">
                     {/* Top items section - fixed height */}
                     <div className="w-full h-[140px] flex items-end justify-center relative">
                         <Items 
@@ -61,7 +61,7 @@ const Menu = () => {
                     </div>
 
                     {/* Bottom items section - fixed height */}
-                    <div className="w-full h-[200px] flex items-start justify-center relative">
+                    <div className="w-full h-[200px] flex items-start justify-center @3xl:relative">
                         <Items 
                             chosen={chosen} 
                             src={idx} 

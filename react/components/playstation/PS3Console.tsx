@@ -74,8 +74,8 @@ const PS3Console = ({ skipBootIfSeen = true, playStartup = true }: PS3ConsolePro
                         fadeIn ? "opacity-100" : "opacity-0"
                     }`}
                 >
-                    <h1 className="text-6xl @3xl:text-8xl text-white/80 font-light whitespace-nowrap">Portfolio by Laura</h1>
-                    <p className="text-xl @3xl:text-2xl text-white/80 font-light">(sony don&apos;t sue me pls)</p>
+                    <h1 className="text-6xl @5xl:text-8xl text-white/80 font-light whitespace-nowrap">Portfolio by Laura</h1>
+                    <p className="text-2xl text-white/80 font-light">(sony don&apos;t sue me pls)</p>
                 </div>
             )}
             {!isBoot && !videoError && (

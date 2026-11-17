@@ -67,12 +67,12 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
             
             {/* Text display panel - positioned absolutely to not affect layout */}
             {!up && chosenIcon[chosen] !== undefined && info[chosenIcon[chosen]] && (
-                <div className="fixed @3xl:absolute bottom-4 left-4 right-4 p-4 bg-black/70 rounded-lg text-white backdrop-blur-sm border border-white/20 z-10">
-                    <h3 className="text-lg font-bold mb-2 text-blue-300">{info[chosenIcon[chosen]].title}</h3>
+                <div className="absolute bottom-3 left-3 right-3 p-3 @3xl:bottom-4 @3xl:left-4 @3xl:right-4 @3xl:p-4 bg-black/70 rounded-lg text-white backdrop-blur-sm border border-white/20 z-10">
+                    <h3 className="text-2xl @3xl:text-lg font-bold mb-1 @3xl:mb-2 text-blue-300">{info[chosenIcon[chosen]].title}</h3>
                     {info[chosenIcon[chosen]].company && (
-                        <p className="text-base text-gray-300 mb-2">{info[chosenIcon[chosen]].company}</p>
+                        <p className="text-xl @3xl:text-base text-gray-300 mb-1 @3xl:mb-2">{info[chosenIcon[chosen]].company}</p>
                     )}
-                    <div className="text-sm text-gray-200 max-h-32 overflow-y-auto custom-scrollbar">
+                    <div className="text-lg @3xl:text-sm text-gray-200 max-h-32 overflow-y-auto custom-scrollbar">
                         {info[chosenIcon[chosen]].text.slice(0, 1).map((paragraph, pIndex) => (
                             <div key={pIndex}>
                                 {paragraph.slice(0, 1).map((line, lIndex) => (
