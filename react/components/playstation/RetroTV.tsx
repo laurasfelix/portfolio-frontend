@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import PS3Console from "@/components/playstation/PS3Console";
 import { unlockSoundsNow } from "@/lib/uiSound";
+import { Caveat } from "next/font/google";
+
+const handwriting = Caveat({ weight: ["500", "700"], subsets: ["latin"] });
 
 // The PS3 renders at 640x480 (the tube's own 4:3 shape, like a real SD TV) and
 // is scaled to fit, so phones see the full XMB at a readable size.
@@ -159,9 +162,14 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
                 <div aria-hidden className="w-[104%] h-10 tv-wood-front" />
             </div>
 
-            <p className={`mt-6 text-[#3b2a1c] text-lg font-medium tracking-wide transition-opacity ${poweredOn ? "opacity-0" : "tv-hint"}`}>
-                press the power button to start
-            </p>
+            {/* a note taped to the wall, because the wallpaper eats plain text */}
+            <div className={`${handwriting.className} relative mt-7 -rotate-3`}>
+                <div aria-hidden className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 rotate-2 bg-[#f3e9c6]/80 shadow-sm" />
+                <div className="tv-note px-6 pt-4 pb-3 shadow-[2px_6px_12px_rgba(60,35,15,0.35)]">
+                    <p className="text-[22px] font-bold leading-none text-[#2b2b6b] underline decoration-2 underline-offset-4">manual for tv:</p>
+                    <p className="mt-2 text-[26px] font-medium leading-none text-[#2b2b6b]">turn it on, dummy</p>
+                </div>
+            </div>
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import Menu from "@/components/playstation/Menu";
 import Time from "@/components/playstation/Time";
+import GameReader from "@/components/playstation/GameReader";
+import { itemProp } from "@/utils/itemInfo";
 
 interface PS3ConsoleProps {
     /** Skip the boot screen if it already ran this browser session (desktop). */
@@ -19,6 +21,13 @@ const PS3Console = ({ skipBootIfSeen = true, playStartup = true }: PS3ConsolePro
     const [fadeIn, setFadeIn] = useState(false);
     const [videoError, setVideoError] = useState(false);
     const soundRef = useRef<HTMLAudioElement | null>(null);
+    const [openItem, setOpenItem] = useState<itemProp | null>(null);
+
+    const launch = (item: itemProp) => {
+        // started inside the tap, so iOS allows it
+        new Audio("/sounds/project_click.mp3").play().catch(() => {});
+        setOpenItem(item);
+    };
 
     useEffect(() => {
         let bootTimer: ReturnType<typeof setTimeout> | undefined;
@@ -81,9 +90,10 @@ const PS3Console = ({ skipBootIfSeen = true, playStartup = true }: PS3ConsolePro
             {!isBoot && !videoError && (
                 <div className="absolute inset-0 w-full h-full overflow-hidden flex flex-col">
                     <Time />
-                    <Menu />
+                    <Menu onOpen={launch} />
                 </div>
             )}
+            {openItem && <GameReader item={openItem} onClose={() => setOpenItem(null)} />}
         </div>
     );
 };
