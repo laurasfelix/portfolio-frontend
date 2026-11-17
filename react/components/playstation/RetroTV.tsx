@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import PS3Console from "@/components/playstation/PS3Console";
-import Jumpscare, { nextJumpscareIndex } from "@/components/playstation/Jumpscare";
+import Jumpscare, { nextJumpscareIndex, preloadJumpscares } from "@/components/playstation/Jumpscare";
 import { unlockSoundsNow } from "@/lib/uiSound";
 import { Caveat } from "next/font/google";
 
@@ -72,6 +72,8 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
         ro.observe(el);
         return () => ro.disconnect();
     }, []);
+
+    useEffect(() => preloadJumpscares(), []);
 
     useEffect(
         () => () => {

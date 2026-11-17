@@ -1,4 +1,6 @@
-// Original jumpscare frames, drawn in code (no stock or copyrighted images).
+import React from "react";
+
+// Jumpscare frames: some drawn in code, some pictures Laura added.
 // One is picked per power-on, rotating so it's different every time.
 
 const PaleFace = () => (
@@ -57,7 +59,43 @@ const DemonFurby = () => (
     </div>
 );
 
-export const JUMPSCARES = [PaleFace, RedEyes, DemonFurby, ISeeYou];
+// Pictures Laura added (public/images/scares). `zoom` crops in on small subjects.
+const PHOTO_SCARES: { src: string; zoom?: number }[] = [
+    { src: "/images/scares/jeff.jpg" },
+    { src: "/images/scares/herobrine.jpg", zoom: 1.8 },
+    { src: "/images/scares/figure.jpg", zoom: 1.3 },
+    { src: "/images/scares/smile.jpg" },
+    { src: "/images/scares/face.jpg" },
+];
+
+const PhotoScare = ({ src, zoom = 1 }: { src: string; zoom?: number }) => (
+    <div className="w-full h-full bg-black overflow-hidden">
+        <img src={src} alt="" className="w-full h-full object-cover" style={{ transform: `scale(${zoom})` }} />
+    </div>
+);
+
+/** Load every picture ahead of time — a 0.1s blip has no time to download one. */
+export function preloadJumpscares() {
+    PHOTO_SCARES.forEach(({ src }) => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+type Frame = { drawn: () => React.JSX.Element } | { photo: { src: string; zoom?: number } };
+
+// Drawn frames and photos alternate so it's never predictable.
+export const JUMPSCARES: Frame[] = [
+    { photo: PHOTO_SCARES[0] },
+    { drawn: PaleFace },
+    { photo: PHOTO_SCARES[1] },
+    { drawn: RedEyes },
+    { photo: PHOTO_SCARES[2] },
+    { drawn: DemonFurby },
+    { photo: PHOTO_SCARES[3] },
+    { drawn: ISeeYou },
+    { photo: PHOTO_SCARES[4] },
+];
 
 /** Next frame in the rotation (remembered across visits). */
 export function nextJumpscareIndex(): number {
@@ -72,10 +110,11 @@ export function nextJumpscareIndex(): number {
 }
 
 const Jumpscare = ({ index }: { index: number }) => {
-    const Frame = JUMPSCARES[index % JUMPSCARES.length];
+    const frame = JUMPSCARES[index % JUMPSCARES.length];
+    const Drawn = "drawn" in frame ? frame.drawn : null;
     return (
         <div className="@container absolute inset-0 z-40 jumpscare-blip">
-            <Frame />
+            {Drawn ? <Drawn /> : "photo" in frame ? <PhotoScare {...frame.photo} /> : null}
         </div>
     );
 };
