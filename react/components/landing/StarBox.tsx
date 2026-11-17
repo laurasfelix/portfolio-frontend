@@ -18,9 +18,9 @@ const StarBox = ({color}: StarBoxProps) => {
                 </div>
                 <div
                     style={{ backgroundColor: boxColor }}
-                    className="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[58%] aspect-square md:rounded-[4vw] rounded-[6vw] p-[10%] z-20 shadow-lg"
+                    className="absolute top-[57%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[44%] aspect-square overflow-hidden md:rounded-[3vw] rounded-[5vw] z-20 shadow-lg"
                 >
-                    <img src={boxImg} alt="" className="w-full h-full object-contain"/>
+                    <img src={boxImg} alt="" className="absolute inset-[12%] w-[76%] h-[76%] object-contain"/>
                 </div>
             </div>
         </div>

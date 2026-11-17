@@ -42,7 +42,7 @@ const Icon = ({ src, text, chosen, setChosen }: IconProps) => {
             </div>
             <p 
                 className={`text-center text-base md:text-xl text-white mt-2 transition-opacity duration-150 ${
-                    chosen === src ? 'opacity-100 font-semibold' : 'opacity-0'
+                    chosen === src ? 'opacity-100 font-medium' : 'opacity-0'
                 }`}
                 style={{ minHeight: "28px" }}
             >

@@ -28,6 +28,11 @@ const ConsoleNav = () => (
 );
 
 export default function Index() {
+  useEffect(() => {
+    const id = window.location.hash.slice(1);
+    if (id) document.getElementById(id)?.scrollIntoView({ block: "start" });
+  }, []);
+
   const imgSrc = '/images/logo.svg';
   const pages = ["playstation", "furby"];
   const router = useRouter();
@@ -46,7 +51,7 @@ export default function Index() {
   return (
     <div className="bg-black w-full min-h-dvh">
       {/* snap scrolling*/}
-      <div className="snap-y snap-proximity md:snap-mandatory h-dvh overflow-y-auto">
+      <div className="snap-y snap-mandatory h-dvh overflow-y-auto">
         
         {/* home */}
         <section id="start" className="snap-start h-dvh w-full flex flex-col items-center justify-center gap-6 relative">
@@ -64,20 +69,20 @@ export default function Index() {
         </section>
         
         {/* about */}
-        <section id="about" className="snap-start min-h-dvh md:h-dvh w-full flex items-center justify-center md:flex-row flex-col relative">
+        <section id="about" className="snap-start h-dvh w-full flex items-center justify-center md:flex-row flex-col relative">
           {<div className='hidden md:flex bg-black flex-1 h-full w-full justify-center items-center'>
               <Lauraa length={30}/>
           </div>}
-          <div className='bg-white flex-1 md:h-full w-full p-2 sm:p-8 md:overflow-y-auto hide-scrollbar'> 
-            <div className='text-black text-left p-4 sm:p-8 pb-24 flex flex-col gap-4 sm:gap-6 max-w-4xl mx-auto'>
-                    <div className='text-3xl sm:text-4xl font-bold mb-2 sm:mb-4'>
+          <div className='bg-white flex-1 h-full w-full p-2 sm:p-8 overflow-hidden md:overflow-y-auto hide-scrollbar'> 
+            <div className='text-black text-left px-3 pt-4 pb-20 sm:p-8 flex flex-col gap-2 sm:gap-6 max-w-4xl mx-auto'>
+                    <div className='text-2xl sm:text-4xl font-bold sm:mb-4'>
                       {biography["title"]}
                     </div>
-                    <div className='text-xl text-gray-700 mb-6'>
+                    <div className='text-base sm:text-xl text-gray-700 mb-1 sm:mb-6'>
                       {biography["subheader"]}
                     </div>
 
-                    <div className='space-y-4 text-base sm:text-lg leading-relaxed'>
+                    <div className='space-y-2 sm:space-y-4 text-[clamp(12px,1.9dvh,15px)] sm:text-lg leading-snug sm:leading-relaxed'>
                       {biography["text"].map((text, idx) => (
                       <p key={idx}>
                         {text}

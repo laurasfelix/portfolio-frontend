@@ -2,6 +2,10 @@ import { useEffect, useState, useRef } from "react";
 import Menu from "@/components/playstation/Menu";
 import Time from "@/components/playstation/Time";
 import { useRouter } from 'next/router';
+import { Jura } from "next/font/google";
+
+// The real XMB font (SCE-PS3 Rodin) isn't licensable; Jura is a free, close lookalike.
+const xmbFont = Jura({ weight: ["300", "400", "500"], subsets: ["latin"] });
 
 export default function Playstation() {
   const router = useRouter();
@@ -63,10 +67,10 @@ export default function Playstation() {
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-screen bg-black">
+    <div className={`${xmbFont.className} relative w-full h-full min-h-screen bg-black`}>
       <button
-        className="fixed top-6 left-6 z-50 bg-black/80 text-white border-2 border-white rounded-xl px-4 py-2 font-mono hover:bg-white hover:text-black transition"
-        onClick={() => router.push('/')}
+        className="fixed top-6 left-6 z-50 bg-black/80 text-white border-2 border-white rounded-xl px-4 py-2 hover:bg-white hover:text-black transition"
+        onClick={() => router.push('/#extras')}
       >
         ← back
       </button>
@@ -98,8 +102,8 @@ export default function Playstation() {
             fadeIn ? "opacity-100" : "opacity-0"
           }`}
         >
-          <h1 className="text-6xl md:text-8xl text-white/80 font-extralight">Portfolio by Laura</h1>
-          <p className="text-xl md:text-2xl text-white/80 font-extralight">(sony don&apos;t sue me pls)</p>
+          <h1 className="text-6xl md:text-8xl text-white/80 font-light">Portfolio by Laura</h1>
+          <p className="text-xl md:text-2xl text-white/80 font-light">(sony don&apos;t sue me pls)</p>
         </div>
       )}
       {/* Main Menu */}

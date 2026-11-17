@@ -4,8 +4,8 @@ import { askFurbotron, primeSpeech, speak } from "@/lib/furbotronClient";
 const placeholderMessages = [
     "ask him about laura…",
     "he is listening.",
-    "where did she grow up?",
-    "what does she build?",
+    "where did laura grow up?",
+    "what does laura build?",
     "careful what you ask.",
 ];
 
