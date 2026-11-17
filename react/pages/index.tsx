@@ -198,6 +198,9 @@ export default function Index() {
             </div>
           </div>
         </section>
+        {/* Phones: keep a little page below Contact so snapping onto it isn't the
+            very end of the page (Safari re-shows its toolbar there, which made Contact jump). */}
+        <div aria-hidden className="h-[15svh] bg-black md:hidden" />
        
 
       </div>
