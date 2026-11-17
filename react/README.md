@@ -1,11 +1,11 @@
 # Portfolio Website (Next.js Version)
 
-This is the Next.js version of Laura Felix's portfolio website, converted from React Native.
+This is Laura Felix's portfolio website, built with Next.js (Pages Router).
 
 ## Features
 
 - Interactive PlayStation-style interface with clock, icons, and animations
-- Furbotron 3000 chatbot with OpenAI integration
+- Furbotron 3000 chatbot (free Groq API for answers, browser speech synthesis for his voice)
 - Responsive design for all screen sizes
 
 ## Getting Started
@@ -17,10 +17,14 @@ This is the Next.js version of Laura Felix's portfolio website, converted from R
 
 2. Set up environment variables:
    - Create a `.env.local` file in the root directory
-   - Add your OpenAI API key:
+   - Add a free Groq API key (create one at https://console.groq.com/keys, no card needed):
      ```
-     OPENAI_API_KEY=your_openai_api_key_here
+     GROQ_API_KEY=your_groq_api_key_here
+     # optional, defaults to openai/gpt-oss-20b
+     GROQ_MODEL=openai/gpt-oss-20b
      ```
+   - On Vercel, add the same variables under Project Settings → Environment Variables.
+     Never prefix the key with `NEXT_PUBLIC_` — that ships it to every visitor's browser.
 
 3. Run the development server:
    ```bash
@@ -33,7 +37,7 @@ This is the Next.js version of Laura Felix's portfolio website, converted from R
 
 - **Home** (`/`) - Main portfolio landing page
 - **PlayStation Interface** (`/playstation`) - Interactive PlayStation-inspired interface
-- **Furbotron** (`/furby`) - Interactive Furby chatbot using OpenAI API
+- **Furbotron** (`/furby`) - Interactive Furby chatbot (server route at `/api/furbotron`)
 
 ## Technologies Used
 

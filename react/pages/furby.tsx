@@ -1,8 +1,9 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Body from "@/components/furby/Body";
 import InputBox from "@/components/furby/InputBox";
+import { stopSpeaking as stopVoice } from "@/lib/furbotronClient";
 
 export default function Furby() {
     const router = useRouter();
@@ -12,7 +13,6 @@ export default function Furby() {
     const [progress, setProgress] = useState(0); // For progress bar
     const [showProgress, setShowProgress] = useState(false);
     const [demonEyes, setDemonEyes] = useState(false);
-    const audioRef = useRef<HTMLAudioElement>(null!) as React.RefObject<HTMLAudioElement>;
     const progressInterval = useRef<NodeJS.Timeout | null>(null);
     const THINKING_TIME = 4000; // ms, adjust as needed
 
@@ -39,14 +39,14 @@ export default function Furby() {
 
     // Stop button logic
     const stopSpeaking = () => {
-        if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current.currentTime = 0;
-        }
+        stopVoice();
         setIsTalking(false);
         setDemonEyes(true);
         setTimeout(() => setDemonEyes(false), 2000); // Demon eyes for 2 seconds
     };
+
+    // Stop talking if the visitor leaves the page mid-sentence
+    useEffect(() => () => stopVoice(), []);
 
     // Pass progress logic to InputBox
     return (
@@ -111,7 +111,6 @@ export default function Furby() {
                             setInteract={setInputInteract} 
                             startProgress={startProgress}
                             stopProgress={stopProgress}
-                            audioRef={audioRef}
                         />
                     </div>
                 </div>
