@@ -61,3 +61,8 @@ export function playHover() {
 export function stopHover() {
     audio?.pause();
 }
+
+/** Unlock right now — call this from inside a tap handler (e.g. the TV power button). */
+export function unlockSoundsNow() {
+    unlock();
+}
