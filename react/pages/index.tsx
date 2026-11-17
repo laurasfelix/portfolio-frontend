@@ -46,7 +46,7 @@ export default function Index() {
   return (
     <div className="bg-black w-full min-h-dvh">
       {/* snap scrolling*/}
-      <div className="snap-y snap-mandatory h-dvh overflow-y-auto">
+      <div className="snap-y snap-proximity md:snap-mandatory h-dvh overflow-y-auto">
         
         {/* home */}
         <section id="start" className="snap-start h-dvh w-full flex flex-col items-center justify-center gap-6 relative">
@@ -64,11 +64,11 @@ export default function Index() {
         </section>
         
         {/* about */}
-        <section id="about" className="snap-start h-dvh w-full flex items-center justify-center md:flex-row flex-col relative">
+        <section id="about" className="snap-start min-h-dvh md:h-dvh w-full flex items-center justify-center md:flex-row flex-col relative">
           {<div className='hidden md:flex bg-black flex-1 h-full w-full justify-center items-center'>
               <Lauraa length={30}/>
           </div>}
-          <div className='bg-white flex-1 h-full w-full p-2 sm:p-8 overflow-y-auto hide-scrollbar'> 
+          <div className='bg-white flex-1 md:h-full w-full p-2 sm:p-8 md:overflow-y-auto hide-scrollbar'> 
             <div className='text-black text-left p-4 sm:p-8 pb-24 flex flex-col gap-4 sm:gap-6 max-w-4xl mx-auto'>
                     <div className='text-3xl sm:text-4xl font-bold mb-2 sm:mb-4'>
                       {biography["title"]}

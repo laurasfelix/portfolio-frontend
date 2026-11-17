@@ -41,7 +41,7 @@ const Body = ({ isThinking, isTalking, interact, demonEyes = false }: BodyProps)
     
     // Phones: fit the width but leave room for the input box below.
     const imageSize = dimensions.width < 768
-        ? Math.min(dimensions.width * 0.85, dimensions.height * 0.5)
+        ? Math.min(dimensions.width * 0.8, dimensions.height * 0.42)
         : dimensions.width * 0.35;
     const smallSize = imageSize * 0.15;
     

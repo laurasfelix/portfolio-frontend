@@ -52,6 +52,7 @@ export default function Playstation() {
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(bootTimer);
+      soundRef.current?.pause(); // stop the startup chime if you leave mid-boot
     };
   }, []);
 
@@ -76,6 +77,10 @@ export default function Playstation() {
         autoPlay
         loop
         muted
+        playsInline
+        disablePictureInPicture
+        controls={false}
+        aria-hidden="true"
         poster="/images/ps3.png" // TEMP: fallback poster image
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         onError={() => setVideoError(true)}
