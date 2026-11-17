@@ -11,14 +11,17 @@ const StarBox = ({color}: StarBoxProps) => {
 
     return (
         <div className="relative flex flex-col items-center group w-full">
-            <div className="md:w-[40vw] w-[min(48vw,26dvh)] z-10 transition-transform duration-300 ease-in-out group-hover:animate-[spin_20s_linear_infinite]">
-                <Star color={color}/>
-            </div>
-            <div 
-                style={{ backgroundColor: boxColor }} 
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 aspect-square md:rounded-[6vw] rounded-[6vw] p-4 md:p-8 z-20 shadow-lg"
-            >
-                <img src={boxImg} className="w-full md:scale-100 aspect-square"/>
+            {/* The star sets the size; the box is a fixed fraction of it, so every square matches */}
+            <div className="relative md:w-[40vw] w-[min(48vw,26dvh)]">
+                <div className="z-10 transition-transform duration-300 ease-in-out group-hover:animate-[spin_20s_linear_infinite]">
+                    <Star color={color}/>
+                </div>
+                <div
+                    style={{ backgroundColor: boxColor }}
+                    className="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[58%] aspect-square md:rounded-[4vw] rounded-[6vw] p-[10%] z-20 shadow-lg"
+                >
+                    <img src={boxImg} alt="" className="w-full h-full object-contain"/>
+                </div>
             </div>
         </div>
     );

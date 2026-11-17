@@ -1,4 +1,4 @@
-import { useEffect, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface IconProps {
     src: number;
@@ -16,31 +16,6 @@ const imageMapping: Record<number, string> = [
 ];
 
 const Icon = ({ src, text, chosen, setChosen }: IconProps) => {
-    // Play sound effect when icon is chosen
-    useEffect(() => {
-        let soundObject: HTMLAudioElement;
-    
-        async function playSound() {
-            console.log("Loading Sound");
-            soundObject = new Audio("/sounds/hover.mp3");
-            
-            try {
-                await soundObject.play();
-            } catch (error) {
-                console.error("Audio play failed:", error);
-            }
-        }
-    
-        playSound();
-    
-        return () => {
-            if (soundObject) {
-                console.log("Unloading Sound");
-                soundObject.pause();
-                soundObject.src = "";
-            }
-        };
-    }, [chosen]);
 
     // Calculate icon sizes based on selection state
     // const iconWidth = chosen === src ? "6.5vw" : "5.5vw";

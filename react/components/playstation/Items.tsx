@@ -1,4 +1,4 @@
-import { useEffect, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import itemInfo from "@/utils/itemInfo";
 
 interface ItemsProp {
@@ -12,31 +12,6 @@ interface ItemsProp {
 const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
     const info = itemInfo[chosen];
 
-    // Play sound effect when item is chosen
-    useEffect(() => {
-        let soundObject: HTMLAudioElement;
-    
-        async function playSound() {
-            console.log("Loading Sound");
-            soundObject = new Audio("/sounds/hover.mp3");
-            
-            try {
-                await soundObject.play();
-            } catch (error) {
-                console.error("Audio play failed:", error);
-            }
-        }
-    
-        playSound();
-    
-        return () => {
-            if (soundObject) {
-                console.log("Unloading Sound");
-                soundObject.pause();
-                soundObject.src = "";
-            }
-        };
-    }, [chosenIcon]);
 
     // Fixed icon sizes to prevent layout shifts
     const getIconSize = (index: number) => {

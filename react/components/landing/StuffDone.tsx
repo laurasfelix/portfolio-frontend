@@ -54,7 +54,7 @@ const StuffDone = () => {
             onClick={() => setOpenModal("green")}> 
               <StarBox color={"green"} />
               <div className='flex flex-row items-center justify-center text-center text-2xl md:text-3xl md:mt-2 ml-2'>
-                <span className='relative px-2 transition duration-300 ease-in-out'>
+                <span className='relative px-2 whitespace-nowrap transition duration-300 ease-in-out'>
                 <span className='relative z-10'> i work </span>
                 <span 
                 className='absolute left-0 top-0 h-full origin-left transform scale-x-0 
@@ -68,7 +68,7 @@ const StuffDone = () => {
             <div className='md:translate-y-1/4 md:translate-x-[5%] group flex md:flex-col flex-row cursor-pointer'
             onClick={() => setOpenModal("yellow")}> 
               <div className='flex flex-row items-center justify-center text-center text-2xl md:text-3xl md:mb-2 mr-2'>
-                <span className='relative px-2 transition duration-300 ease-in-out'>
+                <span className='relative px-2 whitespace-nowrap transition duration-300 ease-in-out'>
                     <div className='flex flex-col'>
                         <span className='relative z-10'> i win </span>
                         <span className='relative invisible italic z-10 group-hover:visible text-black'> * not guaranteed </span>
@@ -89,7 +89,7 @@ const StuffDone = () => {
             onClick={() => setOpenModal("red")}> 
               <StarBox color={"red"} />
               <div className='flex flex-row items-center justify-center text-center text-2xl md:text-3xl md:mt-2 mr-2'>
-                <span className='relative px-2 transition duration-300 ease-in-out'>
+                <span className='relative px-2 whitespace-nowrap transition duration-300 ease-in-out'>
                 <span className='relative z-10'> i play </span>
                 <span 
                 className='absolute left-0 top-0 h-full origin-left transform scale-x-0 
