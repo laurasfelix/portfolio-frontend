@@ -10,6 +10,10 @@ interface ItemsProp {
 }
 
 const SNIPPET_CHARS = 110;
+const COLUMNS = 5;
+const COL_CQW = 18; // each column is 20% of the 90%-wide menu = 18% of the console width
+/** The menu slides left so the selected column sits at most this many columns in (see Menu). */
+export const MAX_SELECTED_POSITION = 2;
 
 const snippet = (text: string[][]) => {
     const first = (text[0]?.[0] ?? "").replace(/\s+/g, " ").trim();
@@ -17,9 +21,9 @@ const snippet = (text: string[][]) => {
 };
 
 /**
- * One column's item list, laid out like the PS3 XMB: icons stacked vertically,
- * each item's title (and, for the selected one, its description) to the RIGHT
- * of its icon, spilling over the empty space of the neighbouring columns.
+ * One column's item list, laid out like the PS3 XMB: icons stacked vertically
+ * with each item's title (and the selected item's description) beside the icon.
+ * Text is in normal flow so rows push each other down instead of overlapping.
  */
 const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
     const info = itemInfo[chosen];
@@ -27,6 +31,11 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
     if (chosen !== src) {
         return <div className="w-full flex-1"></div>; // Maintain layout space
     }
+
+    // after the menu slides, this column sits at `position`; the text gets the room to its right
+    const position = Math.min(src, MAX_SELECTED_POSITION);
+    const columnsOfRoom = COLUMNS - position - 0.5;
+    const textMaxWidth = `min(22rem, calc(${columnsOfRoom * COL_CQW}cqw - 2.75rem))`;
 
     const select = (index: number) => {
         setChosenIcon((prev) => {
@@ -39,7 +48,7 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
 
     return (
         // clip vertically, but let the text run sideways past the column
-        <div className={`relative z-30 w-full flex-1 flex flex-col gap-2 ${up ? 'justify-end' : 'justify-start'} overflow-x-visible overflow-y-clip`}>
+        <div className={`relative z-30 w-full flex-1 flex flex-col gap-1 ${up ? 'justify-end' : 'justify-start'} overflow-x-visible overflow-y-clip`}>
             {info.map((item, index) => {
                 const isVisible = up ? index < chosenIcon[chosen] : index >= chosenIcon[chosen];
                 if (!isVisible) return null;
@@ -51,12 +60,16 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
                 return (
                     <div
                         key={index}
-                        className="relative flex items-start justify-center w-full shrink-0 cursor-pointer"
-                        style={{ minHeight: description ? 104 : 60 }}
-                        onMouseEnter={() => select(index)}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={item.company ? `${item.title}, ${item.company}` : item.title}
+                        className="flex flex-row w-full shrink-0 cursor-pointer select-none pl-[calc(50%-2rem)]"
+                        // desktop: hover selects; touch: only a real tap selects (iOS hover emulation is unreliable)
+                        onPointerEnter={(e) => e.pointerType === "mouse" && select(index)}
                         onClick={() => select(index)}
+                        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && select(index)}
                     >
-                        <div className="flex items-center justify-center w-16 h-[60px] shrink-0">
+                        <div className="flex items-center justify-center w-16 h-[56px] shrink-0">
                             <img
                                 src={item.icon}
                                 alt=""
@@ -70,12 +83,12 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
                             />
                         </div>
 
-                        {/* text sits to the right of the icon, like the real XMB */}
                         <div
-                            className="absolute top-0 left-[calc(50%+2.25rem)] h-[60px] flex flex-col justify-center text-left w-max max-w-[22rem]"
+                            className="shrink-0 w-max flex flex-col items-start text-left pt-2 pb-1 pl-1"
+                            style={{ maxWidth: textMaxWidth }}
                         >
                             <p
-                                className={`leading-tight whitespace-nowrap transition-all duration-150 ${
+                                className={`leading-tight transition-colors duration-150 ${
                                     isSelected ? "text-xl text-white" : "text-base text-white/60"
                                 }`}
                                 style={isSelected ? { textShadow: "0 0 10px rgba(255,255,255,0.45)" } : undefined}
@@ -83,16 +96,14 @@ const Items = ({ chosen, src, chosenIcon, setChosenIcon, up }: ItemsProp) => {
                                 {item.title}
                             </p>
                             {item.company && (
-                                <p className={`leading-tight whitespace-nowrap ${isSelected ? "text-sm text-white/75" : "text-xs text-white/45"}`}>
+                                <p className={`leading-tight ${isSelected ? "text-sm text-white/75" : "text-xs text-white/45"}`}>
                                     {item.company}
                                 </p>
                             )}
+                            {description && (
+                                <p className="mt-1 text-sm leading-snug text-white/70">{description}</p>
+                            )}
                         </div>
-                        {description && (
-                            <p className="absolute top-[60px] left-[calc(50%+2.25rem)] w-[22rem] max-w-[60vw] @3xl:max-w-[22rem] text-sm leading-snug text-white/70 text-left">
-                                {description}
-                            </p>
-                        )}
                     </div>
                 );
             })}
