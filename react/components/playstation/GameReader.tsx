@@ -1,6 +1,26 @@
 import { useEffect, useRef } from "react";
 import { itemProp } from "@/utils/itemInfo";
 
+/** The PS3 on-screen "circle" prompt: a dark glossy button with a red-pink ring. */
+const CircleButton = ({ className = "" }: { className?: string }) => (
+    <svg viewBox="0 0 40 40" className={className} aria-hidden>
+        <defs>
+            <radialGradient id="ps3-btn-face" cx="50%" cy="35%" r="65%">
+                <stop offset="0%" stopColor="#4a4a4a" />
+                <stop offset="60%" stopColor="#1c1c1c" />
+                <stop offset="100%" stopColor="#0a0a0a" />
+            </radialGradient>
+            <linearGradient id="ps3-btn-rim" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#8a8a8a" />
+                <stop offset="100%" stopColor="#2a2a2a" />
+            </linearGradient>
+        </defs>
+        <circle cx="20" cy="20" r="19" fill="url(#ps3-btn-face)" stroke="url(#ps3-btn-rim)" strokeWidth="1.5" />
+        <ellipse cx="20" cy="11" rx="11" ry="5" fill="#fff" opacity="0.12" />
+        <circle cx="20" cy="20" r="8.5" fill="none" stroke="#ff6b6b" strokeWidth="3" />
+    </svg>
+);
+
 interface GameReaderProps {
     item: itemProp;
     onClose: () => void;
@@ -77,9 +97,7 @@ const GameReader = ({ item, onClose }: GameReaderProps) => {
                         onClick={onClose}
                         className="flex items-center gap-2 text-[28px] @3xl:text-lg text-white/80 hover:text-white"
                     >
-                        <span className="inline-flex items-center justify-center w-9 h-9 @3xl:w-7 @3xl:h-7 rounded-full border-2 border-[#ff6b6b] text-[#ff6b6b] text-base">
-                            ○
-                        </span>
+                        <CircleButton className="w-11 h-11 @3xl:w-8 @3xl:h-8" />
                         back
                     </button>
                 </footer>

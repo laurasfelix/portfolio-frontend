@@ -58,13 +58,13 @@ export default function Index() {
   };
   
   return (
-    <div className="bg-black w-full min-h-dvh">
+    <div className="bg-black w-full min-h-lvh">
       {/* snap scrolling: one section per swipe, using the page's own scroll
           (a nested scroll box is what trapped iPhones in a section) */}
       <div>
         
         {/* home */}
-        <section id="start" className="snap-start snap-always h-dvh w-full flex flex-col items-center justify-center gap-6 relative">
+        <section id="start" className="snap-start snap-always h-lvh w-full flex flex-col items-center justify-center gap-6 relative">
           <div className='flex items-center'>
             <Lauraa length={30}/>
           </div>
@@ -79,20 +79,20 @@ export default function Index() {
         </section>
         
         {/* about */}
-        <section id="about" className="snap-start snap-always h-dvh w-full flex items-center justify-center md:flex-row flex-col relative">
+        <section id="about" className="snap-start snap-always h-lvh w-full flex items-center justify-center md:flex-row flex-col relative">
           {<div className='hidden md:flex bg-black flex-1 h-full w-full justify-center items-center'>
               <Lauraa length={30}/>
           </div>}
           <div className='bg-white flex-1 h-full w-full p-2 sm:p-8 overflow-hidden md:overflow-y-auto hide-scrollbar flex flex-col justify-center md:block'> 
             <div className='text-black text-left px-4 pt-6 pb-20 sm:p-8 flex flex-col gap-3 sm:gap-6 max-w-4xl mx-auto'>
-                    <div className='text-[clamp(28px,4.4dvh,36px)] sm:text-4xl font-bold sm:mb-4'>
+                    <div className='text-[clamp(28px,4.4svh,36px)] sm:text-4xl font-bold sm:mb-4'>
                       {biography["title"]}
                     </div>
-                    <div className='text-[clamp(16px,2.6dvh,20px)] sm:text-xl text-gray-700 mb-2 sm:mb-6'>
+                    <div className='text-[clamp(16px,2.6svh,20px)] sm:text-xl text-gray-700 mb-2 sm:mb-6'>
                       {biography["subheader"]}
                     </div>
 
-                    <div className='space-y-3 sm:space-y-4 text-[clamp(13px,2.3dvh,18px)] sm:text-lg leading-snug sm:leading-relaxed'>
+                    <div className='space-y-3 sm:space-y-4 text-[clamp(13px,2.3svh,18px)] sm:text-lg leading-snug sm:leading-relaxed'>
                       {biography["text"].map((text, idx) => (
                       <p key={idx}>
                         {text}
@@ -106,7 +106,7 @@ export default function Index() {
        
 
         {/* stuff i do */}
-        <section id="stuff" className="snap-start snap-always h-dvh w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-4 sm:px-10 pb-16 sm:pb-0 relative">
+        <section id="stuff" className="snap-start snap-always h-lvh w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-4 sm:px-10 pb-16 sm:pb-0 relative">
           {/* <h2 className="text-4xl text-white">stuff i do?</h2> */}
           <StuffDone />
           <PulsatingArrow />
@@ -115,7 +115,7 @@ export default function Index() {
 
 
          {/* more */}
-        <section id="extras" className="snap-start snap-always h-dvh w-full flex flex-col items-center justify-center bg-black relative">
+        <section id="extras" className="snap-start snap-always h-lvh w-full flex flex-col items-center justify-center bg-black relative">
           <h2 className="text-2xl sm:text-4xl text-white mb-4 text-center px-4">don't worry, your experience isn't over...</h2>
           <h3 className="text-lg sm:text-xl text-white mb-4 text-center px-4">try these other portfolio versions out</h3>
 
@@ -139,7 +139,7 @@ export default function Index() {
        
 
          {/* contact */}
-        <section id="contact" className="snap-start snap-always h-dvh w-full flex items-center justify-center bg-black relative">
+        <section id="contact" className="snap-start snap-always h-lvh w-full flex items-center justify-center bg-black relative">
           <div className="absolute left-0 top-0 w-full h-full pointer-events-none select-none">
             <img src="/images/logo.svg" alt="contact art" className="absolute right-0 bottom-0 w-[40vw] max-w-[400px] z-10" />
           </div>
