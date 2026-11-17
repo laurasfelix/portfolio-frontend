@@ -1,122 +1,106 @@
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from 'next/router';
-import Image from 'next/image';
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import Link from "next/link";
+import { IM_Fell_English } from "next/font/google";
 import Body from "@/components/furby/Body";
 import InputBox from "@/components/furby/InputBox";
 import { stopSpeaking as stopVoice } from "@/lib/furbotronClient";
 
+const fell = IM_Fell_English({ weight: "400", style: ["normal", "italic"], subsets: ["latin"] });
+
 export default function Furby() {
-    const router = useRouter();
     const [inputInteract, setInputInteract] = useState(false);
     const [isTalking, setIsTalking] = useState(false);
     const [isThinking, setIsThinking] = useState(false);
-    const [progress, setProgress] = useState(0); // For progress bar
-    const [showProgress, setShowProgress] = useState(false);
     const [demonEyes, setDemonEyes] = useState(false);
-    const progressInterval = useRef<NodeJS.Timeout | null>(null);
-    const THINKING_TIME = 4000; // ms, adjust as needed
+    const [caption, setCaption] = useState("");
 
-    // Progress bar logic
-    const startProgress = () => {
-        setShowProgress(true);
-        setProgress(0);
-        let elapsed = 0;
-        const interval = 50;
-        progressInterval.current = setInterval(() => {
-            elapsed += interval;
-            setProgress(Math.min(100, (elapsed / THINKING_TIME) * 100));
-            if (elapsed >= THINKING_TIME) {
-                clearInterval(progressInterval.current!);
-                setShowProgress(false);
-            }
-        }, interval);
-    };
-    const stopProgress = () => {
-        setShowProgress(false);
-        setProgress(0);
-        if (progressInterval.current) clearInterval(progressInterval.current);
-    };
-
-    // Stop button logic
-    const stopSpeaking = () => {
+    const silenceHim = () => {
         stopVoice();
         setIsTalking(false);
+        setCaption("you should not have done that.");
         setDemonEyes(true);
-        setTimeout(() => setDemonEyes(false), 2000); // Demon eyes for 2 seconds
+        setTimeout(() => setDemonEyes(false), 2000);
     };
 
-    // Stop talking if the visitor leaves the page mid-sentence
+    // Stop talking if the visitor leaves mid-sentence
     useEffect(() => () => stopVoice(), []);
 
-    // Pass progress logic to InputBox
     return (
-        <div className="relative w-full h-full">
-            <button
-                className="fixed top-6 left-6 z-50 bg-black/80 text-white border-2 border-white rounded-xl px-4 py-2 font-mono hover:bg-white hover:text-black transition"
-                onClick={() => router.push('/')}
-            >
-                ← back
-            </button>
+        <div className={`${fell.className} relative min-h-dvh w-full overflow-hidden bg-black text-[#d9c9b0]`}>
+            <Head>
+                <title>furbotron 3000</title>
+            </Head>
 
-            <div className="w-full min-h-dvh flex flex-col md:flex-row p-4 pt-20 md:p-5 bg-black">
-                {/* Left column: User Guide */}
-                <div className="order-last md:order-none flex-1 flex flex-col items-center md:items-end justify-center mt-8 md:mt-0 md:pr-6">
-                    <div className="backdrop-blur-md bg-black/40 border border-white/20 rounded-2xl px-6 py-6 text-white text-left max-w-xs shadow-2xl animate-fade-in">
-                        <div className="flex items-center mb-2">
-                            <Image src="/images/furbotron.svg" alt="Furbotron icon" width={32} height={32} className="mr-2" />
-                            <span className="font-extrabold text-lg text-white/80">Furbotron 3000 Guide</span>
-                        </div>
-                        <ol className="list-decimal list-inside text-base space-y-1">
-                            <li>type your question about Laura.</li>
-                            <li>wait for the animation while Furbotron thinks.</li>
-                            <li>press <span className="font-bold text-red-400">Stop</span> to interrupt him at any time, at your own risk.</li>
-                        </ol>
-                        <div className="italic text-white/60 mt-2 text-sm">He is brief, robotic, and a little scary!</div>
-                    </div>
+            {/* candlelight behind him, breathing */}
+            <div
+                aria-hidden
+                className={`pointer-events-none absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vw] md:w-[70vw] md:h-[70vw] rounded-full furby-glow ${
+                    isTalking || demonEyes ? "furby-glow-hot" : ""
+                }`}
+            />
+            {/* vignette + grain */}
+            <div aria-hidden className="pointer-events-none absolute inset-0 furby-vignette" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 furby-grain" />
+
+            <Link
+                href="/"
+                className="fixed top-5 left-5 z-50 italic text-lg text-[#d9c9b0]/60 hover:text-[#d9c9b0] transition-colors"
+            >
+                ← leave
+            </Link>
+
+            <main className="relative z-10 flex min-h-dvh flex-col items-center px-5 pt-16 pb-10 md:pt-10">
+                <header className="text-center mb-2 md:mb-4">
+                    <h1 className="furby-flicker text-3xl md:text-5xl tracking-[0.35em] text-[#b3121b] uppercase">
+                        Furbotron
+                    </h1>
+                    <p className="italic text-base md:text-lg text-[#d9c9b0]/50 mt-1">
+                        built by laura. he remembers everything about her.
+                    </p>
+                </header>
+
+                <Body
+                    isTalking={isTalking}
+                    isThinking={isThinking}
+                    interact={inputInteract}
+                    demonEyes={demonEyes}
+                />
+
+                {/* what he says, like subtitles in an old film */}
+                <div className="min-h-[4.5rem] max-w-xl text-center mt-2 px-2" aria-live="polite">
+                    {isThinking ? (
+                        <p className="italic text-lg text-[#d9c9b0]/60 furby-flicker">he is remembering…</p>
+                    ) : caption ? (
+                        <p className="text-lg md:text-xl leading-snug text-[#e8d8bd]">“{caption}”</p>
+                    ) : null}
                 </div>
-                {/* Main column: Furby and Input */}
-                <div className="flex-3 flex flex-col items-center justify-center">
-                    <Body 
-                        isTalking={isTalking} 
-                        isThinking={isThinking} 
-                        interact={inputInteract}
-                        demonEyes={demonEyes}
+
+                {isTalking && (
+                    <button
+                        onClick={silenceHim}
+                        className="mt-1 italic text-[#b3121b] tracking-widest uppercase text-sm hover:text-red-500 transition-colors"
+                    >
+                        silence him
+                    </button>
+                )}
+
+                <div className="w-full max-w-xl mt-4">
+                    <InputBox
+                        setIsTalking={setIsTalking}
+                        isThinking={isThinking}
+                        setIsThinking={setIsThinking}
+                        setInteract={setInputInteract}
+                        onReply={setCaption}
                     />
-                    {/* Stop Button */}
-                    {isTalking && (
-                        <div className="w-full flex justify-center mt-2">
-                            <button
-                                className="bg-gradient-to-r from-red-500 to-pink-600 text-white px-6 py-2 rounded-full font-bold shadow-lg hover:scale-105 hover:from-red-700 hover:to-pink-800 transition-all duration-200 border-2 border-white"
-                                onClick={stopSpeaking}
-                            >
-                                <span className="mr-2">🛑</span> Stop
-                            </button>
-                        </div>
-                    )}
-                    {/* Progress Bar */}
-                    {showProgress && (
-                        <div className="w-48 h-2 bg-gray-200 rounded-full mt-4">
-                            <div 
-                                className="h-full bg-blue-500 rounded-full transition-all duration-50" 
-                                style={{ width: `${progress}%` }}
-                            />
-                        </div>
-                    )}
-                    {/* Input box */}
-                    <div className="w-full mt-6 flex items-center justify-center">
-                        <InputBox 
-                            setIsTalking={setIsTalking} 
-                            isThinking={isThinking} 
-                            setIsThinking={setIsThinking} 
-                            setInteract={setInputInteract} 
-                            startProgress={startProgress}
-                            stopProgress={stopProgress}
-                        />
-                    </div>
                 </div>
-                {/* Right column */}
-                <div className="hidden md:block flex-1" />
-            </div>
+
+                <ol className="mt-8 space-y-1 text-center text-sm md:text-base italic text-[#d9c9b0]/40">
+                    <li>i. ask him about her.</li>
+                    <li>ii. wait while he remembers.</li>
+                    <li>iii. do not interrupt him.</li>
+                </ol>
+            </main>
         </div>
     );
 }
