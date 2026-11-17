@@ -68,7 +68,6 @@ const PS3Console = ({ skipBootIfSeen = true, playStartup = true }: PS3ConsolePro
                 disablePictureInPicture
                 controls={false}
                 aria-hidden="true"
-                poster="/images/ps3.png"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
                 onError={() => setVideoError(true)}
             />
