@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/playstation/Icon";
 import Items from "@/components/playstation/Items";
+import { installSoundUnlock, playHover, stopHover } from "@/lib/uiSound";
 
 const Menu = () => {
     const listInfo = [
@@ -15,26 +16,24 @@ const Menu = () => {
     const [chosenIcon, setChosenIcon] = useState([0, 0, 0, 0, 0]);
 
     // One shared hover sound for the whole menu, played once per selection change.
-    const hoverSound = useRef<HTMLAudioElement | null>(null);
     const isFirstRender = useRef(true);
     const selectionKey = `${chosen}-${chosenIcon[chosen]}`;
+
+    useEffect(() => {
+        const cleanup = installSoundUnlock();
+        return () => {
+            cleanup();
+            stopHover();
+        };
+    }, []);
 
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
             return;
         }
-        if (!hoverSound.current) {
-            hoverSound.current = new Audio("/sounds/hover.mp3");
-        }
-        const sound = hoverSound.current;
-        sound.currentTime = 0;
-        sound.play().catch(() => {
-            /* browsers may block audio until the first tap; ignore */
-        });
+        playHover();
     }, [selectionKey]);
-
-    useEffect(() => () => hoverSound.current?.pause(), []);
     
     return (
         <div className="flex flex-1 flex-row w-full px-[5%] pt-32 md:pt-2 pb-2 relative overflow-x-auto md:overflow-visible snap-x snap-mandatory hide-scrollbar">

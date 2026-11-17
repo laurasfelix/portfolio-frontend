@@ -14,22 +14,36 @@ const itemInfo: ItemInfoProp = [
   
     [{
         "title":"introduction",
-        "text":[["aaa"]],
+        "text":[[`hi! i'm laura, and i like to build cool stuff.`,
+            `i'm a brazilian software engineer living in brooklyn, ny. despite my silly approach to showing off my work, i'm a disciplined and passionate person, who wants to create technology that makes change - or at least that makes people say "woah that's cool".`]],
         "icon": "/images/user_icon.svg",
     },
     {
         "title":"education",
-        "text":[["aaa"]],
+        "company":"northwestern university",
+        "text":[[`i studied computer science and slavic at northwestern university, and graduated in 2026.`,
+            `i minored in russian literature because i just love reading so much (and sounding kind of pretentious).`,
+            `at northwestern, i ran women in computing, worked as a research assistant at the mu collective, and coded on the side whenever a random idea tickled my fancy.`]],
         "icon": "/images/education.svg",
     },
     {
         "title":"skills",
-        "text":[["aaa"]],
+        "text":[[`android at duolingo, where i work full-time in the delight team.`,
+            `web: react, next.js, typescript, tailwind, and react native / expo (this portfolio started as an expo app before i switched to next.js).`,
+            `backend & data: python, dynamodb, sql, and ocaml from jane street's in focus program.`,
+            `llms: whisper and gpt for timestamping and translating songs at duolingo, a full-stack llm project at the mu collective, and furbotron 3000 himself.`,
+            `design: figma, where i sketched this site before coding it.`]],
         "icon": "/images/idea.svg",
     },
    ],
   
     [{
+        "title":"software engineer",
+        "company": "duolingo",
+        "text":[[`since july 2026, i've been a full-time software engineer at duolingo, working on android in the delight team.`]],
+        "icon": "/images/duolingo 1.svg",
+    },
+    {
         "title":"swe intern",
         "company": "duolingo",
         "pictures":["/images/fun.png","/images/songs.png","/images/transcribe.png","/images/pres.png"],
@@ -244,7 +258,7 @@ Até la -> there
     },
     {
         "title":"reading",
-        "text":[["I read my first book kind of late in life compared to my peers. I was 8 or something, and Diary of a Wimpy Kid was so easy and fun to read it woke something within me. Ever since then, I've read hundreds of books, and I'm now minoring in Russian Literature because I just love reading so much (and sounding kind of pretentious).",
+        "text":[["I read my first book kind of late in life compared to my peers. I was 8 or something, and Diary of a Wimpy Kid was so easy and fun to read it woke something within me. Ever since then, I've read hundreds of books, and I minored in Russian Literature because I just love reading so much (and sounding kind of pretentious).",
             "I'm also a book hoarder and I will buy books and read them ten years later, and it's a fault of mine. Right now I'm reading The Idiot for my class, and I have Childhood, Boyhood, and Youth on my standby (love it so, so much I wish I could tattoo this book).",
             "All time favorites are Anna Karenina, Crime and Punishment, Anguish by Graciliano Ramos, The Death of Ivan Ilich, and anything by Carl Sagan.",
         ]],
@@ -260,8 +274,8 @@ Até la -> there
     }],
  
     [{
-        "title":"email",
-        "text":[[""]],
+        "title":"contact",
+        "text":[["github: laurasfelix", "linkedin: laurasfelix28", "email: laurafelix2026@u.northwestern.edu", "discord: laurasfelix"]],
         "icon": "/images/email.svg",
     }],
 
