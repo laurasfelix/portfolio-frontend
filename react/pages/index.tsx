@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { biography } from "@/utils/biography";
 
 const PulsatingArrow = ({ color = '#fff' }: { color?: string }) => (
-  <div className="absolute bottom-6 right-8 z-30 animate-bounce">
+  <div className="hidden sm:block absolute bottom-6 right-8 z-30 animate-bounce">
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 5v14M19 12l-7 7-7-7" fill="none"/>
     </svg>
@@ -18,7 +18,7 @@ const PulsatingArrow = ({ color = '#fff' }: { color?: string }) => (
 );
 
 const ConsoleNav = () => (
-  <nav className="fixed text-xl left-1/2 -translate-x-1/2 bottom-6 z-40 flex flex-row gap-2 bg-black/80 rounded-xl p-3 shadow-lg border-2 border-white">
+  <nav className="fixed text-base sm:text-xl left-1/2 -translate-x-1/2 bottom-4 sm:bottom-6 z-40 flex flex-row gap-3 sm:gap-2 bg-black/80 rounded-xl px-4 py-2 sm:p-3 shadow-lg border-2 border-white max-w-[calc(100vw-1rem)]">
     <a href="#start" className="text-white hover:underline font-mono">hi</a>
     <a href="#about" className="text-white hover:underline font-mono">about</a>
     <a href="#stuff" className="text-white hover:underline font-mono">stuff</a>
@@ -44,41 +44,40 @@ export default function Index() {
   };
   
   return (
-    <div className="bg-black w-full min-h-screen">
+    <div className="bg-black w-full min-h-dvh">
       {/* snap scrolling*/}
-      <div className="snap-y snap-mandatory h-screen overflow-y-auto">
+      <div className="snap-y snap-mandatory h-dvh overflow-y-auto">
         
         {/* home */}
-        <section id="start" className="snap-start h-screen w-full flex flex-col items-center justify-center gap-6 relative">
+        <section id="start" className="snap-start h-dvh w-full flex flex-col items-center justify-center gap-6 relative">
           <div className='flex items-center'>
             <Lauraa length={30}/>
           </div>
           
           <div className="flex flex-col justify-start items-center">
-            <h2 className="text-2xl"> 
+            <h2 className="text-xl sm:text-2xl text-center px-4"> 
               <span className='inline-block transition-all duration-300 hover:scale-105 hover:rotate-5 hover:font-bold'>developer</span>, <span className='inline-block transition-all duration-300 hover:scale-105 hover:-rotate-5 hover:font-bold'>gamer</span>, <span className='inline-block transition-all duration-300 hover:scale-105 hover:rotate-5 hover:font-bold'>reader</span>, <span className='inline-block transition-all duration-300 hover:scale-105 hover:-rotate-5 hover:font-bold'>lego-er</span>
             </h2>
           
           </div>
           <PulsatingArrow />
-          <ConsoleNav />
         </section>
         
         {/* about */}
-        <section id="about" className="snap-start h-screen w-full flex items-center justify-center md:flex-row flex-col relative">
+        <section id="about" className="snap-start h-dvh w-full flex items-center justify-center md:flex-row flex-col relative">
           {<div className='hidden md:flex bg-black flex-1 h-full w-full justify-center items-center'>
               <Lauraa length={30}/>
           </div>}
-          <div className='bg-white flex-1 h-full w-full p-8 overflow-scroll hide-scrollbar'> 
-            <div className='text-black text-left p-8 flex flex-col gap-6 max-w-4xl mx-auto'>
-                    <div className='text-4xl font-bold mb-4'>
+          <div className='bg-white flex-1 h-full w-full p-2 sm:p-8 overflow-y-auto hide-scrollbar'> 
+            <div className='text-black text-left p-4 sm:p-8 pb-24 flex flex-col gap-4 sm:gap-6 max-w-4xl mx-auto'>
+                    <div className='text-3xl sm:text-4xl font-bold mb-2 sm:mb-4'>
                       {biography["title"]}
                     </div>
                     <div className='text-xl text-gray-700 mb-6'>
                       {biography["subheader"]}
                     </div>
 
-                    <div className='space-y-4 text-lg leading-relaxed'>
+                    <div className='space-y-4 text-base sm:text-lg leading-relaxed'>
                       {biography["text"].map((text, idx) => (
                       <p key={idx}>
                         {text}
@@ -92,29 +91,28 @@ export default function Index() {
        
 
         {/* stuff i do */}
-        <section id="stuff" className="snap-start h-screen w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-10 relative">
+        <section id="stuff" className="snap-start h-dvh w-full flex flex-col items-center hide-scrollbar justify-center bg-black overflow-hidden px-4 sm:px-10 pb-16 sm:pb-0 relative">
           {/* <h2 className="text-4xl text-white">stuff i do?</h2> */}
           <StuffDone />
           <PulsatingArrow />
-          <ConsoleNav />
         </section>
        
 
 
          {/* more */}
-        <section id="extras" className="snap-start h-screen w-full flex flex-col items-center justify-center bg-black relative">
-          <h2 className="text-4xl text-white mb-4">don't worry, your experience isn't over...</h2>
-          <h3 className="text- to xl text-white mb-4">try these other portfolio versions out</h3>
+        <section id="extras" className="snap-start h-dvh w-full flex flex-col items-center justify-center bg-black relative">
+          <h2 className="text-2xl sm:text-4xl text-white mb-4 text-center px-4">don't worry, your experience isn't over...</h2>
+          <h3 className="text-lg sm:text-xl text-white mb-4 text-center px-4">try these other portfolio versions out</h3>
 
-          <div className='flex flex col justify-center items-center gap-12'>
+          <div className='flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-12 px-4'>
             
-            <div className='text-center text-2xl group'>
-              <Link href="/playstation"> <img src="/images/ps3.svg" className='w-full h-auto'/> </Link>
+            <div className='text-center text-lg sm:text-2xl group w-48 sm:w-64'>
+              <Link href="/playstation"> <img src="/images/ps3.svg" alt="PS3 XMB version" className='w-full h-auto'/> </Link>
               <p className='group-hover:italic'> ps3 xmb version (WORK IN PROGRESS BEWARE)</p>
             </div>
 
-            <div className='text-center text-2xl group'>
-              <Link href="/furby"> <img src="/images/furbotron.svg" className='w-full h-auto'/></Link>
+            <div className='text-center text-lg sm:text-2xl group w-48 sm:w-64'>
+              <Link href="/furby"> <img src="/images/furbotron.svg" alt="Furbotron 3000 version" className='w-full h-auto'/></Link>
               <p className='group-hover:italic'> furbotron 3000 version </p>
             </div>
              
@@ -122,24 +120,23 @@ export default function Index() {
 
           </div>
           <PulsatingArrow />
-          <ConsoleNav />
         </section>
        
 
          {/* contact */}
-        <section id="contact" className="snap-start h-screen w-full flex items-center justify-center bg-black relative">
+        <section id="contact" className="snap-start h-dvh w-full flex items-center justify-center bg-black relative">
           <div className="absolute left-0 top-0 w-full h-full pointer-events-none select-none">
             <img src="/images/logo.svg" alt="contact art" className="absolute right-0 bottom-0 w-[40vw] max-w-[400px] z-10" />
           </div>
-          <div className="flex flex-col items-start justify-center h-full w-full max-w-4xl px-8 z-20">
-            <div className="mb-12">
-              <div className="text-white text-5xl font-mono mb-4" style={{textShadow: '2px 2px 0 #fff, 4px 4px 0 #000'}}>
-                <span className="inline-block border-4 border-white rounded-3xl px-8 py-4 bg-black/80" style={{fontFamily: 'monospace'}}>
+          <div className="flex flex-col items-center sm:items-start justify-center h-full w-full max-w-4xl px-4 sm:px-8 pb-16 sm:pb-0 z-20">
+            <div className="mb-8 sm:mb-12">
+              <div className="text-white text-3xl sm:text-5xl font-mono mb-4" style={{textShadow: '2px 2px 0 #fff, 4px 4px 0 #000'}}>
+                <span className="inline-block border-4 border-white rounded-3xl px-5 py-3 sm:px-8 sm:py-4 bg-black/80" style={{fontFamily: 'monospace'}}>
                   contact me hehe
                 </span>
               </div>
             </div>
-            <div className="flex flex-row gap-8 items-end mb-8 ml-4">
+            <div className="flex flex-row flex-wrap justify-center sm:justify-start gap-x-6 gap-y-4 sm:gap-8 items-end mb-8 sm:ml-4">
               {[
                 {
                   label: 'github',
@@ -185,11 +182,11 @@ export default function Index() {
               ))}
             </div>
           </div>
-          <ConsoleNav />
         </section>
        
 
       </div>
+      <ConsoleNav />
     </div>
   );
 }

@@ -39,7 +39,10 @@ const Body = ({ isThinking, isTalking, interact, demonEyes = false }: BodyProps)
         }
     }, []);
     
-    const imageSize = dimensions.width < 800 ? dimensions.width * 0.9 : dimensions.width * 0.35;
+    // Phones: fit the width but leave room for the input box below.
+    const imageSize = dimensions.width < 768
+        ? Math.min(dimensions.width * 0.85, dimensions.height * 0.5)
+        : dimensions.width * 0.35;
     const smallSize = imageSize * 0.15;
     
     // State for different parts of furby

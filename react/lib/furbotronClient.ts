@@ -19,6 +19,15 @@ function pickVoice(): SpeechSynthesisVoice | undefined {
     return preferred.map((name) => voices.find((v) => v.name.includes(name))).find(Boolean) ?? voices[0];
 }
 
+// iOS Safari only allows speech that starts inside a tap/keypress. The answer
+// arrives after a network wait, so "unlock" speech synchronously on submit.
+export function primeSpeech() {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    const u = new SpeechSynthesisUtterance(" ");
+    u.volume = 0;
+    window.speechSynthesis.speak(u);
+}
+
 export function speak(text: string, onStart: () => void, onEnd: () => void) {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
         onEnd();

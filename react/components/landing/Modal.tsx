@@ -36,16 +36,16 @@ const Modal: React.FC<ModalProps> = ({
     if (!isOpen) return null;
 
     return (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-[5%]'>
-            <div className='w-[100%] h-[100%] rounded-[3vw] flex flex-col justify-between overflow-hidden'
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 md:p-[5%]'>
+            <div className='w-[100%] h-[100%] rounded-2xl md:rounded-[3vw] flex flex-col justify-between overflow-hidden'
                  style={{backgroundColor: colors[color].base}}>
 
-                <div className='mt-[2%] ml-[5%] flex-row gap-4 flex'>
-                    <span onClick={onClose} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> X </span>
-                    {chosen != -1 && <span onClick={onBack} className='text-xl cursor-pointer hover:font-extrabold flex text-center'> ← back </span>}
+                <div className='mt-2 md:mt-[2%] ml-3 md:ml-[5%] flex-row gap-4 flex'>
+                    <button onClick={onClose} aria-label='close' className='text-xl cursor-pointer hover:font-extrabold flex text-center p-2'> X </button>
+                    {chosen != -1 && <button onClick={onBack} className='text-xl cursor-pointer hover:font-extrabold flex text-center p-2'> ← back </button>}
                 </div>
                 
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-[3%] items-start justify-center h-full p-[1%] overflow-hidden'>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-[3%] items-start justify-center h-full p-2 md:p-[1%] overflow-y-auto md:overflow-hidden'>
 
                     {chosen === -1 && (
                         <div className='hidden md:block'>
@@ -65,7 +65,7 @@ const Modal: React.FC<ModalProps> = ({
                             <div className='text-center text-xl rounded-xl p-[2%] mb-[3%]' 
                                  style={{backgroundColor: colors[color].light}}>
                                 <input
-                                    className="peer block w-full rounded-md py-[9px] pl-10 text-sm placeholder:text-gray-500 focus:outline-0"
+                                    className="peer block w-full rounded-md py-[9px] px-3 md:pl-10 text-base md:text-sm placeholder:text-gray-500 focus:outline-0"
                                     style={{color: colors[color].text}}
                                     placeholder={"search by any key terms..."}
                                     onChange={(e) => onSearch(e.target.value)}
@@ -74,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({
                         )}
 
                         {chosen === -1 ? (
-                            <div className='text-center overflow-y-auto w-full h-[60vh] md:h-[55vh] hide-scrollbar'>
+                            <div className='text-center overflow-y-auto w-full h-[65dvh] md:h-[55vh] hide-scrollbar'>
                                 {colors[color].info && (filtered.length > 0 ? filtered : colors[color].info).map((item: itemProp, idx: number) => (
                                     <div key={idx} className="mb-[3%] cursor-pointer"
                                          onClick={() => onItemSelect(filtered.length > 0 ? colors[color].info.findIndex((i: itemProp) => i.title === item.title) : idx)}>
@@ -94,15 +94,15 @@ const Modal: React.FC<ModalProps> = ({
                                 <div className='md:col-span-3 p-4 rounded-xl' style={{backgroundColor: colors[color].dark}}>
                                     {colors[color].info && (
                                         <div className='w-full flex flex-col md:flex-row'>
-                                            <div className='md:w-1/4 p-4 flex flex-col items-center justify-center'>
+                                            <div className='md:w-1/4 p-2 md:p-4 flex flex-col items-center justify-center text-center'>
                                                 <h2 className='text-white text-2xl font-bold mb-2'>{colors[color].info[chosen].title}</h2>
-                                                <p className='text-white/80 text-2xl mb-2'>{colors[color].info[chosen].company}</p>
+                                                <p className='text-white/80 text-xl md:text-2xl mb-2'>{colors[color].info[chosen].company}</p>
                                                 {colors[color].info[chosen].icon && (
                                                     <img src={colors[color].info[chosen].icon} alt="Company logo" className='w-16 h-16 rounded-md mb-4' />
                                                 )}
                                             </div>
-                                            <div className='md:w-3/4 p-4'>
-                                                <div className='bg-opacity-80 rounded-xl p-4 overflow-y-auto max-h-[50vh] hide-scrollbar' style={{backgroundColor: colors[color].base}}>
+                                            <div className='md:w-3/4 p-0 md:p-4'>
+                                                <div className='bg-opacity-80 rounded-xl p-4 md:overflow-y-auto md:max-h-[50vh] hide-scrollbar' style={{backgroundColor: colors[color].base}}>
                                                     {colors[color].info[chosen].text.map((paragraph: string[], idx: number) => (
                                                         paragraph.map((lines: string, i: number) => (
                                                             <React.Fragment key={`${idx}-${i}`}>
@@ -110,7 +110,7 @@ const Modal: React.FC<ModalProps> = ({
                                                                     <div className='text-white font-bold mb-1'>
                                                                         situation: 
                                                                         {colors[color].info[chosen].pictures && colors[color].info[chosen].pictures[0] && (
-                                                                            <img src={colors[color].info[chosen].pictures[0]} className="my-2 rounded-md max-w-[50%] translate-x-[50%]" />
+                                                                            <img src={colors[color].info[chosen].pictures[0]} className="my-2 rounded-md w-full md:max-w-[50%] mx-auto block" />
                                                                         )}
                                                                     </div>
                                                                 )}
@@ -118,7 +118,7 @@ const Modal: React.FC<ModalProps> = ({
                                                                     <div className='text-white font-bold mb-1'>
                                                                         goal:
                                                                         {colors[color].info[chosen].pictures && colors[color].info[chosen].pictures[1] && (
-                                                                            <img src={colors[color].info[chosen].pictures[1]} className="my-2 rounded-md max-w-[50%] translate-x-[50%]" />
+                                                                            <img src={colors[color].info[chosen].pictures[1]} className="my-2 rounded-md w-full md:max-w-[50%] mx-auto block" />
                                                                         )}
                                                                     </div>
                                                                 )}
@@ -126,7 +126,7 @@ const Modal: React.FC<ModalProps> = ({
                                                                     <div className='text-white font-bold mb-1'>
                                                                         challenge:
                                                                         {colors[color].info[chosen].pictures && colors[color].info[chosen].pictures[2] && (
-                                                                            <img src={colors[color].info[chosen].pictures[2]} className="my-2 rounded-md max-w-[50%] translate-x-[50%]" />
+                                                                            <img src={colors[color].info[chosen].pictures[2]} className="my-2 rounded-md w-full md:max-w-[50%] mx-auto block" />
                                                                         )}
                                                                     </div>
                                                                 )}
@@ -134,7 +134,7 @@ const Modal: React.FC<ModalProps> = ({
                                                                     <div className='text-white font-bold mb-1'>
                                                                         solution:
                                                                         {colors[color].info[chosen].pictures && colors[color].info[chosen].pictures[3] && (
-                                                                            <img src={colors[color].info[chosen].pictures[3]} className="my-2 rounded-md max-w-[50%] translate-x-[50%]" />
+                                                                            <img src={colors[color].info[chosen].pictures[3]} className="my-2 rounded-md w-full md:max-w-[50%] mx-auto block" />
                                                                         )}
                                                                     </div>
                                                                 )}

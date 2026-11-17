@@ -58,9 +58,9 @@ export default function Furby() {
                 ← back
             </button>
 
-            <div className="w-full h-screen flex flex-row p-5 bg-black">
+            <div className="w-full min-h-dvh flex flex-col md:flex-row p-4 pt-20 md:p-5 bg-black">
                 {/* Left column: User Guide */}
-                <div className="flex-1 flex flex-col items-end justify-center pr-6">
+                <div className="order-last md:order-none flex-1 flex flex-col items-center md:items-end justify-center mt-8 md:mt-0 md:pr-6">
                     <div className="backdrop-blur-md bg-black/40 border border-white/20 rounded-2xl px-6 py-6 text-white text-left max-w-xs shadow-2xl animate-fade-in">
                         <div className="flex items-center mb-2">
                             <Image src="/images/furbotron.svg" alt="Furbotron icon" width={32} height={32} className="mr-2" />
@@ -75,7 +75,7 @@ export default function Furby() {
                     </div>
                 </div>
                 {/* Main column: Furby and Input */}
-                <div className="flex-3 flex flex-col items-center">
+                <div className="flex-3 flex flex-col items-center justify-center">
                     <Body 
                         isTalking={isTalking} 
                         isThinking={isThinking} 
@@ -115,7 +115,7 @@ export default function Furby() {
                     </div>
                 </div>
                 {/* Right column */}
-                <div className="flex-1" />
+                <div className="hidden md:block flex-1" />
             </div>
         </div>
     );
