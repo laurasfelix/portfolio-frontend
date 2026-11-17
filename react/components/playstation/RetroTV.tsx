@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import PS3Console from "@/components/playstation/PS3Console";
 import { unlockSoundsNow } from "@/lib/uiSound";
 
-// The PS3 renders at a real "desktop" size and is scaled down to fit the CRT,
-// so phones see the full XMB instead of a squeezed mobile layout.
-const STAGE_W = 960;
-const STAGE_H = 540;
+// The PS3 renders at 640x480 (the tube's own 4:3 shape, like a real SD TV) and
+// is scaled to fit, so phones see the full XMB at a readable size.
+const STAGE_W = 640;
+const STAGE_H = 480;
 
 /** TV static: random grey pixels redrawn every frame at low resolution. */
 const Static = () => {
@@ -89,7 +89,7 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
     };
 
     return (
-        <div className="relative min-h-dvh w-full overflow-hidden flex flex-col items-center justify-center px-3 py-16 tv-room">
+        <div className="relative min-h-dvh w-full overflow-hidden flex flex-col items-center justify-center px-2 py-14 tv-room">
             <button
                 onClick={onBack}
                 className="fixed top-5 left-5 z-50 bg-black/70 text-white border-2 border-white rounded-xl px-4 py-2"
@@ -97,26 +97,26 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
                 ← back
             </button>
 
-            <div className="relative w-full max-w-[480px]">
+            <div className="relative w-full max-w-[560px]">
                 {/* rabbit-ear antenna */}
-                <div aria-hidden className="relative h-20 flex justify-center">
-                    <div className="absolute bottom-3 left-1/2 w-[2px] h-24 bg-gradient-to-t from-[#8a8a8a] to-[#e5e5e5] origin-bottom -rotate-[32deg]" />
-                    <div className="absolute bottom-3 left-1/2 w-[2px] h-28 bg-gradient-to-t from-[#8a8a8a] to-[#e5e5e5] origin-bottom rotate-[26deg]" />
+                <div aria-hidden className="relative h-14 flex justify-center">
+                    <div className="absolute bottom-3 left-1/2 w-[2px] h-20 bg-gradient-to-t from-[#8a8a8a] to-[#e5e5e5] origin-bottom -rotate-[32deg]" />
+                    <div className="absolute bottom-3 left-1/2 w-[2px] h-24 bg-gradient-to-t from-[#8a8a8a] to-[#e5e5e5] origin-bottom rotate-[26deg]" />
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-6 rounded-t-full bg-[#2c2a27] shadow-md" />
                 </div>
 
                 {/* cabinet */}
                 <div
-                    className="relative rounded-[28px] p-4 pb-3 shadow-[0_25px_50px_rgba(0,0,0,0.6),inset_0_2px_0_rgba(255,255,255,0.5),inset_0_-6px_10px_rgba(0,0,0,0.25)]"
+                    className="relative rounded-[22px] p-2 pb-2 shadow-[0_25px_50px_rgba(0,0,0,0.6),inset_0_2px_0_rgba(255,255,255,0.5),inset_0_-6px_10px_rgba(0,0,0,0.25)]"
                     style={{ background: "linear-gradient(180deg, #d9d2c3 0%, #c4bcab 55%, #aaa291 100%)" }}
                 >
                     {/* bezel */}
-                    <div className="rounded-[22px] p-3 bg-[#1d1c1a] shadow-[inset_0_3px_8px_rgba(0,0,0,0.8)]">
+                    <div className="rounded-[18px] p-1.5 bg-[#1d1c1a] shadow-[inset_0_3px_8px_rgba(0,0,0,0.8)]">
                         {/* the tube */}
                         <div
                             ref={screenRef}
                             className="relative w-full aspect-[4/3] overflow-hidden bg-black"
-                            style={{ borderRadius: "14% / 18%" }}
+                            style={{ borderRadius: "6% / 8%" }}
                         >
                             {poweredOn ? (
                                 <div className="absolute inset-0 tv-power-on">
@@ -138,13 +138,13 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
 
                             {/* glass: scanlines, curvature vignette, glare */}
                             <div aria-hidden className="pointer-events-none absolute inset-0 tv-scanlines" />
-                            <div aria-hidden className="pointer-events-none absolute inset-0 shadow-[inset_0_0_40px_14px_rgba(0,0,0,0.85)]" style={{ borderRadius: "14% / 18%" }} />
+                            <div aria-hidden className="pointer-events-none absolute inset-0 shadow-[inset_0_0_18px_4px_rgba(0,0,0,0.7)]" style={{ borderRadius: "6% / 8%" }} />
                             <div aria-hidden className="pointer-events-none absolute inset-0 tv-glare" />
                         </div>
                     </div>
 
                     {/* control panel */}
-                    <div className="mt-3 flex items-center justify-between px-1">
+                    <div className="mt-2 flex items-center justify-between px-2">
                         <div aria-hidden className="w-24 h-10 rounded-md tv-grille" />
                         <span className="text-[10px] font-bold tracking-[0.3em] text-[#5b564d] select-none">LAURAVISION</span>
                         <div className="flex items-end gap-3">
