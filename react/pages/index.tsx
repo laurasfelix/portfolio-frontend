@@ -51,7 +51,7 @@ export default function Index() {
   return (
     <div className="bg-black w-full min-h-dvh">
       {/* snap scrolling*/}
-      <div className="snap-y snap-mandatory h-dvh overflow-y-auto">
+      <div className="md:snap-y md:snap-mandatory md:h-dvh md:overflow-y-auto md:overscroll-contain">
         
         {/* home */}
         <section id="start" className="snap-start h-dvh w-full flex flex-col items-center justify-center gap-6 relative">
