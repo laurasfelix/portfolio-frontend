@@ -25,8 +25,9 @@ const Icon = ({ src, text, chosen, setChosen }: IconProps) => {
             <div className="flex flex-col items-center justify-center w-20 h-20 relative">
                 <button 
                     className="flex flex-col items-center focus:outline-none transition-opacity duration-150"
-                    onClick={() => setChosen(src)} 
-                    onMouseEnter={() => setChosen(src)}
+                    onClick={() => setChosen(src)}
+                    aria-label={text}
+                    aria-pressed={chosen === src}
                 >
                     <img 
                         src={imageMapping[src]} 

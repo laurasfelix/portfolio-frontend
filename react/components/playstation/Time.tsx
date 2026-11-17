@@ -21,7 +21,7 @@ const Time = () => {
     }, []);
 
     return (
-        <div className="absolute z-50 top-[15%] right-0 flex w-1/4 h-[4%] min-h-7 items-center justify-center
+        <div className="absolute z-50 top-[4%] right-[3%] flex w-auto px-4 h-[5%] min-h-7 items-center justify-center
                       bg-[rgba(87,87,87,0.3)] border border-[rgba(249,248,248,0.51)] flex-row gap-2.5">
             <p className="text-white text-xl font-normal text-shadow-[0_2px_2px_rgba(53,53,53,0.81)]">
                 {month}/{day} {hour}:{minutes < 10 ? "0" + minutes : minutes}

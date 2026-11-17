@@ -177,17 +177,6 @@ body {
   to   { background-position: 0 100%; }
 }
 
-.tv-grille {
-  background: repeating-linear-gradient(
-    to bottom,
-    #3a3632 0px,
-    #3a3632 2px,
-    transparent 2px,
-    transparent 5px
-  );
-  opacity: 0.8;
-}
-
 /* classic CRT turn-on: a bright line that opens into the picture */
 .tv-power-on {
   animation: tv-power-on 0.55s ease-out both;

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/playstation/Icon";
-import Items from "@/components/playstation/Items";
+import Items, { MAX_SELECTED_POSITION } from "@/components/playstation/Items";
 import { installSoundUnlock, playHover, stopHover } from "@/lib/uiSound";
 
 const Menu = () => {
@@ -36,7 +36,12 @@ const Menu = () => {
     }, [selectionKey]);
     
     return (
-        <div className="flex flex-1 flex-row w-full px-[5%] py-2 relative">
+        // Like the real XMB: picking a column on the right slides the whole bar left,
+        // leaving room for that column's text to appear on the right.
+        <div
+            className="flex flex-1 flex-row w-full px-[5%] py-2 relative transition-transform duration-300 ease-out"
+            style={{ transform: `translateX(-${Math.max(0, chosen - MAX_SELECTED_POSITION) * 18}cqw)` }}
+        >
             {listInfo.map((info, idx) => (
                 <div key={idx} className="flex flex-1 w-full flex-col items-center min-w-[20%]">
                     {/* Top items section - fixed height */}
