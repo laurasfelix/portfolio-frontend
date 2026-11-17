@@ -40,11 +40,9 @@ const RedEyes = () => (
 );
 
 const ISeeYou = () => (
-    <div className="relative w-full h-full bg-black flex items-center justify-center overflow-hidden">
-        <p className="jumpscare-glitch text-[#ff1a1a] font-black tracking-tighter leading-none text-center" style={{ fontSize: "18cqw" }}>
-            I SEE
-            <br />
-            YOU
+    <div className="w-full h-full bg-black flex items-center justify-center">
+        <p className="text-white/90 font-normal" style={{ fontSize: "7cqw" }}>
+            I see you.
         </p>
     </div>
 );
@@ -73,31 +71,10 @@ export function nextJumpscareIndex(): number {
     return i;
 }
 
-/** A short burst of harsh noise, made on the fly (must be called inside the tap). */
-export function playScareNoise() {
-    try {
-        const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        const ctx = new Ctx();
-        const len = Math.floor(ctx.sampleRate * 0.6);
-        const buffer = ctx.createBuffer(1, len, ctx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len);
-        const src = ctx.createBufferSource();
-        src.buffer = buffer;
-        const gain = ctx.createGain();
-        gain.gain.value = 0.5;
-        src.connect(gain).connect(ctx.destination);
-        src.start();
-        src.onended = () => ctx.close();
-    } catch {
-        /* no Web Audio: silent scare */
-    }
-}
-
 const Jumpscare = ({ index }: { index: number }) => {
     const Frame = JUMPSCARES[index % JUMPSCARES.length];
     return (
-        <div className="@container absolute inset-0 z-40 jumpscare-pop">
+        <div className="@container absolute inset-0 z-40 jumpscare-blip">
             <Frame />
         </div>
     );

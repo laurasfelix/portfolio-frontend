@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import PS3Console from "@/components/playstation/PS3Console";
-import Jumpscare, { nextJumpscareIndex, playScareNoise } from "@/components/playstation/Jumpscare";
+import Jumpscare, { nextJumpscareIndex } from "@/components/playstation/Jumpscare";
 import { unlockSoundsNow } from "@/lib/uiSound";
 import { Caveat } from "next/font/google";
 
@@ -54,7 +54,12 @@ interface RetroTVProps {
 const RetroTV = ({ onBack }: RetroTVProps) => {
     const [poweredOn, setPoweredOn] = useState(false);
     const [scareIndex, setScareIndex] = useState<number | null>(null);
-    const scareTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const scareTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
+    const clearScare = () => {
+        scareTimers.current.forEach(clearTimeout);
+        scareTimers.current = [];
+        setScareIndex(null);
+    };
     const [scale, setScale] = useState(0.5);
     const screenRef = useRef<HTMLDivElement>(null);
     const startupRef = useRef<HTMLAudioElement | null>(null);
@@ -71,7 +76,7 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
     useEffect(
         () => () => {
             startupRef.current?.pause();
-            if (scareTimer.current) clearTimeout(scareTimer.current);
+            scareTimers.current.forEach(clearTimeout);
         },
         []
     );
@@ -79,27 +84,26 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
     const togglePower = () => {
         if (poweredOn) {
             startupRef.current?.pause();
-            if (scareTimer.current) clearTimeout(scareTimer.current);
-            setScareIndex(null);
+            clearScare();
             setPoweredOn(false);
             return;
         }
-        // Everything audio starts inside the tap so iOS allows it.
+        // Sounds start inside the tap so iOS allows them.
         unlockSoundsNow();
-        playScareNoise();
-        // The chime starts muted now and is unmuted once the scare is over.
         const chime = new Audio("/sounds/startup.mp3");
-        chime.muted = true;
         startupRef.current = chime;
         chime.play().catch(() => {});
-
-        setScareIndex(nextJumpscareIndex());
         setPoweredOn(true);
-        scareTimer.current = setTimeout(() => {
-            setScareIndex(null);
-            chime.currentTime = 0;
-            chime.muted = false;
-        }, 750);
+
+        // The scare is a blip, like a bad signal: it flickers in as the tube
+        // warms up, vanishes, and flickers once more. Blink and you miss it.
+        const index = nextJumpscareIndex();
+        const at = (ms: number, fn: () => void) => scareTimers.current.push(setTimeout(fn, ms));
+        clearScare();
+        at(380, () => setScareIndex(index));
+        at(500, () => setScareIndex(null));
+        at(590, () => setScareIndex(index));
+        at(640, () => setScareIndex(null));
     };
 
     return (
@@ -113,7 +117,7 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
 
             <div className="relative w-full max-w-[560px] flex flex-col items-center">
                 {/* cabinet: matte black plastic */}
-                <div className={`relative w-full rounded-[10px] px-[4%] pt-[3.5%] pb-0 tv-cabinet ${scareIndex !== null ? "tv-shake" : ""}`}>
+                <div className="relative w-full rounded-[10px] px-[4%] pt-[3.5%] pb-0 tv-cabinet">
                     <span className="absolute top-[1.2%] left-[4.5%] text-[7px] tracking-wider text-white/35 select-none">
                         flat display
                     </span>
