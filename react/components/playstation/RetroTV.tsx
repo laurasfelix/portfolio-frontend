@@ -35,23 +35,13 @@ const Static = () => {
 
     return (
         <>
-            <canvas ref={canvasRef} width={160} height={120} className="absolute inset-0 w-full h-full" aria-hidden />
+            <canvas ref={canvasRef} width={160} height={120} className="absolute inset-0 w-full h-full opacity-80" aria-hidden />
+            {/* the tube's green-grey tint shows through the noise */}
+            <div aria-hidden className="absolute inset-0 bg-[#2f3b37] mix-blend-color" />
             <div aria-hidden className="absolute inset-0 tv-roll-bar" />
         </>
     );
 };
-
-const Knob = ({ label }: { label: string }) => (
-    <div className="flex flex-col items-center gap-1">
-        <div
-            className="relative w-9 h-9 rounded-full shadow-[inset_0_-3px_4px_rgba(0,0,0,0.45),0_2px_3px_rgba(0,0,0,0.4)]"
-            style={{ background: "radial-gradient(circle at 35% 30%, #6b6660, #2c2a27)" }}
-        >
-            <div className="absolute left-1/2 top-1 -translate-x-1/2 w-[3px] h-3 rounded bg-[#d8d2c4]" />
-        </div>
-        <span className="text-[9px] tracking-widest text-[#4a463f] uppercase">{label}</span>
-    </div>
-);
 
 interface RetroTVProps {
     onBack: () => void;
@@ -59,11 +49,11 @@ interface RetroTVProps {
 
 const RetroTV = ({ onBack }: RetroTVProps) => {
     const [poweredOn, setPoweredOn] = useState(false);
-    const [scale, setScale] = useState(0.35);
+    const [scale, setScale] = useState(0.5);
     const screenRef = useRef<HTMLDivElement>(null);
     const startupRef = useRef<HTMLAudioElement | null>(null);
 
-    // Fit the 960x540 PS3 into the screen width (16:9 inside a 4:3 tube = letterbox, like the real thing)
+    // Fit the 640x480 PS3 into the tube
     useEffect(() => {
         const el = screenRef.current;
         if (!el) return;
@@ -89,7 +79,7 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
     };
 
     return (
-        <div className="relative min-h-dvh w-full overflow-hidden flex flex-col items-center justify-center px-2 py-14 tv-room">
+        <div className="relative min-h-dvh w-full overflow-hidden flex flex-col items-center justify-center px-2 pt-16 pb-10 tv-wallpaper">
             <button
                 onClick={onBack}
                 className="fixed top-5 left-5 z-50 bg-black/70 text-white border-2 border-white rounded-xl px-4 py-2"
@@ -97,26 +87,19 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
                 ← back
             </button>
 
-            <div className="relative w-full max-w-[560px]">
-                {/* rabbit-ear antenna */}
-                <div aria-hidden className="relative h-14 flex justify-center">
-                    <div className="absolute bottom-3 left-1/2 w-[2px] h-20 bg-gradient-to-t from-[#8a8a8a] to-[#e5e5e5] origin-bottom -rotate-[32deg]" />
-                    <div className="absolute bottom-3 left-1/2 w-[2px] h-24 bg-gradient-to-t from-[#8a8a8a] to-[#e5e5e5] origin-bottom rotate-[26deg]" />
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-6 rounded-t-full bg-[#2c2a27] shadow-md" />
-                </div>
+            <div className="relative w-full max-w-[560px] flex flex-col items-center">
+                {/* cabinet: matte black plastic */}
+                <div className="relative w-full rounded-[10px] px-[4%] pt-[3.5%] pb-0 tv-cabinet">
+                    <span className="absolute top-[1.2%] left-[4.5%] text-[7px] tracking-wider text-white/35 select-none">
+                        flat display
+                    </span>
 
-                {/* cabinet */}
-                <div
-                    className="relative rounded-[22px] p-2 pb-2 shadow-[0_25px_50px_rgba(0,0,0,0.6),inset_0_2px_0_rgba(255,255,255,0.5),inset_0_-6px_10px_rgba(0,0,0,0.25)]"
-                    style={{ background: "linear-gradient(180deg, #d9d2c3 0%, #c4bcab 55%, #aaa291 100%)" }}
-                >
-                    {/* bezel */}
-                    <div className="rounded-[18px] p-1.5 bg-[#1d1c1a] shadow-[inset_0_3px_8px_rgba(0,0,0,0.8)]">
-                        {/* the tube */}
+                    {/* the tube */}
+                    <div className="rounded-[6px] p-[3px] bg-[#0b0b0b] shadow-[inset_0_2px_6px_rgba(0,0,0,0.9),0_1px_0_rgba(255,255,255,0.06)]">
                         <div
                             ref={screenRef}
-                            className="relative w-full aspect-[4/3] overflow-hidden bg-black"
-                            style={{ borderRadius: "6% / 8%" }}
+                            className="relative w-full aspect-[4/3] overflow-hidden bg-[#26302d]"
+                            style={{ borderRadius: "3% / 4%" }}
                         >
                             {poweredOn ? (
                                 <div className="absolute inset-0 tv-power-on">
@@ -136,50 +119,48 @@ const RetroTV = ({ onBack }: RetroTVProps) => {
                                 <Static />
                             )}
 
-                            {/* glass: scanlines, curvature vignette, glare */}
-                            <div aria-hidden className="pointer-events-none absolute inset-0 tv-scanlines" />
-                            <div aria-hidden className="pointer-events-none absolute inset-0 shadow-[inset_0_0_18px_4px_rgba(0,0,0,0.7)]" style={{ borderRadius: "6% / 8%" }} />
+                            {/* glass: faint aperture-grille lines, edge shadow, soft reflection */}
+                            <div aria-hidden className="pointer-events-none absolute inset-0 tv-grille-lines" />
+                            <div aria-hidden className="pointer-events-none absolute inset-0 shadow-[inset_0_0_16px_3px_rgba(0,0,0,0.65)]" style={{ borderRadius: "3% / 4%" }} />
                             <div aria-hidden className="pointer-events-none absolute inset-0 tv-glare" />
                         </div>
                     </div>
 
-                    {/* control panel */}
-                    <div className="mt-2 flex items-center justify-between px-2">
-                        <div aria-hidden className="w-24 h-10 rounded-md tv-grille" />
-                        <span className="text-[10px] font-bold tracking-[0.3em] text-[#5b564d] select-none">LAURAVISION</span>
-                        <div className="flex items-end gap-3">
-                            <Knob label="ch" />
-                            <Knob label="vol" />
-                            <div className="flex flex-col items-center gap-1">
-                                <button
-                                    onClick={togglePower}
-                                    aria-label={poweredOn ? "turn the PS3 off" : "turn the PS3 on"}
-                                    aria-pressed={poweredOn}
-                                    className="relative w-11 h-11 rounded-full active:translate-y-[1px] shadow-[inset_0_-3px_4px_rgba(0,0,0,0.45),0_3px_4px_rgba(0,0,0,0.45)]"
-                                    style={{ background: "radial-gradient(circle at 35% 30%, #4b4743, #1b1a18)" }}
-                                >
-                                    <span className="text-[#d8d2c4] text-lg leading-none">⏻</span>
-                                    <span
-                                        className={`absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full ${
-                                            poweredOn ? "bg-green-400 shadow-[0_0_8px_2px_rgba(74,222,128,0.8)]" : "bg-red-600 shadow-[0_0_6px_1px_rgba(220,38,38,0.7)]"
-                                        }`}
-                                    />
-                                </button>
-                                <span className="text-[9px] tracking-widest text-[#4a463f] uppercase">power</span>
-                            </div>
+                    {/* badge */}
+                    <div className="py-[2.2%] text-center select-none">
+                        <span className="text-[11px] font-bold tracking-[0.35em] text-[#cfcfcf]">LAURAVISION</span>
+                    </div>
+
+                    {/* speaker strip with the recessed control panel */}
+                    <div className="relative -mx-[4.6%] h-9 rounded-b-[10px] tv-speaker flex items-center justify-center">
+                        <div className="flex items-center gap-2 h-6 px-2 rounded-[3px] bg-[#141414] shadow-[inset_0_1px_3px_rgba(0,0,0,0.9),0_1px_0_rgba(255,255,255,0.05)]">
+                            <div aria-hidden className="w-24 h-3.5 rounded-[2px] bg-[#1d1d1d] shadow-[inset_0_-1px_0_rgba(255,255,255,0.06)]" />
+                            <span
+                                aria-hidden
+                                className={`w-1.5 h-1.5 rounded-full ${
+                                    poweredOn ? "bg-green-400 shadow-[0_0_6px_2px_rgba(74,222,128,0.8)]" : "bg-red-600 shadow-[0_0_5px_1px_rgba(220,38,38,0.7)]"
+                                }`}
+                            />
+                            <button
+                                onClick={togglePower}
+                                aria-label={poweredOn ? "turn the PS3 off" : "turn the PS3 on"}
+                                aria-pressed={poweredOn}
+                                className="w-4 h-4 rounded-full bg-[#2b2b2b] border border-black shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_1px_1px_rgba(0,0,0,0.6)] active:translate-y-[0.5px] relative"
+                            >
+                                {/* bigger invisible tap target */}
+                                <span className="absolute -inset-3" />
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                {/* feet */}
-                <div aria-hidden className="flex justify-between px-10">
-                    <div className="w-14 h-3 rounded-b-lg bg-[#2c2a27]" />
-                    <div className="w-14 h-3 rounded-b-lg bg-[#2c2a27]" />
-                </div>
+                {/* wooden stand */}
+                <div aria-hidden className="w-[108%] h-4 rounded-[3px] tv-wood-top" />
+                <div aria-hidden className="w-[104%] h-10 tv-wood-front" />
             </div>
 
-            <p className={`mt-8 text-white/70 text-lg tracking-wide transition-opacity ${poweredOn ? "opacity-0" : "tv-hint"}`}>
-                press power to start
+            <p className={`mt-6 text-[#3b2a1c] text-lg font-medium tracking-wide transition-opacity ${poweredOn ? "opacity-0" : "tv-hint"}`}>
+                press the power button to start
             </p>
         </div>
     );
