@@ -95,6 +95,8 @@ const Body = ({ isThinking, isTalking, interact, demonEyes = false }: BodyProps)
         if (isTalking && !isThinking) {
             setBeak(BEAK.OPEN);
             blink();
+        } else if (!isTalking) {
+            setBeak(BEAK.CLOSED);
         }
 
         return () => {
